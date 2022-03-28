@@ -1,0 +1,708 @@
+
+<?php
+//Including Database configuration file.
+include "db.php";
+//Getting value of "search" variable from "script.js".
+if (isset($_POST['search'])) {
+//Search box value assigning to $Name variable.
+   $Name = $_POST['search'];
+//Search query.
+ /*  $Query = "SELECT DISTINCT articles.genericArticleDescription as descripcion,ambrand.brandName as supli, manufacturers.manuName as manu, articlecrosses.articleNumber as Num , articlecrosses.oemNumber as oem  FROM articlecrosses
+   INNER JOIN manufacturers
+   ON articlecrosses.mfrId = manufacturers.manuId
+   INNER JOIN ambrand
+   ON articlecrosses.dataSupplierId = brandId
+   INNER JOIN articles
+   ON articles.articleNumber=articlecrosses.articleNumber and articles.dataSupplierId=articlecrosses.dataSupplierId
+   WHERE  articlecrosses.articleNumber LIKE '$Name%'  LIMIT 8";*/
+
+
+   $Query = "select DISTINCT vehicledetails.manuName as manu, vehicledetails.modelName as model from vehicledetails 
+   INNER JOIN articlesvehicletrees on articlesvehicletrees.linkingTargetId = vehicledetails.carId 
+   INNER join articles on articles.legacyArticleId=articlesvehicletrees.articleId 
+   inner join articlecrosses on articlecrosses.articleNumber=articles.articleNumber 
+   where articlecrosses.oemNumber = '$Name' order by manu";
+
+
+
+
+   $con->query("SET CHARACTER SET utf8");
+   $con->query("SET NAMES utf8");
+
+
+   //SELECT * FROM `crossbase` where number2='5000 262'
+//Query execution
+   $ExecQuery = MySQLi_query($con, $Query);
+//Creating unordered list to display result.
+   echo "<table>";
+   //Fetching result from database.
+   while ($Result = MySQLi_fetch_array($ExecQuery)) {
+      
+  
+  echo "<tr><td style='width:120px'><img src='./images_carbrands/".$Result['manu'].".png'   ></td><td style='width:200px;color:white'> Make </td>";
+   echo " <td style='width:200px'> "; echo $Result['manu']; echo " Model  ";echo $Result['model']; ; echo"</td></tr>"  ; 
+   
+}
+
+echo "</table>";
+
+}
+
+?>
+
+
+
+
+
+<?php
+//Including Database configuration file.
+include "db.php";
+//Getting value of "search" variable from "script.js".
+if (isset($_POST['search'])) {
+//Search box value assigning to $Name variable.
+   $Name = $_POST['search'];
+//Search query.
+ /*  $Query = "SELECT DISTINCT articles.genericArticleDescription as descripcion,ambrand.brandName as supli, manufacturers.manuName as manu, articlecrosses.articleNumber as Num , articlecrosses.oemNumber as oem  FROM articlecrosses
+   INNER JOIN manufacturers
+   ON articlecrosses.mfrId = manufacturers.manuId
+   INNER JOIN ambrand
+   ON articlecrosses.dataSupplierId = brandId
+   INNER JOIN articles
+   ON articles.articleNumber=articlecrosses.articleNumber and articles.dataSupplierId=articlecrosses.dataSupplierId
+   WHERE  articlecrosses.articleNumber LIKE '$Name%'  LIMIT 8";*/
+
+
+   $Query = "select DISTINCT vehicledetails.manuName as manu, vehicledetails.modelName as model from vehicledetails 
+   INNER JOIN articlesvehicletrees on articlesvehicletrees.linkingTargetId = vehicledetails.carId 
+   INNER join articles on articles.legacyArticleId=articlesvehicletrees.articleId 
+   inner join articlecrosses on articlecrosses.articleNumber=articles.articleNumber 
+   where articlecrosses.oemNumber = '$Name' order by manu";
+
+
+
+
+   $con->query("SET CHARACTER SET utf8");
+   $con->query("SET NAMES utf8");
+
+
+   //SELECT * FROM `crossbase` where number2='5000 262'
+//Query execution
+   $ExecQuery = MySQLi_query($con, $Query);
+//Creating unordered list to display result.
+   echo '
+<ul>
+';
+   //Fetching result from database.
+   while ($Result = MySQLi_fetch_array($ExecQuery)) {
+       ?>
+   <!-- Creating unordered list items.
+        Calling javascript function named as "fill" found in "script.js" file.
+        By passing fetched result as parameter. -->
+   <li onclick='fill("<?php echo $Result['manu'];echo $Result['model'];  echo " - ";?>")'>
+   <a>
+   <!-- Assigning searched result in "Search box" in "search.php" file. -->
+   <?php 
+  echo "<td style='width:120px'><img src='./images_carbrands/".$Result['manu'].".png'   ></td><td style='width:200px;color:white'> Make </td>";
+   ?>
+       <?php echo " <td style='width:200px'> "; echo $Result['manu']; echo " Model  ";echo $Result['model']; ; echo"</td>"  ; ?>
+   </li></a>
+   <!-- Below php code is just for closing parenthesis. Don't be confused. -->
+   <?php
+   
+}}
+
+?>
+</ul>
+
+
+
+function myFunctionHideDiv() {
+  var x = document.getElementById("elements");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+
+
+Select DISTINCT  ambrand.brandId as  logo ,ambrand.brandName as name , articles.genericArticleDescription as descri ,articles.articleNumber  as number, articles.legacyArticleId as pivot , articles.dataSupplierId as su_id , articlecrosses.oemNumber as OEM , eurocrossref.REF_EURO as REF_EURO , europroducts.libelleproduit as descrieuro , europroducts.prixeuroht as prix
+             From articlesvehicletrees
+             INNER JOIN articles
+             ON articlesvehicletrees.articleId = articles.legacyArticleId
+             INNER JOIN articlecrosses
+             ON articlecrosses.articleNumber=articles.articleNumber
+             INNER JOIN ambrand
+             on ambrand.brandId=articles.dataSupplierId
+             INNER JOIN articlecriteria
+             on articlecriteria.legacyArticleId=articles.legacyArticleId
+             INNER JOIN manufacturers
+             on manufacturers.manuId=articlecrosses.mfrId
+             INNER JOIN eurocrossref
+             on  eurocrossref.REF_FRN=  articlecrosses.oemNumber 
+             INNER JOIN europroducts
+             on europroducts.reference= eurocrossref.REF_EURO 
+             where articlesvehicletrees.linkingTargetId=15587 and articlesvehicletrees.assemblyGroupNodeId=100026 and articlesvehicletrees.linkingTargetType='P'
+             order by articles.genericArticleDescription, ambrand.brandName
+
+
+
+////////////////////////////////////////////////////////////////
+
+
+
+
+             <?php
+  
+  $name=$_GET['name'];
+
+
+  echo "<div class='retro'>". $name;
+
+
+
+  $html = '';
+ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
+
+ $id_group = $_GET['grupo'];
+$carid = $_GET['carid'];
+$conexion->query("SET CHARACTER SET utf8");
+$conexion->query("SET NAMES utf8");
+
+$result = $conexion->query("Select DISTINCT   GROUP_CONCAT(DISTINCT eurocrossref.REF_EURO  ,' : ', europroducts.prixeuroht ,'€ ') as dades
+                                             
+From articlesvehicletrees
+INNER JOIN articles
+ON articlesvehicletrees.articleId = articles.legacyArticleId
+INNER JOIN articlecrosses
+ON articlecrosses.articleNumber=articles.articleNumber
+INNER JOIN ambrand
+on ambrand.brandId=articles.dataSupplierId
+INNER JOIN articlecriteria
+on articlecriteria.legacyArticleId=articles.legacyArticleId
+INNER JOIN manufacturers
+on manufacturers.manuId=articlecrosses.mfrId
+INNER JOIN eurocrossref
+on  eurocrossref.REF_FRN=  articlecrosses.oemNumber 
+INNER JOIN europroducts
+on europroducts.reference= eurocrossref.REF_EURO 
+where articlesvehicletrees.linkingTargetId=$carid and articlesvehicletrees.assemblyGroupNodeId=$id_group and articlesvehicletrees.linkingTargetType='P'
+order by dades");
+
+if ($result->num_rows > 0) {
+  $html .="<div align='left' style='color:white;background-color:#0A1F47' >";
+    $html .="<h2><b>REFERENCES EURO4X4PARTS </b></h2></div>";
+    
+    while ($row = $result->fetch_assoc()) {                
+        $html .= "<div style='color:#0A1F47;background-color:white'>". $row['dades'] .  "</div>" ; 
+        
+    }
+   
+} 
+$html .="</div>";
+echo $html;
+
+echo "</div>";
+  
+  
+
+  ?>
+
+   
+ /*var id_grupos = array.result[0].carId;
+        $.post("grupos3.php", { id_grupos: id_grupos}, function(data) {
+            $("#grupos").html(data);
+        });			
+
+        $("#display").html("");
+
+var marca=array.ResultadoInformeReducido.marca;
+var modelo=array.ResultadoInformeReducido.modelo;
+var fecha=array.ResultadoInformeReducido.fechaPrimeraMatricula;
+$.post("grupos4.php", { marca: marca; modelo: modelo; fecha: fecha}, function(data) {
+            $("#cars").html(data);
+        });
+
+//$("#display").html(marca);
+} 
+*/
+
+
+
+function solution4(){
+
+
+var xmlhttp = new XMLHttpRequest()
+
+var url = "http://localhost/mysql_jsonESP_SUPLIERS.php?carid="+document.getElementById("carid").value+"&code="+document.getElementById("code").value
+$('#solution4').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>One moment, please ...</div>').show()
+
+
+xmlhttp.onreadystatechange = function() {
+ if (this.readyState == 4 && this.status == 200) {
+ var myArr = JSON.parse(this.responseText)
+ //console.log(myArr.length);
+ console.log(myArr)
+ if (myArr.length>0){
+  myFunction4(myArr)
+ }else{
+  $('#solution4').html("<div style='padding: 5px;background:red; font-size:16px;color:white;'>Not reference Supplier !!</div>")
+
+ } 
+
+ }
+}
+
+xmlhttp.open("GET", url, true)
+xmlhttp.send()
+solution5()
+}
+ 
+function myFunction4(array)
+
+ {  
+
+  $size_array=array.length
+  $texte="<table>"
+  for (let x in array)
+  {
+  //$make=array[n].M2;
+  //$T_OEM=array[x].M2;
+  $texte+="<tr><td  style='padding:5px;'><img src='../images/images_supplier_logos/"+array[x].logo+".png' width='80'  ></td><td  style='padding:5px;'>"+array[x].name+"</td><td  style='padding:5px;'>"+array[x].number+"</td></tr>"
+  }
+    $texte+="</table>"
+
+$("#solution4").html($texte)
+
+ }
+
+
+
+ /*
+function solution3(){
+
+
+var xmlhttp = new XMLHttpRequest()
+
+var url = "http://localhost/mysql_jsonESP_OEM.php?carid="+document.getElementById("carid").value+"&code="+document.getElementById("code").value
+$('#solution3').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>One moment, please ...</div>').show()
+
+
+xmlhttp.onreadystatechange = function() {
+ if (this.readyState == 4 && this.status == 200) {
+ var myArr = JSON.parse(this.responseText)
+ //console.log(myArr.length);
+ console.log(myArr)
+ if (myArr.length>0){
+  myFunction3(myArr)
+ }else{
+  $('#solution3').html("<div style='padding: 5px;background:red; font-size:16px;color:white;'>Not reference OEM !!</div>")
+
+ } 
+
+ }
+}
+
+xmlhttp.open("GET", url, true)
+xmlhttp.send()
+solution4()
+}
+ 
+function myFunction3(array)
+
+ {  
+
+  $size_array=array.length
+  $texte="<table>"
+  for (let x in array)
+  {
+  //$make=array[n].M2;
+  //$T_OEM=array[x].M2;
+  $texte+="<tr><td  style='padding:5px;'>"+array[x].M2+"</td><td  style='padding:5px;'>"+array[x].OEM+"</td></tr>"
+  }
+    $texte+="</table>"
+
+$("#solution3").html($texte)
+
+ }
+*/
+
+
+
+
+/*
+
+function solution2(){
+
+
+var xmlhttp = new XMLHttpRequest()
+
+var url = "http://localhost/mysql_json3.php?CODIGO='"+document.getElementById("code").value+"'"
+$('#solution2').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>One moment, please ...</div>').show()
+
+
+xmlhttp.onreadystatechange = function() {
+ if (this.readyState == 4 && this.status == 200) {
+ var myArr = JSON.parse(this.responseText)
+ //console.log(myArr.length);
+ if (myArr.length>0){
+  myFunction2(myArr)
+ }else{
+  $('#solution2').html("<div style='padding: 5px;background:red; font-size:16px;color:white;'>Not CODE !!</div>")
+
+ } 
+
+}
+}
+
+ 
+xmlhttp.open("GET", url, true)
+xmlhttp.send()
+solution3()
+}
+ 
+function myFunction2(array)
+
+ {  
+   //console.log(array[0].error);
+
+  $error=array[0].error
+  
+
+$("#solution2").html( "<table><td>Code description: "+$error+"</td></table>")
+
+ }*/
+
+
+
+ /*
+function solution(){
+
+
+var xmlhttp = new XMLHttpRequest()
+
+var url = "http://localhost/mysql_jsonESP.php?carid="+document.getElementById("carid").value+"&code="+document.getElementById("code").value
+$('#solution').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>One moment, please ...</div>').show()
+
+
+xmlhttp.onreadystatechange = function() {
+ if (this.readyState == 4 && this.status == 200) {
+ var myArr = JSON.parse(this.responseText);
+ //console.log(myArr.length);
+ if (myArr.length>0){
+  myFunction(myArr) 
+ }else{
+  $('#solution').html("<div style='padding: 5px;background:red; font-size:16px;color:white;'>Not Parts !!</div>")
+
+ } 
+
+}
+}
+
+
+ 
+xmlhttp.open("GET", url, true)
+xmlhttp.send()
+solution_error()
+
+}
+ 
+function myFunction(array)
+
+ {  
+
+ $oem =array[0].OENbr
+ $ref_euro=array[0].REF_EURO
+ $desc=array[0].libelleproduit
+ $prix=array[0].prixeuroht
+ $familia=$ref_euro.substring(0,3).toLowerCase()
+ $ref_euro2=$ref_euro.toLowerCase()
+
+//console.log($mar);
+//$("#display").html($info);
+//$("#display").html($mod2.length);
+//$.post("grupos4.php", { marca: $mar2, modelo: $mod2, fecha:fecha}, function(data) {
+//$.post("cars.php", { marca: $mar, modelo: $mod, fecha:$fecha}, function(data) {
+//            $("#cars").html(data);
+//        });
+//$card="<div class='b'><table><tr><td >-</td></tr><tr><td>Recommended solutions:</td></tr><tr><td> -Check the electrical wiring and connectors, related to the code</td></tr><tr><td> -Verify there is no corrosion, or water in the sensor / related spare part</td></tr><tr><td> -Replace the following spare part:</td></tr><tr><td>-</td></tr></table></div>"
+
+$card="</br><div class='b'>Recommended solutions:</div><div class='b'> -Check the electrical wiring and connectors, related to the code</div><div class='b'> -Verify there is no corrosion, or water in the sensor / related spare part</div><div class='b'> -Replace the following spare part:</div></br>"
+
+
+
+$card+="<div class='w3-container'><div class='w3-card-4' style='width:70%'><header class='w3-container w3-light-grey'>"
+$card+="<h3>"+$ref_euro+"</h3></header><div class='w3-container'><p>"+$oem+"</p><hr><img src='http://blog.euro4x4parts.com/photos/"+ $familia + "/" + $ref_euro2 + "z.jpg'  class='w3-left w3-circle w3-margin-right' style='width:200px'>"
+$card+="<p>"+$desc+"</p><br></div><button class='w3-button w3-block w3-dark-grey'>+ Buy "+$prix+"€</button></div></div>"
+$("#solution").html( $card)
+
+ }
+
+*/
+
+
+
+
+<?php
+
+
+$conexion = new mysqli('localhost', 'root','' , 'td2q2019');
+$conexion->query("SET CHARACTER SET utf8");
+$conexion->query("SET NAMES utf8");
+
+$result = $conexion->query("SELECT shortCutId,shortCutName FROM `shortcuts` where lang='en' and linkingTargetType='P' order by shortCutName");
+
+
+
+if ($result->num_rows > 0) {
+  $html .="<div align='left'>";
+    $html .="<H2><b>CATALOGUE</b></h2></div><div class='honeycomb'><div class='ibws-fix' align='left'>";
+   
+    while ($row = $result->fetch_assoc()) {   
+        $html .="<div class='hexagon' ><div class='hexagontent' >";              
+        $html .= "<a href='recursive2.php?carid=".$carid."&grupo=". $row['shortCutId'] . "'>". $row['shortCutName'] .   "</a></div></div>" ; 
+        
+    }
+    $html .="</div></div>";
+} 
+
+
+
+
+
+
+
+
+echo $html;
+
+
+
+
+
+  
+?>
+
+
+
+/*
+ function PaintSolutionList(array,code)
+
+{  
+
+ $size_array=array.length
+ $card+="<table>"
+ for (let x in array)
+ {
+ //$make=array[n].M2;
+ //$T_OEM=array[x].M2;
+ $card+="<td  style='padding:5px;'>"+code+"          "+array[x].M2+"</td><td  style='padding:5px;'>"+array[x].OEM+"</td>"
+ }
+   $card+="</table>"
+
+$("#solution").html($card)
+
+}
+
+
+
+
+
+ function ReadSolution(code){
+
+
+var xmlhttp = new XMLHttpRequest()
+
+var url = "http://localhost/mysql_jsonESP_OEM_ALL.php?carid="+document.getElementById("carid").value+"&code="+code
+//var url = "http://localhost/mysql_jsonESP.php?carid="+document.getElementById("carid").value+"&code="+code
+
+$('#solution').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>One moment, please ...</div>').show()
+
+
+xmlhttp.onreadystatechange = function() {
+ if (this.readyState == 4 && this.status == 200) {
+ var myArr = JSON.parse(this.responseText)
+ //console.log(myArr.length);
+ if (myArr.length>0){
+     PaintSolutionList(myArr,code);
+   
+  //PaintSolutionCard(myArr,code);
+  
+  //console.log(myArr)
+ }else{
+  
+  $card+="<div style='padding: 5px;background:red; font-size:16px;color:white;'>"+code+" Not reference OEM !!</div>"
+  
+  $('#solution').html($card)
+
+ } 
+
+
+
+
+
+ }
+};
+
+
+ 
+xmlhttp.open("GET", url, true)
+xmlhttp.send()
+
+
+}
+*/
+
+
+
+<?php
+//Including Database configuration file.
+include "db.php";
+//Getting value of "search" variable from "script.js".
+if (isset($_POST['search'])) {
+//Search box value assigning to $Name variable.
+   $Name = $_POST['search'];
+//Search query.
+   $Query = "SELECT DISTINCT articles.genericArticleDescription as descripcion,ambrand.brandName as supli, manufacturers.manuName as manu, articlecrosses.articleNumber as Num , articlecrosses.oemNumber as oem  FROM articlecrosses
+   INNER JOIN manufacturers
+   ON articlecrosses.mfrId = manufacturers.manuId
+   INNER JOIN ambrand
+   ON articlecrosses.dataSupplierId = brandId
+   INNER JOIN articles
+   ON articles.articleNumber=articlecrosses.articleNumber and articles.dataSupplierId=articlecrosses.dataSupplierId
+   
+     WHERE  articlecrosses.articleNumber LIKE '$Name%' order by manu  LIMIT 8";
+
+   $con->query("SET CHARACTER SET utf8");
+   $con->query("SET NAMES utf8");
+
+   
+//Query execution
+
+   $ExecQuery = MySQLi_query($con, $Query);
+//Creating unordered list to display result.
+   echo '
+<ul>
+';
+   //Fetching result from database.
+   while ($Result = MySQLi_fetch_array($ExecQuery)) {
+       ?>
+   <!-- Creating unordered list items.
+        Calling javascript function named as "fill" found in "script.js" file.
+        By passing fetched result as parameter. -->
+   <li onclick='fill("<?php echo $Result['oem'];?>")'>
+   <a>
+   <!-- Assigning searched result in "Search box" in "search.php" file. -->
+   <?php 
+  echo "<td style='width:120px'><img src='../images/images_carbrands/".$Result['manu'].".png'   ></td><td style='width:200px;color:white'>*</td>";
+   ?>
+       <?php echo " <td style='width:200px'> "; echo $Result['manu']; echo " REF OEM: ";echo $Result['oem'];  echo " - "; echo $Result['descripcion']; echo " - // ";echo $Result['supli']; echo " : ";echo $Result['Num']; echo"</td>"  ; ?>
+   </li></a>
+   <!-- Below php code is just for closing parenthesis. Don't be confused. -->
+   <?php
+   
+}}
+
+?>
+</ul>
+
+
+
+
+
+<?php
+//Including Database configuration file.
+include "db.php";
+//Getting value of "search" variable from "script.js".
+if (isset($_POST['search'])) {
+//Search box value assigning to $Name variable.
+   $Name = $_POST['search'];
+//Search query.
+
+   $Query = "select DISTINCT vehicledetails.manuName as manu, vehicledetails.modelName as model from vehicledetails 
+   INNER JOIN articlesvehicletrees on articlesvehicletrees.linkingTargetId = vehicledetails.carId 
+   INNER join articles on articles.legacyArticleId=articlesvehicletrees.articleId 
+   inner join articlecrosses on articlecrosses.articleNumber=articles.articleNumber and articlecrosses.dataSupplierId= articles.dataSupplierId
+   where articlecrosses.oemNumber = '$Name' order by manu, model";
+
+
+
+
+   $con->query("SET CHARACTER SET utf8");
+   $con->query("SET NAMES utf8");
+
+
+   
+//Query execution
+   $ExecQuery = MySQLi_query($con, $Query);
+//Creating unordered list to display result.
+   echo '
+<ul>
+';
+   //Fetching result from database.
+   while ($Result = MySQLi_fetch_array($ExecQuery)) {
+       ?>
+   <!-- Creating unordered list items.
+        Calling javascript function named as "fill" found in "script.js" file.
+        By passing fetched result as parameter. -->
+   <li onclick='fill("<?php echo $Result['manu'];echo $Result['model'];  echo " - ";?>")'>
+   <a>
+   <!-- Assigning searched result in "Search box" in "search.php" file. -->
+   <?php 
+  echo "<td style='width:120px'><img src='../images/images_carbrands/".$Result['manu'].".png'   ></td><td style='width:200px;color:white'> - </td>";
+   ?>
+       <?php echo " <td style='width:200px'> "; echo $Result['manu']; echo " -  ";echo $Result['model']; ; echo"</td>"  ; ?>
+   </li></a>
+   <!-- Below php code is just for closing parenthesis. Don't be confused. -->
+   <?php
+   
+}}
+
+?>
+</ul>
+
+
+
+
+
+<table>
+  <tr>
+  <td style='color:rgb(104, 49, 49);padding: 5px;width:20%;' >
+  <form name="form" action="" >
+  <label for="fname"><b>Enter CODE</b></label></td><td style='color:rgb(104, 49, 49);padding: 1px;width:35%;'>
+  <input type="text" id="code" name="fname" value="P0560" >
+  
+   </form>
+  </td><td style="width:45%;padding: 5px;">
+                      
+   <button type="button" onclick="solution()" class="btn btn-primary btn-lg">SOLUTION</button> &nbsp; <button type="button" onclick="ALLsolution()" class="btn btn-primary btn-lg">ALL SOLUTION</button>&nbsp;&nbsp;<button type="button" onclick="Clear()" class="btn btn-primary btn-lg">Clear</button></td></tr>
+   
+                      
+                     
+
+</table>
+
+
+
+function PaintSolutionCard(array,code)
+
+ {  
+  console.log(array)
+
+  console.log(array[0])
+ $oem =array[0].OENbr
+ $ref_euro=array[0].REF_EURO
+ $desc=array[0].libelleproduit
+ $prix=array[0].prixeuroht
+ $familia=$ref_euro.substring(0,3).toLowerCase()
+ $ref_euro2=$ref_euro.toLowerCase()
+
+
+$card+="<div ><table><tr><td>-</td></tr><tr><td>Recommended solutions:</td></tr><tr><td> -Check the electrical wiring and connectors, related to the code</td></tr><tr><td> -Verify there is no corrosion, or water in the sensor / related spare part</td></tr><tr><td> -Replace the following spare part:</td></tr><tr><td>-</td></tr></table></div>"
+$card+="<div class='w3-container'><div class='w3-card-4' style='width:70%'><header class='w3-container w3-light-grey'>"
+$card+="<h3>"+code+"  "+$ref_euro+"</h3></header><div class='w3-container'><p>"+$oem+"</p><hr><img src='http://blog.euro4x4parts.com/photos/"+ $familia + "/" + $ref_euro2 + "z.jpg'  class='w3-left w3-circle w3-margin-right' style='width:200px'>"
+$card+="<p>"+$desc+"</p><br></div><button class='w3-button w3-block w3-dark-grey'>+ Buy "+$prix+"€</button></div></div>"
+$("#solution").html( $card)
+
+ }
+
