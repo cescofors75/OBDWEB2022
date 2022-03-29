@@ -172,12 +172,12 @@ echo $html;
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
               
-               if ($row['hasChilds']==0){
-                $text=str_repeat("-", ($level * 4)) . $row['assemblyGroupName'] ."-".$row['assemblyGroupNodeId'] ; 
+               if ($row['hasChilds']===0){
+                $text=str_repeat("&nbsp;", ($level * 4)) . $row['assemblyGroupName'] ."-".$row['assemblyGroupNodeId'] ; 
                 echo"<tr><td class='child'><a href='cref.php?carid=".$carid."&grupo=". $row['assemblyGroupNodeId'] . "&name=". $row['assemblyGroupName'] ."'>".$text."</td></tr>"; 
                }else{
 
-                $text=str_repeat(".", ($level * 4)) . $row['assemblyGroupName'] ;//. ' '.$row['assemblyGroupNodeId'] ; 
+                $text=str_repeat("&nbsp;", ($level * 4)) . $row['assemblyGroupName'] ;//. ' '.$row['assemblyGroupNodeId'] ; 
                 echo"<tr><td class='semiparent'>".$text."</td></tr>"; 
 
                } //#AFBEFC
