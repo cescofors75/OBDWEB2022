@@ -25,7 +25,7 @@
 
 
 
-<div class='container'> // info car
+<div class='container'> <!-- info car -->
 
 
 <?php
@@ -59,14 +59,12 @@ $html="";
 
 
 
-<input type=hidden id=carid value='<?php  echo $carid; ?>'/>   // menu options & solutions
+<input type=hidden id=carid value='<?php  echo $carid; ?>'/>   <!-- menu options & solutions -->
 
 
 
-  <div style=' font-family: "Source Code Pro";font-size:16px;padding: 5px;background:red; color:white; text-align:left;'>Options: Example P0201, P0255, P0100 </div>
-  <div class='b' style='text-align:left;' >
- 
-  <b>Enter CODE</b>&nbsp; <input type="text" id="code" name="fname" value="P0560" >&nbsp; 
+  <div class='r'>Options: Example P0201, P0255, P0100 </div>
+  <div class='b' >Enter CODE&nbsp; <input type="text" id="code" name="fname" value="P0560" >&nbsp; 
   <button type="button" onclick="solution()" class="btn btn-primary btn-lg">SOLUTION</button> &nbsp; <button type="button" onclick="ALLsolution()" class="btn btn-primary btn-lg">ALL SOLUTION</button>&nbsp;&nbsp;<button type="button" onclick="Clear_solutions()" class="btn btn-primary btn-lg">Clear Solutions</button></td></tr>
    
   </div>
@@ -108,8 +106,8 @@ $result = $conexion->query("SELECT shortCutId,shortCutName FROM `shortcuts` wher
 
 
 if ($result->num_rows > 0) {
-  $html .="<div align='left'>";
-    $html .="<div><h2><b>CATALOGUE</b></h2></div><div class='container'><table><tr>";
+  $html .="</br><div class='b'>";
+    $html .="CATALOGUE</div></br><div class='container'><table><tr>";
     $i=0;
     while ($row = $result->fetch_assoc()) {   
         if ($i < 4){
@@ -193,7 +191,7 @@ $('#solution').html('<br/> <div class="loading"><img src="images/loader.gif" alt
           document.getElementById('solution').innerHTML = body
          // document.getElementById('solution5').innerHTML = "Spare part solution: "+$partes
           }else{
-            $('#solution').html("<div style='padding: 5px;background:red; font-size:16px;color:white;'>Not Parts !!!!</div>")
+            $('#solution').html("<div class='error'>Not Parts !!!!</div>")
 
           }
           
@@ -221,17 +219,17 @@ console.log(x)
       const mostrarData = (data) => {
           console.log(data)
           if (data.length >0){
-          let body = "</br><table style='width:100%'>"
+          let body = "</br><div class='r'>"
           for (var i = 0; i < data.length; i++) {   
           
-             body+="<tr><td style='width:100%; text-align:left;'>Code description:  "+data[i].error+"</td></tr>"
+             body+="Code description:  "+data[i].error+"-"
           
             }
-          body+="</table>"
+          body+="</div>"
           
           document.getElementById('solution2').innerHTML = body
           }else{
-            $('#solution2').html("<div style='padding: 5px;background:red; font-size:16px;color:white;'>Not CODE !!!!</div>")
+            $('#solution2').html("<div class='error'>Not CODE !!!!</div>")
 
           }
           
@@ -266,13 +264,13 @@ $('#solution3').html('<br/> <div class="loading"><img src="images/loader.gif" al
           let body = "</br><table>"
           for (var i = 0; i < data.length; i++) {   
            
-             body+="<tr><td style='width:100%'>"+data[i].M2+"</td><td>"+data[i].OEM+"</td></tr>"  
+             body+="<tr><td class='t100'>"+data[i].M2+"</td><td>"+data[i].OEM+"</td></tr>"  
           
             }
           body+="</table>"
           document.getElementById('solution3').innerHTML = body
           }else{
-            $('#solution3').html("<div style='padding: 5px;background:red; font-size:16px;color:white;'>Not reference OEM !!!!</div>")
+            $('#solution3').html("<div class='error'>Not reference OEM !!!!</div>")
 
           }
           
@@ -301,14 +299,14 @@ $('#solution3').html('<br/> <div class="loading"><img src="images/loader.gif" al
             if (data.length >0){
             let body = "<table></br>"
             for (var i = 0; i < data.length; i++) {      
-               body+="<tr><td style='width:100%'><img src='../images/images_supplier_logos/"+data[i].logo+".png' width='80'></td><td>"+data[i].name+"</td><td>"+data[i].number+"</td></tr>"
+               body+="<tr><td class='t100'><img src='../images/images_supplier_logos/"+data[i].logo+".png' width='80'></td><td>"+data[i].name+"</td><td>"+data[i].number+"</td></tr>"
                // body+=`<tr><td>${data[i].id}</td><td>${data[i].name}</td><td>${data[i].email}</td></tr>`
             
               }
             body+="</table>"
             document.getElementById('solution4').innerHTML = body
             }else{
-              $('#solution4').html("<div style='padding: 5px;background:red; font-size:16px;color:white;'>Not reference Supplier !!</div>")
+              $('#solution4').html("<div class='error'>Not reference Supplier !!</div>")
 
             }
             
@@ -333,14 +331,14 @@ $('#solution3').html('<br/> <div class="loading"><img src="images/loader.gif" al
           if (data.length >0){
           let body = ""
           for (var i = 0; i < data.length; i++) {      
-            document.getElementById('solution3').innerHTML+="<div class='b' style='padding:5px;'>"+code+"          "+data[i].M2+"    "+data[i].OEM+"</div>"
+            document.getElementById('solution3').innerHTML+="<div class='b'>"+code+"          "+data[i].M2+"    "+data[i].OEM+"</div>"
              // body+=`<tr><td>${data[i].id}</td><td>${data[i].name}</td><td>${data[i].email}</td></tr>`
           
             }
           //body+="</table>"
           //document.getElementById('solution3').innerHTML += body
           }else{
-            document.getElementById('solution3').innerHTML+="<div style='padding: 5px;background:red; font-size:16px;color:white;'>" +code+"  "+"Not reference OEM !!</div>"
+            document.getElementById('solution3').innerHTML+="<div class='error'>" +code+"  "+"Not reference OEM !!</div>"
            // $('#solution3').html(body+"<div style='padding: 5px;background:red; font-size:16px;color:white;'>Not reference OEM !!</div>")
 
           }

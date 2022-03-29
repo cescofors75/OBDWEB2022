@@ -37,6 +37,32 @@
 
   font-family: "Libre Barcode 39 Text";
   font-size: 39px;
+  color:black;
+}
+
+td.p35{
+  padding: 35px;
+} 
+td.p5{
+  padding: 5px;
+} 
+
+td.criteria{
+
+  width:300px;
+  color:black;
+  text-align: Left
+}
+
+td.menu{
+  text-align: left !important;
+  padding: 5px !important;
+  background:steelblue !important;
+  font-size:16px !important;
+  color:white !important;
+  width : 25% !important;
+  font-family: "Source Code Pro" !important;
+
 }
 
 div.b {
@@ -46,7 +72,17 @@ div.b {
   font-size:16px;
   color:white;
   font-family: "Source Code Pro";
-}  
+} 
+
+div.r{
+
+  text-align: left;
+  padding: 5px;
+  background:red;
+  font-size:16px;
+  color:white;
+  font-family: "Source Code Pro";
+}
 
 div.b2 {
   text-align: left;
@@ -65,19 +101,60 @@ div.space {
   font-size:16px;
   color:white;
   font-family: "Source Code Pro";
-}  
-
-td.menu{
-  text-align: left !important;
-  padding: 5px !important;
-  background:steelblue !important;
-  font-size:16px !important;
-  color:white !important;
-  width : 25% !important;
-  font-family: "Source Code Pro" !important;
-
 }
 
+
+
+div.info{
+
+font-family: "Source Code Pro"; 
+text-align: left;
+background:white;
+font-weight: bold;
+}
+
+div.error{
+
+  padding: 5px;
+  background:red;
+  font-size:16px;
+  color:white;
+
+
+}
+table.menuP{
+
+  width :500px;
+  color:rgb(104, 49, 49);
+}
+
+td.parent{
+  text-align: left;
+  background:steelblue;
+  color:white;
+  
+}
+td.semiparent{
+  text-align: left;
+  background:lightblue;
+  color:white;
+  
+}
+td.child{
+  text-align: left;
+}
+
+
+td.t20{
+  width:20%;
+}
+td.t100{
+  width:100%;
+  text-align: left;
+}
+td.bold{
+  font-weight: bold;
+}
 
 td.menu a:link{
   color: hsl(0, 60%, 98%);

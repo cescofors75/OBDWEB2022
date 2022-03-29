@@ -112,17 +112,17 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
  </div>
  <div class='space2'> </div>
  <div class='container'>
-   <table style='width:500px'>
-  <tr> <td style='color:rgb(104, 49, 49);' ><div id="texte">
+   <table class='menuP'>
+  <tr> <td class='bold'><div id="texte">
   <form name="form" action="" >
-  <label for="fname"><b>VIN</b></label></td><td style='color:rgb(104, 49, 49);'>
+  <label for="fname">VIN</label></td><td>
   <input type="text" id="fname" name="fname" value="JTEBZ29J400070571" >SALLDVA576A725557  JN10KYY60U0872024  JTEAZ99J900006367
   
-   </form></td><td style="width:20%">
+   </form></td><td class="t20">
                       
    <button type="button" onclick="sub()" class="btn btn-primary btn-lg">Search</button></td></tr>
-   <tr><td style='color:rgb(104, 49, 49);'>  
-    <b>Search part number</b></td><td style='color:rgb(104, 49, 49);'>
+   <tr><td class='bold'>  
+    Search part number</td><td>
     <input type="text" id="search" placeholder="4056A026" /><br>43512-0K060, 60626888
   
    
@@ -130,7 +130,7 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
    <!-- Suggestions will be displayed in below div. -->
 
 
-   </td><td style="width:20%"><button type="button" onclick="Clear()" class="btn btn-primary btn-lg">Clear</button>
+   </td><td class="t20"><button type="button" onclick="Clear()" class="btn btn-primary btn-lg">Clear</button>
    
 
    

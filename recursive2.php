@@ -75,8 +75,8 @@ $result = $conexion->query("SELECT manuName,modelName,typeName,yearOfConstrFrom,
 
 
 if ($result->num_rows > 0) {
-  $html .="<div align='left' style='background:white'>";
-    $html .="<h2><b>INFO</b></h2>";
+  $html .="<div class='info'>";
+    $html .="<h2>INFO</h2>";
     
     while ($row = $result->fetch_assoc()) {                
         $html .=  $row['manuName'] . " / ". $row['modelName'] .  " / ". $row['typeName'] . "*" ; 
@@ -126,9 +126,9 @@ echo $html;
              $data = [];
              echo "<table>"; /*style='text-align: left'*/
              while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                echo "<tr><td style='text-align: left;color:white;background-color:#0A1F47'>". $row['assemblyGroupName'] . "</td></tr>";
+                echo "<tr><td class='parent'>". $row['assemblyGroupName'] . "</td></tr>";
                  getSubCategories($row['assemblyGroupNodeId'], 0,$carid,$id_shortcut);
-             }                  
+             }    //#0A1F47              
                  
         } catch (Exception $e) {
             echo $e->getMessage();
@@ -174,13 +174,13 @@ echo $html;
               
                if ($row['hasChilds']==0){
                 $text=str_repeat("-", ($level * 4)) . $row['assemblyGroupName'] ."-".$row['assemblyGroupNodeId'] ; 
-                echo"<tr><td style='text-align: left' ><a href='cref.php?carid=".$carid."&grupo=". $row['assemblyGroupNodeId'] . "&name=". $row['assemblyGroupName'] ."'>".$text."</td></tr>"; 
+                echo"<tr><td class='child'><a href='cref.php?carid=".$carid."&grupo=". $row['assemblyGroupNodeId'] . "&name=". $row['assemblyGroupName'] ."'>".$text."</td></tr>"; 
                }else{
 
                 $text=str_repeat(".", ($level * 4)) . $row['assemblyGroupName'] ;//. ' '.$row['assemblyGroupNodeId'] ; 
-                echo"<tr><td style='text-align: left;color:black;background-color:#AFBEFC'>".$text."</td></tr>"; 
+                echo"<tr><td class='semiparent'>".$text."</td></tr>"; 
 
-               }
+               } //#AFBEFC
                
                
                getSubCategories($row['assemblyGroupNodeId'], $level,$carid,$id_shortcut); 

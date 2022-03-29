@@ -80,8 +80,8 @@ $result = $conexion->query("SELECT manuName,modelName,typeName,yearOfConstrFrom,
 
 
 if ($result->num_rows > 0) {
-  $html .="<div align='left' style='background:white'>";
-    $html .="<h2><b>INFO</b></h2>";
+  $html .="<div class='info'>";
+    $html .="<h2>INFO</h2>";
     
     while ($row = $result->fetch_assoc()) {                
         $html .=  $row['manuName'] . " / ". $row['modelName'] .  " / ". $row['typeName'] . "*" ; 
@@ -91,7 +91,7 @@ if ($result->num_rows > 0) {
 } 
 
 ////////////////////////////////////////////////////////////////
-$html .="<div>";
+$html .="<div></br>";
 $html .="<button type='button' onclick='referencesEuro()' class='btn btn-primary btn-lg'>References Euro4x4</button>&nbsp;";
 $html .="<button type='button' onclick='Clear()' class='btn btn-primary btn-lg'>Clear</button>";
 $html .="</div>";
@@ -238,7 +238,7 @@ echo $html;
             
              
              echo "<div  class='container2'> <table>";//style='color:#0000ff;background-color:white'
-             echo "<div align='left' style='color:white;background-color:#0A1F47' >";
+             echo "<div class='b' >";
              echo "<h2><b>CROSS-REFERENCES  </b></h2></div>";
              while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
               /////////////////////////////////////////           References OEM
@@ -267,7 +267,7 @@ echo $html;
               while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
                 $criteria .= $row2['description']." = ".$row2['value']."<br>";
               }
-                echo "<tr><td style='padding: 35px;'><img class='circle' src='../images/images_supplier_logos/".$row['logo'].".png' ";
+                echo "<tr><td class='p35'><img class='circle' src='../images/images_supplier_logos/".$row['logo'].".png' ";
                
                 
                 ?>
@@ -275,7 +275,7 @@ echo $html;
                 <?php
 
 
-                echo "</td><td style='color:black'>". $row['descri']."</td><td style='color:black'>". $row['name'] . "</td><td class='barcode' style='color:black' >". $row['number'] ."</td><td style='width:300px;color:black;text-align: Left' >". $criteria ."</td><td style='width:250px; color:black;text-align: Left' >". $criteria2 ."</td>";
+                echo "</td><td>". $row['descri']."</td><td>". $row['name'] . "</td><td class='barcode' >". $row['number'] ."</td><td class='criteria' >". $criteria ."</td><td class='criteria' >". $criteria2 ."</td>";
                 $num=str_replace(" ", "", $row['number']);
                 $num=str_replace("-", "", $num);
                 $num=str_replace(".", "", $num);
@@ -295,7 +295,7 @@ echo $html;
                 $supli=str_replace("®", "", $supli);
                 ///////////////////////
                
-                echo " <td style='padding: 35px;'><a  href='../images/imgSorted/" ; echo $supli; echo "/"; echo $num; echo "/"; echo $num; echo ".jpg' >";
+                echo " <td class='p35'><a  href='../images/imgSorted/" ; echo $supli; echo "/"; echo $num; echo "/"; echo $num; echo ".jpg' >";
                
                
                 /*
@@ -375,13 +375,13 @@ $('#refEuro').html('<br/> <div class="loading"><img src="images/loader.gif" alt=
           let body = "<table>"
           for (var i = 0; i < data.length; i++) {   
              
-             body+="<tr><td  style='padding:5px;'>"+data[0].dades+"</td></tr>"  
+             body+="<tr><td  class='p5'>"+data[0].dades+"</td></tr>"  
           
             }
           body+="</table>"
           document.getElementById('refEuro').innerHTML = body
           }else{
-            $('#refEuro').html("<div style='padding: 5px;background:red; font-size:16px;color:white;'>Not reference EURO4x4 !!!!</div>")
+            $('#refEuro').html("<div class='error'>Not reference EURO4x4 !!!!</div>")
 
           }
           
