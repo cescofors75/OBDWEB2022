@@ -1,3 +1,40 @@
+
+<?php 
+session_start();
+if(isset($_GET['la'])){
+$_SESSION['la'] = $_GET['la'];
+header('Location:'.$_SERVER['PHP_SELF']);
+exit();
+}
+if(isset($_SESSION['la']))
+{
+switch($_SESSION['la']){
+case "eng":
+require('lang/eng.php'); 
+break;
+case "fre":
+require('lang/fre.php'); 
+break;
+case "ger":
+require('lang/ger.php'); 
+break; 
+case "esp":
+require('lang/esp.php'); 
+break; 
+default: 
+require('lang/esp.php'); 
+}
+
+}else{
+require('lang/esp.php');
+}
+?>
+<div id="langSelect">
+<a href="index.php?la=esp"><img class='circle' src="flags/esp.png" alt="<?=$lang['lang-esp'];?>" title="<?=$lang['lang-esp'];?>" /></a>  
+<a href="index.php?la=eng"><img class='circle' src="flags/eng.png" alt="<?=$lang['lang-eng'];?>" title="<?=$lang['lang-eng'];?>" /></a>
+<a href="index.php?la=fre"><img class='circle' src="flags/fra.png" alt="<?=$lang['lang-fre'];?>" title="<?=$lang['lang-fre'];?>" /></a>
+<a href="index.php?la=ger"><img class='circle' src="flags/ger.png" alt="<?=$lang['lang-ger'];?>" title="<?=$lang['lang-ger'];?>" /></a>
+</div>
 <?php
 $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
 ?>
@@ -73,7 +110,7 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
         <div id="content" class="col-lg-12">
             <form class="row" action="" method="post">
                 <div class="form-group col-lg-3">
-                    <label for="category">Make</label>
+                    <label for="category"><?php echo $lang['index-make'];?></label>
                     <select name="category" id="category" class="form-control">
                         <?php
                       
@@ -94,12 +131,12 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
                     </select>
                 </div>
                 <div class="form-group col-lg-3">
-                    <label for="subcategory">Model</label>
+                    <label for="subcategory"><?php echo $lang['index-model'];?></label>
                     <select name="subcategory" id="subcategory" class="form-control"></select>
                 </div>
 
                 <div class="form-group col-lg-3">
-                    <label for="ssubcategory">Motor</label>
+                    <label for="ssubcategory"><?php echo $lang['index-motor'];?></label>
                     <select name="ssubcategory" id="ssubcategory" class="form-control"></select>
                 </div>
             </form>
@@ -120,9 +157,9 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
   
    </form></td><td class="t20">
                       
-   <button type="button" onclick="sub()" class="btn btn-primary btn-lg">Search</button></td></tr>
+   <button type="button" onclick="sub()" class="btn btn-primary btn-lg"><?php echo $lang['index-b-search'];?></button></td></tr>
    <tr><td class='bold'>  
-    Search part number</td><td>
+   <?php echo $lang['index-search'];?></td><td>
     <input type="text" id="search" placeholder="4056A026" /><br>43512-0K060, 60626888
   
    
@@ -130,7 +167,7 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
    <!-- Suggestions will be displayed in below div. -->
 
 
-   </td><td class="t20"><button type="button" onclick="Clear()" class="btn btn-primary btn-lg">Clear</button>
+   </td><td class="t20"><button type="button" onclick="Clear()" class="btn btn-primary btn-lg"><?php echo $lang['index-b-clear'];?></button>
    
 
    

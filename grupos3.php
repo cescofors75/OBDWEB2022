@@ -26,7 +26,36 @@
 
 
 <div class='container'> <!-- info car -->
+<?php 
+session_start();
+if(isset($_GET['la'])){
+$_SESSION['la'] = $_GET['la'];
+header('Location:'.$_SERVER['PHP_SELF']);
+exit();
+}
+if(isset($_SESSION['la']))
+{
+switch($_SESSION['la']){
+case "eng":
+require('lang/eng.php'); 
+break;
+case "fre":
+require('lang/fre.php'); 
+break;
+case "ger":
+require('lang/ger.php'); 
+break; 
+case "esp":
+require('lang/esp.php'); 
+break; 
+default: 
+require('lang/esp.php'); 
+}
 
+}else{
+require('lang/esp.php');
+}
+?>
 
 <?php
 $html = '';
@@ -42,7 +71,7 @@ $result = $conexion->query("SELECT manuName,modelName,typeName,yearOfConstrFrom,
 
 if ($result->num_rows > 0) {
   $html .="<div class='b' >";
-    $html .="<h2><b>INFO</b></h2>";
+    $html .="<h2><b>".$lang['grupos-info']."</b></h2>";
     
     while ($row = $result->fetch_assoc()) {                
         $html .=  $row['manuName'] . " / ". $row['modelName'] .  " / ". $row['typeName'] . "*" ; 
@@ -63,9 +92,9 @@ $html="";
 
 
 
-  <div class='r'>Options: Example P0201, P0255, P0100 </div>
-  <div class='b' >Enter CODE&nbsp; <input type="text" id="code" name="fname" value="P0560" >&nbsp; 
-  <button type="button" onclick="solution()" class="btn btn-primary btn-lg">SOLUTION</button> &nbsp; <button type="button" onclick="ALLsolution()" class="btn btn-primary btn-lg">ALL SOLUTION</button>&nbsp;&nbsp;<button type="button" onclick="Clear_solutions()" class="btn btn-primary btn-lg">Clear Solutions</button></td></tr>
+  <div class='r'><?php echo $lang['grupos-option'];?>&nbsp; P0201, P0255, P0100 </div>
+  <div class='b' ><?php echo $lang['grupos-code'];?>&nbsp; <input type="text" id="code" name="fname" value="P0560" >&nbsp; 
+  <button type="button" onclick="solution()" class="btn btn-primary btn-lg"><?php echo $lang['grupos-solution'];?></button> &nbsp; <button type="button" onclick="ALLsolution()" class="btn btn-primary btn-lg">ALL SOLUTION</button>&nbsp;&nbsp;<button type="button" onclick="Clear_solutions()" class="btn btn-primary btn-lg">Clear Solutions</button></td></tr>
    
   </div>
 
@@ -101,13 +130,13 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
 $conexion->query("SET CHARACTER SET utf8");
 $conexion->query("SET NAMES utf8");
 
-$result = $conexion->query("SELECT shortCutId,shortCutName FROM `shortcuts` where lang='en' and linkingTargetType='P' order by shortCutName");
+$result = $conexion->query("SELECT shortCutId,shortCutName FROM `shortcuts` where lang='".$lang['grupos-lang']."' and linkingTargetType='P' order by shortCutName");
 
 
 
 if ($result->num_rows > 0) {
   $html .="</br><div class='b'>";
-    $html .="CATALOGUE</div></br><div class='container'><table><tr>";
+    $html .=$lang['grupos-catalogue']."</div></br><div class='container'><table><tr>";
     $i=0;
     while ($row = $result->fetch_assoc()) {   
         if ($i < 4){

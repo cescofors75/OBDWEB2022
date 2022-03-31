@@ -1,4 +1,33 @@
+<?php 
+session_start();
+if(isset($_GET['la'])){
+$_SESSION['la'] = $_GET['la'];
+header('Location:'.$_SERVER['PHP_SELF']);
+exit();
+}
+if(isset($_SESSION['la']))
+{
+switch($_SESSION['la']){
+case "eng":
+require('lang/eng.php'); 
+break;
+case "fre":
+require('lang/fre.php'); 
+break;
+case "ger":
+require('lang/ger.php'); 
+break; 
+case "esp":
+require('lang/esp.php'); 
+break; 
+default: 
+require('lang/esp.php'); 
+}
 
+}else{
+require('lang/esp.php');
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +55,12 @@
 </head>
 
 <body >
-
+<div id="langSelect">
+<a href="index.php?la=esp"><img class='circle' src="flags/esp.png" alt="<?=$lang['lang-esp'];?>" title="<?=$lang['lang-esp'];?>" /></a>  
+<a href="index.php?la=eng"><img class='circle' src="flags/eng.png" alt="<?=$lang['lang-eng'];?>" title="<?=$lang['lang-eng'];?>" /></a>
+<a href="index.php?la=fre"><img class='circle' src="flags/fra.png" alt="<?=$lang['lang-fre'];?>" title="<?=$lang['lang-fre'];?>" /></a>
+<a href="index.php?la=ger"><img class='circle' src="flags/ger.png" alt="<?=$lang['lang-ger'];?>" title="<?=$lang['lang-ger'];?>" /></a>
+</div>
 
 
 
@@ -64,10 +98,14 @@
 <br><br><br><br>
 <div class='container'>
 <?php
+if(isset($_GET['carid'])){
+  
+  $carid = $_GET['carid'];
+  }
 
 $html = '';
 $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
-$carid = $_GET['carid'];
+
 
 $conexion->query("SET CHARACTER SET utf8");
 $conexion->query("SET NAMES utf8");
@@ -76,7 +114,7 @@ $result = $conexion->query("SELECT manuName,modelName,typeName,yearOfConstrFrom,
 
 if ($result->num_rows > 0) {
   $html .="<div class='info'>";
-    $html .="<h2>INFO</h2>";
+    $html .="<h2>".$lang['grupos-info']."</h2>";
     
     while ($row = $result->fetch_assoc()) {                
         $html .=  $row['manuName'] . " / ". $row['modelName'] .  " / ". $row['typeName'] . "*" ; 
@@ -93,8 +131,21 @@ echo $html;
 <br><br>
 
 <?php 
-  $id_shortcut = $_GET['grupo'];
-  $carid=$_GET['carid'];
+
+if(isset($_GET['carid'])){
+  
+  $carid = $_GET['carid'];
+  }
+
+  if(isset($_GET['grupo'])){
+  
+    $id_shortcut= $_GET['grupo'];
+    }
+  
+  
+
+
+
     function getPdo(){
 
         try {
@@ -106,7 +157,8 @@ echo $html;
 
             $pdo = new PDO('mysql:host=' . $db_host . '; dbname=' . $db_name, $db_user, $db_password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+            $pdo->exec("SET CHARACTER SET utf8");
+            $pdo->exec("SET NAMES utf8");
             return $pdo;
 
            } catch (PDOException $e) {
@@ -119,7 +171,7 @@ echo $html;
              
              //$sql  = "select * FROM assemblygroupnodes where  linkingTargetType='P'and shortCutId=4 and  parentNodeId is Null";    
              //$sql  = "select * FROM assemblygroupnodes where shortCutId= $id_shortcut  and linkingTargetType='V'and  parentNodeId is Null order by assemblyGroupName";       
-             $sql  = "select distinct assemblyGroupName, assemblyGroupNodeId FROM assemblygroupnodes where shortCutId= $id_shortcut  and  parentNodeId is Null order by assemblyGroupName";       
+             $sql  = "select distinct assemblyGroupName, assemblyGroupNodeId FROM assemblygroupnodes where shortCutId= $id_shortcut  and lang='".$lang['grupos-lang']."'and  parentNodeId is Null order by assemblyGroupName";       
              $stmt = $pdo->prepare($sql);
              $stmt->execute(); 
 
@@ -127,7 +179,7 @@ echo $html;
              echo "<table>"; /*style='text-align: left'*/
              while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 echo "<tr><td class='parent'>". $row['assemblyGroupName'] . "</td></tr>";
-                 getSubCategories($row['assemblyGroupNodeId'], 0,$carid,$id_shortcut);
+                 getSubCategories($row['assemblyGroupNodeId'], 0,$carid,$id_shortcut,$lang['grupos-lang']);
              }    //#0A1F47              
                  
         } catch (Exception $e) {
@@ -136,7 +188,7 @@ echo $html;
            echo "</table>";
         }
 
-    function getSubCategories($parent_id, $level,$carid,$id_shortcut) {
+    function getSubCategories($parent_id, $level,$carid,$id_shortcut,$lang) {
        
         try {
 
@@ -148,7 +200,7 @@ echo $html;
             $sql = "select distinct  assemblyGroupName, assemblygroupnodes.assemblyGroupNodeId, hasChilds FROM assemblygroupnodes 
             inner join vehicletrees
             on assemblygroupnodes.assemblyGroupNodeId=vehicletrees.assemblyGroupNodeId
-            where   assemblygroupnodes.parentNodeId = '$parent_id'  and vehicletrees.carid=$carid and shortCutId= $id_shortcut order by assemblyGroupName";  
+            where   assemblygroupnodes.parentNodeId = '$parent_id'  and lang='$lang' and vehicletrees.carid=$carid and shortCutId= $id_shortcut order by assemblyGroupName";  
             
 
             /*
@@ -183,7 +235,7 @@ echo $html;
                } //#AFBEFC
                
                
-               getSubCategories($row['assemblyGroupNodeId'], $level,$carid,$id_shortcut); 
+               getSubCategories($row['assemblyGroupNodeId'], $level,$carid,$id_shortcut,$lang); 
                
                
                 // echo str_repeat("-", ($level * 4)) . $row['assemblyGroupName'] . ' '.$row['assemblyGroupNodeId'] .'<br>';                    
