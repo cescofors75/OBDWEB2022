@@ -1,4 +1,32 @@
 
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WORLD PARTS</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="estilos_wp.css">
+<!-- Latest compiled and minified CSS -->
+
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<script type="text/javascript"src="function.js"></script>
+<script type="text/javascript"src="script.js"></script>
+
+   <!-- Including CSS file. -->
+
+
+</head>
+
+
+<body >
 <?php 
 session_start();
 if(isset($_GET['la'])){
@@ -29,45 +57,16 @@ require('lang/esp.php');
 require('lang/esp.php');
 }
 ?>
+
+<?php
+$conexion = new mysqli('localhost', 'root','' , 'td2q2019');
+?>  
 <div id="langSelect">
 <a href="index.php?la=esp"><img class='circle' src="flags/esp.png" alt="<?=$lang['lang-esp'];?>" title="<?=$lang['lang-esp'];?>" /></a>  
 <a href="index.php?la=eng"><img class='circle' src="flags/eng.png" alt="<?=$lang['lang-eng'];?>" title="<?=$lang['lang-eng'];?>" /></a>
 <a href="index.php?la=fre"><img class='circle' src="flags/fra.png" alt="<?=$lang['lang-fre'];?>" title="<?=$lang['lang-fre'];?>" /></a>
 <a href="index.php?la=ger"><img class='circle' src="flags/ger.png" alt="<?=$lang['lang-ger'];?>" title="<?=$lang['lang-ger'];?>" /></a>
 </div>
-<?php
-$conexion = new mysqli('localhost', 'root','' , 'td2q2019');
-?>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WORLD PARTS</title>
-
-
-<!-- Latest compiled and minified CSS -->
-
-<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-
-
-<link rel="stylesheet" href="estilos_wp.css">
-<script type="text/javascript"src="function.js"></script>
-<script type="text/javascript"src="script.js"></script>
-
-   <!-- Including CSS file. -->
-
-
-</head>
-<style>
- 
-
-</style>
-
-<body >
 <div >
 
 

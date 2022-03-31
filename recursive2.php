@@ -1,3 +1,25 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WORLD PARTS</title>
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="estilos_wp.css">
+
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+
+</head>
+
+<body >
 <?php 
 session_start();
 if(isset($_GET['la'])){
@@ -28,33 +50,7 @@ require('lang/esp.php');
 require('lang/esp.php');
 }
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WORLD PARTS</title>
 
-
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-
-<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-<link rel="stylesheet" href="estilos_wp.css">
-<style>
-
- 
-</style>
-
-
-
-
-</head>
-
-<body >
 <div id="langSelect">
 <a href="index.php?la=esp"><img class='circle' src="flags/esp.png" alt="<?=$lang['lang-esp'];?>" title="<?=$lang['lang-esp'];?>" /></a>  
 <a href="index.php?la=eng"><img class='circle' src="flags/eng.png" alt="<?=$lang['lang-eng'];?>" title="<?=$lang['lang-eng'];?>" /></a>
@@ -109,7 +105,8 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
 
 $conexion->query("SET CHARACTER SET utf8");
 $conexion->query("SET NAMES utf8");
-$result = $conexion->query("SELECT manuName,modelName,typeName,yearOfConstrFrom,yearOfConstrTo FROM vehicledetails WHERE carId=$carid  ");
+$result = $conexion->query("SELECT manuName,modelName,typeName,yearOfConstrFrom,yearOfConstrTo FROM vehicledetails WHERE carId=$carid LIMIT 1" );
+
 
 
 if ($result->num_rows > 0) {
@@ -225,11 +222,12 @@ if(isset($_GET['carid'])){
 
               
                if ($row['hasChilds']===0){
-                $text=str_repeat("&nbsp;", ($level * 4)) . $row['assemblyGroupName'] ."-".$row['assemblyGroupNodeId'] ; 
+                
+                $text=str_repeat("&nbsp;", ($level * 4)).$level."-". $row['assemblyGroupName'] ."-".$row['assemblyGroupNodeId'] ; 
                 echo"<tr><td class='child'><a href='cref.php?carid=".$carid."&grupo=". $row['assemblyGroupNodeId'] . "&name=". $row['assemblyGroupName'] ."'>".$text."</td></tr>"; 
                }else{
 
-                $text=str_repeat("&nbsp;", ($level * 4)) . $row['assemblyGroupName'] ;//. ' '.$row['assemblyGroupNodeId'] ; 
+                $text=str_repeat("&nbsp;", ($level * 4)).$level."-" . $row['assemblyGroupName'] ;//. ' '.$row['assemblyGroupNodeId'] ; 
                 echo"<tr><td class='semiparent'>".$text."</td></tr>"; 
 
                } //#AFBEFC

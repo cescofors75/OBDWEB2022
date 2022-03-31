@@ -10,7 +10,7 @@
   }
  
   .container2 {
-    max-width:80%;
+    max-width:100%;
     margin:0 auto;
     
   }
@@ -34,7 +34,7 @@
   }
   
 .barcode{
-
+  width:13%;
   font-family: "Libre Barcode 39 Text";
   font-size: 39px;
   color:black;
@@ -49,19 +49,19 @@ td.p5{
 
 td.criteria{
 
-  width:300px;
+  width:13%;
   color:black;
   text-align: Left
 }
 
 td.menu{
-  text-align: left !important;
-  padding: 2px !important;
-  background:steelblue !important;
-  font-size:12px !important;
-  color:white !important;
-  width : 25% !important;
-  font-family: "Source Code Pro" !important;
+  text-align: left ;
+  padding: 2px ;
+  background:steelblue ;
+  font-size:12px ;
+  color:white ;
+  width : 25% ;
+  font-family: "Source Code Pro" ;
 
 }
 

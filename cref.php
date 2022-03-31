@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,22 +10,55 @@
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="estilos_wp.css">
 
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-
-
-<link rel="stylesheet" href="estilos_wp.css">
-
-
-
-
 </head>
 
 
 <body>
+
+<?php 
+session_start();
+if(isset($_GET['la'])){
+$_SESSION['la'] = $_GET['la'];
+header('Location:'.$_SERVER['PHP_SELF']);
+exit();
+}
+if(isset($_SESSION['la']))
+{
+switch($_SESSION['la']){
+case "eng":
+require('lang/eng.php'); 
+break;
+case "fre":
+require('lang/fre.php'); 
+break;
+case "ger":
+require('lang/ger.php'); 
+break; 
+case "esp":
+require('lang/esp.php'); 
+break; 
+default: 
+require('lang/esp.php'); 
+}
+
+}else{
+require('lang/esp.php');
+}
+?>
+
+
+<div id="langSelect">
+<a href="index.php?la=esp"><img class='circle' src="flags/esp.png" alt="<?=$lang['lang-esp'];?>" title="<?=$lang['lang-esp'];?>" /></a>  
+<a href="index.php?la=eng"><img class='circle' src="flags/eng.png" alt="<?=$lang['lang-eng'];?>" title="<?=$lang['lang-eng'];?>" /></a>
+<a href="index.php?la=fre"><img class='circle' src="flags/fra.png" alt="<?=$lang['lang-fre'];?>" title="<?=$lang['lang-fre'];?>" /></a>
+<a href="index.php?la=ger"><img class='circle' src="flags/ger.png" alt="<?=$lang['lang-ger'];?>" title="<?=$lang['lang-ger'];?>" /></a>
+</div>
 <div class="loader-wrapper">
       <span class="loader"><span class="loader-inner"></span></span>
     </div>
@@ -76,7 +110,7 @@ $carid = $_GET['carid'];
 
 $conexion->query("SET CHARACTER SET utf8");
 $conexion->query("SET NAMES utf8");
-$result = $conexion->query("SELECT manuName,modelName,typeName,yearOfConstrFrom,yearOfConstrTo FROM vehicledetails WHERE carId=$carid  ");
+$result = $conexion->query("SELECT manuName,modelName,typeName,yearOfConstrFrom,yearOfConstrTo FROM vehicledetails WHERE carId=$carid  LIMIT 1");
 
 
 if ($result->num_rows > 0) {
@@ -208,6 +242,7 @@ echo $html;
     try {
              $pdo = getPdo();
        
+            $langV =$lang['grupos-lang'] ;
 
              $sql="Select DISTINCT  ambrand.brandId as  logo ,ambrand.brandName as name , genericarticlesgroups.designation as descri ,articles.articleNumber  as number, articles.legacyArticleId as pivot , articles.dataSupplierId as su_id 
              From articlesvehicletrees
@@ -225,7 +260,7 @@ echo $html;
              on legacy2generic.legacyArticleId=articles.legacyArticleId
              INNER JOIN genericarticlesgroups
              on genericarticlesgroups.genericArticleId=legacy2generic.genericArticleId
-             where articlesvehicletrees.linkingTargetId=$carid and articlesvehicletrees.assemblyGroupNodeId=$id_group 
+             where genericarticlesgroups.lang='$langV' and articlesvehicletrees.linkingTargetId=$carid and articlesvehicletrees.assemblyGroupNodeId=$id_group 
              order by articles.genericArticleDescription, ambrand.brandName";// and articlesvehicletrees.linkingTargetType='P'
 
 
@@ -259,15 +294,16 @@ echo $html;
               ///////////////////////////////////  foto
               $pdo2 = getPdo();
               $pivot= $row['pivot'];
-             
-              $sql2="SELECT criteriaDescription as description , rawValue as value FROM `articlecriteria` where legacyArticleId=$pivot and assemblyGroupNodeId=$id_group order by description";
+              $langV= $lang['grupos-lang'] ;
+
+              $sql2="SELECT criteriaDescription as description , rawValue as value FROM `articlecriteria` where articlecriteria.lang = '$langV' and legacyArticleId=$pivot and assemblyGroupNodeId=$id_group order by description";
               $stmt2 = $pdo2->prepare($sql2);
               $stmt2->execute(); 
               $criteria="";
               while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
                 $criteria .= $row2['description']." = ".$row2['value']."<br>";
               }
-                echo "<tr><td class='p35'><img class='circle' src='../images/images_supplier_logos/".$row['logo'].".png' ";
+                echo "<tr><td class='p5'><img class='circle' src='../images/images_supplier_logos/".$row['logo'].".png' ";
                
                 
                 ?>
