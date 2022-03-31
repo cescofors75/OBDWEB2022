@@ -17,8 +17,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-<script type="text/javascript"src="function.js"></script>
-<script type="text/javascript"src="script.js"></script>
+<script src="function.js"></script>
+<script src="script.js"></script>
 
    <!-- Including CSS file. -->
 
@@ -156,7 +156,7 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
   
    </form></td><td class="t20">
                       
-   <button type="button" onclick="sub()" class="btn btn-primary btn-lg"><?php echo $lang['index-b-search'];?></button></td></tr>
+   <button type="button" onclick="sub();" class="btn btn-primary btn-lg"><?php echo $lang['index-b-search'];?></button></td></tr>
    <tr><td class='bold'>  
    <?php echo $lang['index-search'];?></td><td>
     <input type="text" id="search" placeholder="4056A026" /><br>43512-0K060, 60626888
@@ -166,7 +166,7 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
    <!-- Suggestions will be displayed in below div. -->
 
 
-   </td><td class="t20"><button type="button" onclick="Clear()" class="btn btn-primary btn-lg"><?php echo $lang['index-b-clear'];?></button>
+   </td><td class="t20"><button type="button" onclick="Clear();" class="btn btn-primary btn-lg"><?php echo $lang['index-b-clear'];?></button>
    
 
    
@@ -243,57 +243,5 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
         
 </body>
 
-<script>
 
-   
-
-
-
-
-function sub(){
-
-
-var xmlhttp = new XMLHttpRequest();
-
-var url = "https://partsapi.ru/api?method=VINdecode&key=8329B70D719F9878BDEC1CF864582042&vin="+document.getElementById("fname").value+"&lang=en";
-$('#display').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Decoder VIN. One moment, please ...</div>').show();
-
-
-xmlhttp.onreadystatechange = function() {
- if (this.readyState == 4 && this.status == 200) {
- var myArr = JSON.parse(this.responseText);
- //console.log(myArr);
-
-  myFunction(myArr);  
- }
- };
-
-xmlhttp.open("GET", url, true);
-xmlhttp.send();
-   
-    
-function myFunction(array) {
-
- var id_grupos = array.result[0].carId;
-        $.post("grupos3.php", { id_grupos: id_grupos}, function(data) {
-            $("#grupos").html(data);
-        });			
-
-        $("#display").html("");
-} 
-
-
-
-};  
-
-
-
-
-
-function Clear() {
-      document.getElementById("display").innerHTML ="";
-      /* document.getElementById("grupos").innerHTML =""; 
-      document.getElementById("cars").innerHTML =""; */
-    }
-</script>
 </html>

@@ -34,16 +34,6 @@ $(document).ready(function(){
 });
 
 
-/* 
-   <tr> <td style='color:rgb(104, 49, 49);' ><div id="texte">
-  <form name="form" action="" >
-  <label for="fname"><b>PLATE</b></label></td><td style='color:rgb(104, 49, 49);'>
-  <input type="text" id="fname2" name="fname" value="0088BHG" >**B8616WU**
-  
-   </form></td><td style="width:20%">
-                      
-   <button type="button" onclick="sub_MAT()" class="btn btn-primary btn-lg">Search</button></td></tr>
--->*/  //</td>
 
 
 function sub_MAT(){
@@ -157,6 +147,52 @@ function sub_MAT(){
 
 
     
+ 
+
+function sub(){
+
+
+    var xmlhttp = new XMLHttpRequest();
     
+    var url = "https://partsapi.ru/api?method=VINdecode&key=8329B70D719F9878BDEC1CF864582042&vin="+document.getElementById("fname").value+"&lang=en";
+    $('#display').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Decoder VIN. One moment, please ...</div>').show();
+    
+    
+    xmlhttp.onreadystatechange = function() {
+     if (this.readyState == 4 && this.status == 200) {
+     var myArr = JSON.parse(this.responseText);
+     //console.log(myArr);
+    
+      myFunction(myArr);  
+     }
+     };
+    
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+       
+        
+    function myFunction(array) {
+    
+     var id_grupos = array.result[0].carId;
+            $.post("grupos3.php", { id_grupos: id_grupos}, function(data) {
+                $("#grupos").html(data);
+            });			
+    
+            $("#display").html("");
+    } 
+    
+    
+    
+    };  
+    
+    
+    
+    
+    
+    function Clear() {
+          document.getElementById("display").innerHTML ="";
+          /* document.getElementById("grupos").innerHTML =""; 
+          document.getElementById("cars").innerHTML =""; */
+        }   
     
  
