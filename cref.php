@@ -254,12 +254,14 @@ echo $html;
              on ambrand.brandId=articles.dataSupplierId
              INNER JOIN articlecriteria
              on articlecriteria.legacyArticleId=articles.legacyArticleId
-             INNER JOIN manufacturers
-             on manufacturers.manuId=articlecrosses.mfrId
-             INNER JOIN legacy2generic
-             on legacy2generic.legacyArticleId=articles.legacyArticleId
-             INNER JOIN genericarticlesgroups
-             on genericarticlesgroups.genericArticleId=legacy2generic.genericArticleId
+             
+
+             INNER JOIN genericarticles
+             on genericarticles.legacyArticleId=articles.legacyArticleId
+
+              INNER JOIN genericarticlesgroups
+              on genericarticlesgroups.genericArticleId=genericarticles.genericArticleId
+
              where genericarticlesgroups.lang='$langV' and articlesvehicletrees.linkingTargetId=$carid and articlesvehicletrees.assemblyGroupNodeId=$id_group 
              order by articles.genericArticleDescription, ambrand.brandName";// and articlesvehicletrees.linkingTargetType='P'
 
@@ -280,7 +282,7 @@ echo $html;
               $pdo3 = getPdo();
               $su_id= $row['su_id'];
               $num=$row['number'];
-              $sql3="SELECT DISTINCT manufacturers.manuName as name, articlecrosses.oemNumber  as oem FROM `articlecrosses` INNER JOIN manufacturers ON articlecrosses.mfrId=manufacturers.manuId where dataSupplierId=$su_id and articleNumber='$num' ";
+              $sql3="SELECT DISTINCT manufacturers.manuName as name, articlecrosses.oemNumber  as oem FROM `articlecrosses` INNER JOIN manufacturers ON articlecrosses.mfrId=manufacturers.manuId where dataSupplierId=$su_id and articleNumber='$num' LIMIT 10";
               $stmt3 = $pdo3->prepare($sql3);
               
               $stmt3->execute(); 
@@ -381,13 +383,7 @@ echo $html;
 
     ?>
 </div>
-<p>
-<a href="http://jigsaw.w3.org/css-validator/check/referer">
-    <img style="border:0;width:88px;height:31px"
-        src="http://jigsaw.w3.org/css-validator/images/vcss-blue"
-        alt="¡CSS Válido!" />
-    </a>
-</p>
+
 </body>
 
 <script>
@@ -404,7 +400,7 @@ let carid = params.get('carid')*/
 <?php  $carid = $_GET['carid'];?>
 <?php  $grupo= $_GET['grupo'];?>
 let url = "http://localhost/mysql_jsonESP_EURO.php?carid="+<?php echo $carid; ?>+"&grupo="+<?php echo $grupo; ?>+""
-$('#refEuro').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Read database, One moment, please ...</div>').show()
+$('#refEuro').html("<br/> <div class='loading'><img src='images/loader.gif' /><br/> <br/>"+"<?php echo $lang['grupos-loading'];?>"+"</div>").show();
 
       fetch(url)
           .then( response => response.json() )

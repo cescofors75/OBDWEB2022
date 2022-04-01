@@ -89,7 +89,7 @@ $html="";
 
   <div class='r'><?php echo $lang['grupos-option'];?>&nbsp; P0201, P0255, P0100 </div>
   <div class='b' ><?php echo $lang['grupos-code'];?>&nbsp; <input type="text" id="code" name="fname" value="P0560" >&nbsp; 
-  <button type="button" onclick="solution()" class="btn btn-primary btn-lg"><?php echo $lang['grupos-solution'];?></button> &nbsp; <button type="button" onclick="ALLsolution()" class="btn btn-primary btn-lg">ALL SOLUTION</button>&nbsp;&nbsp;<button type="button" onclick="Clear_solutions()" class="btn btn-primary btn-lg">Clear Solutions</button></td></tr>
+  <button type="button" onclick="solution()" class="btn btn-primary btn-lg"><?php echo $lang['grupos-solution'];?></button> &nbsp; <button type="button" onclick="ALLsolution()" class="btn btn-primary btn-lg"><?php echo $lang['grupos-allsolution'];?></button>&nbsp;&nbsp;<button type="button" onclick="Clear_solutions()" class="btn btn-primary btn-lg"><?php echo $lang['grupos-clearsolution'];?></button></td></tr>
    
   </div>
 
@@ -173,9 +173,9 @@ function solution(){
 
  var $partes=""
 
-  document.getElementById('t_solution').innerHTML="Solution Euro4x4" 
-  document.getElementById('t_solution3').innerHTML="References OEM" 
-  document.getElementById('t_solution4').innerHTML="References Suppliers" 
+  document.getElementById('t_solution').innerHTML="<?php echo $lang['grupos-recommended'];?>";
+  document.getElementById('t_solution3').innerHTML="OEM" ;
+  document.getElementById('t_solution4').innerHTML="<?php echo $lang['grupos-suppliers'];?>";
 
 let url  = "http://localhost/mysql_jsonESP.php?carid="+document.getElementById("carid").value+"&code="+document.getElementById("code").value
 $('#solution').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Read database solutions </br>One moment, please ...</div>').show()
@@ -189,7 +189,7 @@ $('#solution').html('<br/> <div class="loading"><img src="images/loader.gif" alt
           console.log(data)
           if (data.length >0){
           let body = ""
-           body+="</br><div class='b'>Recommended solutions:</div><div class='b'> -Check the electrical wiring and connectors, related to the code</div><div class='b'> -Verify there is no corrosion, or water in the sensor / related spare part</div><div class='b'> -Replace the following spare part:</div></br>"
+           body+="<?php echo $lang['grupos-trecomended'];?>";
           for (var i = 0; i < data.length; i++) {   
             $oem =data[i].OENbr
             $ref_euro=data[i].REF_EURO
@@ -200,7 +200,7 @@ $('#solution').html('<br/> <div class="loading"><img src="images/loader.gif" alt
             $partes=data[i].partes
             //console.log($partes)
 
-            body+="<div class='b'>"+$partes+"</div>"
+            //body+="<div class='b'>"+$partes+"</div>"
              
             body+="<div class='card' style='width:300px'>"
             body+="<img src='http://blog.euro4x4parts.com/photos/"+ $familia + "/" + $ref_euro2 + "z.jpg'  class='card-img-top' style='width:300px'>"
@@ -215,7 +215,7 @@ $('#solution').html('<br/> <div class="loading"><img src="images/loader.gif" alt
           document.getElementById('solution').innerHTML = body
          // document.getElementById('solution5').innerHTML = "Spare part solution: "+$partes
           }else{
-            $('#solution').html("<div class='error'>Not Parts !!!!</div>")
+            $('#solution').html("<div class='error'>"+"<?php echo $lang['grupos-notparts'];?>"+"</div>")
 
           }
           
@@ -253,7 +253,7 @@ console.log(x)
           
           document.getElementById('solution2').innerHTML = body
           }else{
-            $('#solution2').html("<div class='error'>Not CODE !!!!</div>")
+            $('#solution2').html("<div class='error'>"+"<?php echo $lang['grupos-notcode'];?>"+"</div>")
 
           }
           
@@ -294,7 +294,7 @@ $('#solution3').html('<br/> <div class="loading"><img src="images/loader.gif" al
           body+="</table>"
           document.getElementById('solution3').innerHTML = body
           }else{
-            $('#solution3').html("<div class='error'>Not reference OEM !!!!</div>")
+            $('#solution3').html("<div class='error'>"+"<?php echo $lang['grupos-notreference'];?>"+"</div>")
 
           }
           
@@ -330,7 +330,7 @@ $('#solution3').html('<br/> <div class="loading"><img src="images/loader.gif" al
             body+="</table>"
             document.getElementById('solution4').innerHTML = body
             }else{
-              $('#solution4').html("<div class='error'>Not reference Supplier !!</div>")
+              $('#solution4').html("<div class='error'>"+"<?php echo $lang['grupos-notsuppliers'];?>"+"</div>")
 
             }
             
@@ -359,15 +359,13 @@ $('#solution3').html('<br/> <div class="loading"><img src="images/loader.gif" al
              // body+=`<tr><td>${data[i].id}</td><td>${data[i].name}</td><td>${data[i].email}</td></tr>`
           
             }
-          //body+="</table>"
-          //document.getElementById('solution3').innerHTML += body
+         
           }else{
-            document.getElementById('solution3').innerHTML+="<div class='error'>" +code+"  "+"Not reference OEM !!</div>"
-           // $('#solution3').html(body+"<div style='padding: 5px;background:red; font-size:16px;color:white;'>Not reference OEM !!</div>")
+            document.getElementById('solution3').innerHTML+="<div class='error'>" +code+"  "+"<?php echo $lang['grupos-notreference']; ?>"+"</div>"
 
           }
           
-          //console.log(body)
+          
       }
 }
 

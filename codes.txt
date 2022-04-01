@@ -706,3 +706,32 @@ $("#solution").html( $card)
 
  }
 
+
+
+
+
+  $sql="Select DISTINCT  ambrand.brandId as  logo ,ambrand.brandName as name , genericarticlesgroups.designation as descri ,articles.articleNumber  as number, articles.legacyArticleId as pivot , articles.dataSupplierId as su_id 
+             From articlesvehicletrees
+             INNER JOIN articles
+             ON articlesvehicletrees.articleId = articles.legacyArticleId
+             INNER JOIN articlecrosses
+             ON articlecrosses.articleNumber=articles.articleNumber and articlecrosses.dataSupplierId= articles.dataSupplierId
+             INNER JOIN ambrand
+             on ambrand.brandId=articles.dataSupplierId
+             INNER JOIN articlecriteria
+             on articlecriteria.legacyArticleId=articles.legacyArticleId
+             
+             INNER JOIN manufacturers
+             on manufacturers.manuId=articlecrosses.mfrId
+
+             INNER JOIN legacy2generic
+             on legacy2generic.legacyArticleId=articles.legacyArticleId
+
+             INNER JOIN genericarticlesgroups
+             on genericarticlesgroups.genericArticleId=legacy2generic.genericArticleId
+
+             where genericarticlesgroups.lang='$langV' and articlesvehicletrees.linkingTargetId=$carid and articlesvehicletrees.assemblyGroupNodeId=$id_group 
+             order by articles.genericArticleDescription, ambrand.brandName";// and articlesvehicletrees.linkingTargetType='P'
+
+
+

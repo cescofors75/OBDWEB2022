@@ -168,7 +168,11 @@ if(isset($_GET['carid'])){
              
              //$sql  = "select * FROM assemblygroupnodes where  linkingTargetType='P'and shortCutId=4 and  parentNodeId is Null";    
              //$sql  = "select * FROM assemblygroupnodes where shortCutId= $id_shortcut  and linkingTargetType='V'and  parentNodeId is Null order by assemblyGroupName";       
-             $sql  = "select distinct assemblyGroupName, assemblyGroupNodeId FROM assemblygroupnodes where shortCutId= $id_shortcut  and lang='".$lang['grupos-lang']."'and  parentNodeId is Null order by assemblyGroupName";       
+             $sql  = "select distinct assemblyGroupName, assemblygroupnodes.assemblyGroupNodeId FROM assemblygroupnodes 
+             
+             inner join vehicletrees
+             on assemblygroupnodes.assemblyGroupNodeId=vehicletrees.assemblyGroupNodeId
+             where shortCutId= $id_shortcut  and assemblygroupnodes.linkingTargetType='P' and lang='".$lang['grupos-lang']."'and  assemblygroupnodes.parentNodeId is Null order by assemblyGroupName";       
              $stmt = $pdo->prepare($sql);
              $stmt->execute(); 
 
@@ -197,7 +201,7 @@ if(isset($_GET['carid'])){
             $sql = "select distinct  assemblyGroupName, assemblygroupnodes.assemblyGroupNodeId, hasChilds FROM assemblygroupnodes 
             inner join vehicletrees
             on assemblygroupnodes.assemblyGroupNodeId=vehicletrees.assemblyGroupNodeId
-            where   assemblygroupnodes.parentNodeId = '$parent_id'  and lang='$lang' and vehicletrees.carid=$carid and shortCutId= $id_shortcut order by assemblyGroupName";  
+            where   assemblygroupnodes.parentNodeId = '$parent_id' and assemblygroupnodes.linkingTargetType='P' and lang='$lang' and vehicletrees.carid=$carid and shortCutId= $id_shortcut order by assemblyGroupName";  
             
 
             /*
@@ -253,12 +257,6 @@ if(isset($_GET['carid'])){
 
 
   </div>
-  <p>
-<a href="http://jigsaw.w3.org/css-validator/check/referer">
-    <img style="border:0;width:88px;height:31px"
-        src="http://jigsaw.w3.org/css-validator/images/vcss-blue"
-        alt="¡CSS Válido!" />
-    </a>
-</p>
+ 
 </body>
 </html>
