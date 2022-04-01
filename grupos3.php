@@ -177,10 +177,11 @@ function solution(){
   document.getElementById('t_solution3').innerHTML="OEM" ;
   document.getElementById('t_solution4').innerHTML="<?php echo $lang['grupos-suppliers'];?>";
 
-let url  = "http://localhost/mysql_jsonESP.php?carid="+document.getElementById("carid").value+"&code="+document.getElementById("code").value
+let url  = "../mysql_jsonESP.php?carid="+document.getElementById("carid").value+"&code="+document.getElementById("code").value
 $('#solution').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Read database solutions </br>One moment, please ...</div>').show()
 
-      fetch(url)
+     // fetch(url,{mode: 'cors', headers: {'Access-Control-Allow-Origin': '*'}})
+     fetch(url)
           .then( response => response.json() )
           .then( data => mostrarData(data) )
           .catch( error => console.log(error) )
@@ -229,11 +230,11 @@ $('#solution').html('<br/> <div class="loading"><img src="images/loader.gif" alt
 
 
 
- function solution_error(x){
+ function solution_error(){
 
-let url  = "http://localhost/mysql_json3.php?CODIGO='"+document.getElementById("code").value+"'"
+let url  = "../mysql_json3.php?CODIGO='"+document.getElementById("code").value+"'"
 $('#solution2').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Read database codes, One moment, please ...</div>').show()
-console.log(x)
+//console.log(x)
 
       fetch(url)
           .then( response => response.json() )
@@ -274,7 +275,7 @@ console.log(x)
  function solution3_OEM(){
 
 
-let url  = "http://localhost/mysql_jsonESP_OEM.php?carid="+document.getElementById("carid").value+"&code="+document.getElementById("code").value
+let url  = "../mysql_jsonESP_OEM.php?carid="+document.getElementById("carid").value+"&code="+document.getElementById("code").value
 $('#solution3').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Read OEM, One moment, please ...</div>').show()
 
       fetch(url)
@@ -310,7 +311,7 @@ $('#solution3').html('<br/> <div class="loading"><img src="images/loader.gif" al
  function solution4_supliers(){
 
 
-  let url = "http://localhost/mysql_jsonESP_SUPLIERS.php?carid="+document.getElementById("carid").value+"&code="+document.getElementById("code").value
+  let url = "../mysql_jsonESP_SUPLIERS.php?carid="+document.getElementById("carid").value+"&code="+document.getElementById("code").value
   $('#solution4').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Read suppliers, One moment, please ...</div>').show()
 
         fetch(url)
@@ -342,7 +343,7 @@ $('#solution3').html('<br/> <div class="loading"><img src="images/loader.gif" al
 function ReadSolution(code){
 
 
-let url  = "http://localhost/mysql_jsonESP_OEM_ALL.php?carid="+document.getElementById("carid").value+"&code="+code
+let url  = "../mysql_jsonESP_OEM_ALL.php?carid="+document.getElementById("carid").value+"&code="+code
 $('#solution3').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Read solutions, One moment, please ...</div>').show()
 
       fetch(url)

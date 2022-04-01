@@ -735,3 +735,30 @@ $("#solution").html( $card)
 
 
 
+
+<div class='container'>
+  <table class='menuP'>
+  <tr> <td class='bold'><div id="texte">
+  <form name="form" action="" >
+  <label for="fname">VIN</label></td><td>
+  <input type="text" id="fname" name="fname" value="JTEBZ29J400070571" >SALLDVA576A725557  JN10KYY60U0872024  JTEAZ99J900006367
+  
+   </form></td><td class="t20">
+                      
+   <button type="button" onclick="sub();" class="btn btn-primary btn-lg"><?php echo $lang['index-b-search'];?></button></td></tr>
+   <tr><td class='bold'>  
+   <?php echo $lang['index-search'];?></td><td>
+    <input type="text" id="search" placeholder="4056A026" /><br>43512-0K060, 60626888
+   </td><td class="t20"><button type="button" onclick="Clear();" class="btn btn-primary btn-lg"><?php echo $lang['index-b-clear'];?></button>
+   
+
+   
+
+</td></tr>
+</table>
+</div>
+
+
+JTEBZ29J400070571  JN10KYY60U0872024 
+
+43512-0K060, 60626888

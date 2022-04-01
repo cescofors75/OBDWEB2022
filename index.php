@@ -108,7 +108,7 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
     <div class="row">
         <div id="content" class="col-lg-12">
             <form class="row" action="" method="post">
-                <div class="form-group col-lg-3">
+                <div class="form-group col-lg-3 t33" >
                     <label for="category"><?php echo $lang['index-make'];?></label>
                     <select name="category" id="category" class="form-control">
                         <?php
@@ -129,12 +129,12 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
                         ?>
                     </select>
                 </div>
-                <div class="form-group col-lg-3">
+                <div class="form-group col-lg-3 t33">
                     <label for="subcategory"><?php echo $lang['index-model'];?></label>
                     <select name="subcategory" id="subcategory" class="form-control"></select>
                 </div>
 
-                <div class="form-group col-lg-3">
+                <div class="form-group col-lg-3 t33">
                     <label for="ssubcategory"><?php echo $lang['index-motor'];?></label>
                     <select name="ssubcategory" id="ssubcategory" class="form-control"></select>
                 </div>
@@ -146,34 +146,54 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
 
  </h2>
  </div>
+
+
+
+
  <div class='space2'> </div>
- <div class='container'>
-   <table class='menuP'>
-  <tr> <td class='bold'><div id="texte">
-  <form name="form" action="" >
-  <label for="fname">VIN</label></td><td>
-  <input type="text" id="fname" name="fname" value="JTEBZ29J400070571" >SALLDVA576A725557  JN10KYY60U0872024  JTEAZ99J900006367
+
+
+
+ 
+
+<div class='container'>
+
+<div class="row">
+    <div class="col-sm">
+      
+    <div  name="solution" id=""  class='b'> VIN&nbsp;&nbsp;
+    <input type="text" id="fname" name="fname" value="JTEAZ99J900006367" > &nbsp;
+    <button type="button" onclick="sub();" class="btn btn-primary btn-lg"><?php echo $lang['index-b-search'];?></button></div>
+
+
+
+    </div>
+    
+    <div class="col-sm">
+    
+    <div  name="solution3" id="" class='b' >
+    <?php echo $lang['index-search'];?>&nbsp;&nbsp;
+    <input type="text" id="search" placeholder="4056A026" />&nbsp;
+   <button type="button" onclick="Clear();" class="btn btn-primary btn-lg"><?php echo $lang['index-b-clear'];?></button>
+   
   
-   </form></td><td class="t20">
-                      
-   <button type="button" onclick="sub();" class="btn btn-primary btn-lg"><?php echo $lang['index-b-search'];?></button></td></tr>
-   <tr><td class='bold'>  
-   <?php echo $lang['index-search'];?></td><td>
-    <input type="text" id="search" placeholder="4056A026" /><br>43512-0K060, 60626888
-  
-   
-
-   <!-- Suggestions will be displayed in below div. -->
+    </div>
+    
+  </div>
 
 
-   </td><td class="t20"><button type="button" onclick="Clear();" class="btn btn-primary btn-lg"><?php echo $lang['index-b-clear'];?></button>
-   
-
-   
-
-</td></tr>
-</table>
 </div>
+
+
+
+
+
+
+
+
+
+
+
 
 <br /><br /><br />
 
