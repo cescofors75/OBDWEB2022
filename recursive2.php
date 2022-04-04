@@ -227,11 +227,11 @@ if(isset($_GET['carid'])){
               
                if ($row['hasChilds']===0){
                 
-                $text=str_repeat("&nbsp;", ($level * 4)).$level."-". $row['assemblyGroupName'] ."-".$row['assemblyGroupNodeId'] ; 
+                $text=str_repeat("&nbsp;", ($level * 2)). $row['assemblyGroupName'] ."-".$row['assemblyGroupNodeId'] ; 
                 echo"<tr><td class='child'><a href='cref.php?carid=".$carid."&grupo=". $row['assemblyGroupNodeId'] . "&name=". $row['assemblyGroupName'] ."'>".$text."</td></tr>"; 
                }else{
 
-                $text=str_repeat("&nbsp;", ($level * 4)).$level."-" . $row['assemblyGroupName'] ;//. ' '.$row['assemblyGroupNodeId'] ; 
+                $text=str_repeat("&nbsp;", ($level * 2)). $row['assemblyGroupName'] ;//. ' '.$row['assemblyGroupNodeId'] ; 
                 echo"<tr><td class='semiparent'>".$text."</td></tr>"; 
 
                } //#AFBEFC
