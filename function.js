@@ -155,7 +155,7 @@ function sub(){
     var xmlhttp = new XMLHttpRequest();
     
     var url = "https://partsapi.ru/api?method=VINdecode&key=8329B70D719F9878BDEC1CF864582042&vin="+document.getElementById("fname").value+"&lang=en";
-    $('#display').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Decoder VIN. One moment, please ...</div>').show();
+    $('#display').html('<br/><div class="container"> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Decoder VIN. One moment, please ...</div></div>').show();
     
     
     xmlhttp.onreadystatechange = function() {

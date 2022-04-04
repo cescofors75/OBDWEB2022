@@ -399,7 +399,7 @@ let params = new URLSearchParams(location.search);
 let carid = params.get('carid')*/
 <?php  $carid = $_GET['carid'];?>
 <?php  $grupo= $_GET['grupo'];?>
-let url = "http://localhost/mysql_jsonESP_EURO.php?carid="+<?php echo $carid; ?>+"&grupo="+<?php echo $grupo; ?>+""
+let url = "../mysql_jsonESP_EURO.php?carid="+<?php echo $carid; ?>+"&grupo="+<?php echo $grupo; ?>+""
 $('#refEuro').html("<br/> <div class='loading'><img src='images/loader.gif' /><br/> <br/>"+"<?php echo $lang['grupos-loading'];?>"+"</div>").show();
 
       fetch(url)

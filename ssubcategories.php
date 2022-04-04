@@ -1,3 +1,5 @@
+
+
 <?php
 $html = '';
 $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
@@ -10,7 +12,7 @@ $conexion->query("SET NAMES utf8");
 
 
 $result = $conexion->query(
-    "SELECT  typeName, carId , yearOfConstrFrom, yearOfConstrTo FROM `vehicledetails` Where  modId = '".$id_scategory."' and manuId = '".$id_category."'  order by typeName"
+    "SELECT DISTINCT typeName, carId , yearOfConstrFrom, yearOfConstrTo FROM `vehicledetails` Where   modId = '".$id_scategory."' and manuId = '".$id_category."'   order by typeName"
 );
 
 

@@ -187,7 +187,7 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
 
 
 
-
+</diV>
 
 
 
@@ -199,7 +199,7 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
 
 
 
-<div class='container'>
+ <!--<div class='container'>  -->
 <!--<div id="elements"></div>  -->
 
 <div id="display"></div> <!--resultados busqueda referencias -->
@@ -211,7 +211,7 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
 <div  name="grupos" id="grupos"></div>  
  
 
-</div>           
+ <!--</div>      -->     
 
 <div class='space'>  </div>       
        

@@ -127,11 +127,11 @@ $conexion->query("SET NAMES utf8");
 
 $result = $conexion->query("SELECT shortCutId,shortCutName FROM `shortcuts` where lang='".$lang['grupos-lang']."' and linkingTargetType='P' order by shortCutName");
 
-
+/*
 
 if ($result->num_rows > 0) {
   $html .="</br><div class='b'>";
-    $html .=$lang['grupos-catalogue']."</div></br><div class='container'><table><tr>";
+    $html .=$lang['grupos-catalogue']."</div></br><table><tr>";
     $i=0;
     while ($row = $result->fetch_assoc()) {   
         if ($i < 4){
@@ -143,11 +143,28 @@ if ($result->num_rows > 0) {
        $html .= "<td class='menu'><div><img src='../images/images_sections/". $row['shortCutId'] .".png' width='80' ></br><a href='recursive2.php?carid=".$carid."&grupo=". $row['shortCutId'] . "'>". $row['shortCutName'] .   "</a></td></div></tr><tr>" ; 
       }
     }
-    $html .="<td class='menu'></td><td class='menu'></td><td class='menu'></td></tr></div></div>";
+    $html .="<td class='menu'></td><td class='menu'></td><td class='menu'></td></tr></table></div>";
 } 
 
 
+*/
 
+
+if ($result->num_rows > 0) {
+  $html .="</br><div class='b'>";
+    $html .=$lang['grupos-catalogue']."</div></br>";
+    $html .="<div >";
+    while ($row = $result->fetch_assoc()) {   
+       
+                      
+        $html .= "<a href='recursive2.php?carid=".$carid."&grupo=". $row['shortCutId'] . "'><img src='../images/images_sections/". $row['shortCutId'] .".png' width='80' ></a>" ; 
+        
+      
+      // $html .= "<td class='menu'><div><img src='../images/images_sections/". $row['shortCutId'] .".png' width='80' ></br><a href='recursive2.php?carid=".$carid."&grupo=". $row['shortCutId'] . "'>". $row['shortCutName'] .   "</a></td></div></tr><tr>" ; 
+      }
+    
+    $html .="</div>";
+} 
 
 
 
