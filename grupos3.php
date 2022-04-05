@@ -57,6 +57,7 @@ $html = '';
 
 $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
 $carid = $_POST['id_grupos'];
+$_SESSION['carid'] = $carid;
 
 
 $conexion->query("SET CHARACTER SET utf8");

@@ -12,7 +12,7 @@ $conexion->query("SET NAMES utf8");
 
 
 $result = $conexion->query(
-    "SELECT DISTINCT typeName, carId , yearOfConstrFrom, yearOfConstrTo FROM `vehicledetails` Where   modId = '".$id_scategory."' and manuId = '".$id_category."'   order by typeName"
+    "SELECT DISTINCT typeName, carId , yearOfConstrFrom, yearOfConstrTo, powerHpFrom, powerKwFrom FROM `vehicledetails` Where   modId = '".$id_scategory."' and manuId = '".$id_category."'   order by typeName"
 );
 
 
@@ -22,7 +22,7 @@ if ($result->num_rows > 0) {
         $begin=   substr($row['yearOfConstrFrom'],0,4);    
         $end=    substr($row['yearOfConstrTo'],0,4);             
         
-        $html .= '<option value="'.$row['carId'].'">'.$row['typeName'].'('.$begin.'-'.$end.')</option>';
+        $html .= '<option value="'.$row['carId'].'">'.$row['typeName'].'('.$begin.'-'.$end.') - '.$row['powerHpFrom'].'cv - '.$row['powerKwFrom'].'hp</option>';
     }
     
 } 

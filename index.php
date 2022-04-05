@@ -188,7 +188,21 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
 
 
 </diV>
+<?php
+if(isset($_SESSION['carid']))
+{
+?>
+<script>
+var id_grupos = <?php echo $_SESSION['carid'];?>;
+            $.post("grupos3.php", { id_grupos: id_grupos}, function(data) {
+                $("#grupos").html(data);
+            });	
+</script>
+<?php
+}
 
+
+?>
 
 
 
@@ -225,8 +239,8 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
     <span>1956</span>
     <p>End Year</p>
     <span>2019</span>
-    <p>Models</p>
-    <span>14,39 mil</span>
+    <p></p>
+    <span></span>
   </div>
   <div class='gold'>
     <h1>CROSSREF</h1>
@@ -234,10 +248,10 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
     <div class='price'>80 Mill</div>
     <p>Suppliers</p>
     <span>788</span>
-    <p>Updates</p>
-    <span>Monthly</span>
-    <p>Multi language</p>
-    <span>Comming soon..</span>
+    <p></p>
+    <span>Updates</span>
+    <p>Monthly</p>
+    <span>Multi language</span>
   </div>
   <div class='plat'>
     <h1>PARTS</h1>
@@ -247,8 +261,8 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
     <span>118</span>
     <p>Categories</p>
     <span>668</span>
-    <p>Amazing</p>
-    <span>Easy,Fast, Simply</span>
+    <p></p>
+    <span></span>
   </div>
   
 </div>

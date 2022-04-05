@@ -244,20 +244,26 @@ echo $html;
        
             $langV =$lang['grupos-lang'] ;
 
-             $sql="Select DISTINCT  ambrand.brandName as name , genericarticlesgroups.designation as descri ,articles.articleNumber  as number, articles.legacyArticleId as pivot , articles.dataSupplierId as su_id 
+             $sql="Select DISTINCT  ambrand.brandId as  logo ,ambrand.brandName as name , genericarticlesgroups.designation as descri ,articles.articleNumber  as number, articles.legacyArticleId as pivot , articles.dataSupplierId as su_id 
              From articlesvehicletrees
              INNER JOIN articles
              ON articlesvehicletrees.articleId = articles.legacyArticleId
-            
+             INNER JOIN articlecrosses
+             ON articlecrosses.articleNumber=articles.articleNumber and articlecrosses.dataSupplierId= articles.dataSupplierId
              INNER JOIN ambrand
              on ambrand.brandId=articles.dataSupplierId
+             INNER JOIN articlecriteria
+             on articlecriteria.legacyArticleId=articles.legacyArticleId
              
 
-              INNER JOIN genericarticlesgroups
-              on genericarticlesgroups.genericArticleId=articlesvehicletrees.genericArticleId
+             INNER JOIN genericarticles
+             on genericarticles.legacyArticleId=articles.legacyArticleId
 
-             where genericarticlesgroups.lang='$langV' and articlesvehicletrees.linkingTargetType='P' and articlesvehicletrees.linkingTargetId=$carid and articlesvehicletrees.assemblyGroupNodeId=$id_group 
-             order by articles.genericArticleDescription, ambrand.brandName";// 
+              INNER JOIN genericarticlesgroups
+              on genericarticlesgroups.genericArticleId=genericarticles.genericArticleId
+
+             where genericarticlesgroups.lang='$langV' and articlesvehicletrees.linkingTargetId=$carid and articlesvehicletrees.assemblyGroupNodeId=$id_group 
+             order by articles.genericArticleDescription, ambrand.brandName";// and articlesvehicletrees.linkingTargetType='P'
 
 
 
@@ -299,9 +305,8 @@ echo $html;
               while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
                 $criteria .= $row2['description']." = ".$row2['value']."<br>";
               }
-                //echo "<tr><td class='p5'><img class='circle' src='../images/images_supplier_logos/".$row['logo'].".png' ";
-                echo "<tr><td class='p5'><img class='circle' src='../images/images_supplier_logos/".$row['su_id'].".png' ";
-
+                echo "<tr><td class='p5'><img class='circle' src='../images/images_supplier_logos/".$row['logo'].".png' ";
+               
                 
                 ?>
                 onerror="this.onerror=null;this.src='no_image.jpg';" /></a></td>
