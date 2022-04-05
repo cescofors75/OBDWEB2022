@@ -153,9 +153,18 @@ td.child{
 
 td.t20{
   width:20%;
+  text-align: left;
+}
+td.t80{
+  width:80%;
+  text-align: left;
 }
 td.t100{
   width:100%;
+  text-align: left;
+}
+td.t50{
+  width:50%;
   text-align: left;
 }
 td.bold{

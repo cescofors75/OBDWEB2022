@@ -311,7 +311,7 @@ $('#solution3').html('<br/> <div class="loading"><img src="images/loader.gif" al
           let body = "</br><table>"
           for (var i = 0; i < data.length; i++) {   
            
-             body+="<tr><td class='t100'>"+data[i].M2+"</td><td>"+data[i].OEM+"</td></tr>"  
+             body+="<tr><td class='t20'>"+data[i].M2+"&nbsp;&nbsp;&nbsp;&nbsp;"+data[i].OEM+"</td></tr>"  
           
             }
           body+="</table>"
@@ -346,7 +346,7 @@ $('#solution3').html('<br/> <div class="loading"><img src="images/loader.gif" al
             if (data.length >0){
             let body = "<table></br>"
             for (var i = 0; i < data.length; i++) {      
-               body+="<tr><td class='t100'><img src='../images/images_supplier_logos/"+data[i].logo+".png' width='80'></td><td>"+data[i].name+"</td><td>"+data[i].number+"</td></tr>"
+               body+="<tr><td class='t100'><img src='../images/images_supplier_logos/"+data[i].logo+".png' width='80'></td><td>"+data[i].number+"</td><td>"+data[i].name+"</td></tr>"
                // body+=`<tr><td>${data[i].id}</td><td>${data[i].name}</td><td>${data[i].email}</td></tr>`
             
               }
