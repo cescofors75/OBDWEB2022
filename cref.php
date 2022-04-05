@@ -110,14 +110,15 @@ $carid = $_GET['carid'];
 
 $conexion->query("SET CHARACTER SET utf8");
 $conexion->query("SET NAMES utf8");
-$result = $conexion->query("SELECT manuName,modelName,typeName,yearOfConstrFrom,yearOfConstrTo FROM vehicledetails WHERE carId=$carid  LIMIT 1");
+$result = $conexion->query("SELECT manuName,modelName,typeName,yearOfConstrFrom,yearOfConstrTo, manuId FROM vehicledetails WHERE carId=$carid  LIMIT 1");
 
 
 if ($result->num_rows > 0) {
   $html .="<div class='info'>";
     $html .="<h2>INFO</h2>";
     
-    while ($row = $result->fetch_assoc()) {                
+    while ($row = $result->fetch_assoc()) { 
+        $html .=  "<img src='../images/makes_logos/".$row['manuId'].".png' width='50' height='50'>&nbsp;";                 
         $html .=  $row['manuName'] . " / ". $row['modelName'] .  " / ". $row['typeName'] . "*" ; 
         $html .=  $row['yearOfConstrFrom'] . " / ". $row['yearOfConstrTo'] . "<br>" ; 
     }
@@ -414,7 +415,7 @@ $('#refEuro').html("<br/> <div class='loading'><img src='images/loader.gif' /><b
           body+="</table>"
           document.getElementById('refEuro').innerHTML = body
           }else{
-            $('#refEuro').html("<div class='error'>Not reference EURO4x4 !!!!</div>")
+            $('#refEuro').html("<div class='error'>"+"<?php echo $lang['grupos-notparts']?>"+"</div>")
 
           }
           

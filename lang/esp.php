@@ -28,7 +28,7 @@ $lang['grupos-clearsolution']='Borrar soluciones';
 $lang['grupos-recommended'] ='Recommendaciones';
 $lang['grupos-suppliers']='Proveedores';
 $lang['grupos-trecomended']="</br><div class='b'> -Revise la conexión eléctrica y los conectores, relacionados con el código</div><div class='b'> -Verifique que no exista corrosión, o agua en el sensor / parte de repuesto relacionado</div><div class='b'> -Reemplazar la siguiente pieza de repuesto:</div></br>";
-$lang['grupos-notparts']='No hay piezas !!!!';
+$lang['grupos-notparts']='No hay recambios !!!!';
 $lang['grupos-notcode']='No hay código !!!!';
 $lang['grupos-notreference']='No hay referencia OEM !!!!';
 $lang['grupos-notsuppliers']='No hay referencia proveedor !!!!';

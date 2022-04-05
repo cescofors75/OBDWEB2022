@@ -62,14 +62,15 @@ $_SESSION['carid'] = $carid;
 
 $conexion->query("SET CHARACTER SET utf8");
 $conexion->query("SET NAMES utf8");
-$result = $conexion->query("SELECT manuName,modelName,typeName,yearOfConstrFrom,yearOfConstrTo FROM vehicledetails WHERE carId=$carid  LIMIT 1");
+$result = $conexion->query("SELECT manuName,modelName,typeName,yearOfConstrFrom,yearOfConstrTo, manuId FROM vehicledetails WHERE carId=$carid  LIMIT 1");
 
 
 if ($result->num_rows > 0) {
   $html .="<div class='b' >";
     $html .="<h2><b>".$lang['grupos-info']."</b></h2>";
     
-    while ($row = $result->fetch_assoc()) {                
+    while ($row = $result->fetch_assoc()) {  
+        $html .=  "<img src='../images/makes_logos/".$row['manuId'].".png' width='50' height='50'>&nbsp;";             
         $html .=  $row['manuName'] . " / ". $row['modelName'] .  " / ". $row['typeName'] . "*" ; 
         $html .=  $row['yearOfConstrFrom'] . " / ". $row['yearOfConstrTo'] . "<br>" ; 
     }
@@ -242,6 +243,8 @@ $('#solution').html('<br/> <div class="loading"><img src="images/loader.gif" alt
       }
 
  solution_error()     
+ solution4_supliers()  
+ solution3_OEM()
 }
 
 
@@ -279,7 +282,8 @@ $('#solution2').html('<br/> <div class="loading"><img src="images/loader.gif" al
           //console.log(body)
       }
 
-      solution3_OEM()   
+      
+      
 }
 
 
@@ -320,7 +324,7 @@ $('#solution3').html('<br/> <div class="loading"><img src="images/loader.gif" al
           //console.log(body)
       }
 
- solution4_supliers()     
+ //solution4_supliers()     
 }
 
 

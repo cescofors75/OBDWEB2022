@@ -105,7 +105,7 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
 
 $conexion->query("SET CHARACTER SET utf8");
 $conexion->query("SET NAMES utf8");
-$result = $conexion->query("SELECT manuName,modelName,typeName,yearOfConstrFrom,yearOfConstrTo FROM vehicledetails WHERE carId=$carid LIMIT 1" );
+$result = $conexion->query("SELECT manuName,modelName,typeName,yearOfConstrFrom,yearOfConstrTo, manuId FROM vehicledetails WHERE carId=$carid LIMIT 1" );
 
 
 
@@ -113,7 +113,8 @@ if ($result->num_rows > 0) {
   $html .="<div class='info'>";
     $html .="<h2>".$lang['grupos-info']."</h2>";
     
-    while ($row = $result->fetch_assoc()) {                
+    while ($row = $result->fetch_assoc()) { 
+        $html .=  "<img src='../images/makes_logos/".$row['manuId'].".png' width='50' height='50'>&nbsp;";                 
         $html .=  $row['manuName'] . " / ". $row['modelName'] .  " / ". $row['typeName'] . "*" ; 
         $html .=  $row['yearOfConstrFrom'] . " / ". $row['yearOfConstrTo'] . "<br>" ; 
     }
@@ -169,10 +170,13 @@ if(isset($_GET['carid'])){
              //$sql  = "select * FROM assemblygroupnodes where  linkingTargetType='P'and shortCutId=4 and  parentNodeId is Null";    
              //$sql  = "select * FROM assemblygroupnodes where shortCutId= $id_shortcut  and linkingTargetType='V'and  parentNodeId is Null order by assemblyGroupName";       
              $sql  = "select distinct assemblyGroupName, assemblygroupnodes.assemblyGroupNodeId FROM assemblygroupnodes 
-             
-             inner join vehicletrees
-             on assemblygroupnodes.assemblyGroupNodeId=vehicletrees.assemblyGroupNodeId
+           
              where shortCutId= $id_shortcut  and assemblygroupnodes.linkingTargetType='P' and lang='".$lang['grupos-lang']."'and  assemblygroupnodes.parentNodeId is Null order by assemblyGroupName";       
+             
+             /*  
+             inner join vehicletrees
+             on assemblygroupnodes.assemblyGroupNodeId=vehicletrees.assemblyGroupNodeId*/
+             
              $stmt = $pdo->prepare($sql);
              $stmt->execute(); 
 
