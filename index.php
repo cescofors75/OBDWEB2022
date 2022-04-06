@@ -116,12 +116,20 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
                         $conexion->query("SET CHARACTER SET utf8");
                         $conexion->query("SET NAMES utf8");
                         $result = $conexion->query(
-                          "SELECT DISTINCT manuId, manuName FROM `manufacturers` where linkingTargetType='P' order by manuName"
+                          "SELECT DISTINCT manuId, manuName FROM `manufacturers` 
+                           where linkingTargetType='P' 
+                           and manuName NOT LIKE '%MOTO%'
+                           and manuName NOT LIKE '%SCOOTER%'
+                           order by manuName"
                       );
 
                         
 
                         if ($result->num_rows > 0) {
+                          echo '<option >'; echo $lang['index-select'] ; echo'</option>';
+                          echo '<option disabled class="bold-option">'; echo $lang['index-most-popular-makes']; echo'</option>';
+                          echo '<option value="111">Toyota</option>';
+                          echo '<option disabled class="bold-option">'; echo $lang['index-other-makes']; echo'</option>';
                             while ($row = $result->fetch_assoc()) {                
                                 echo '<option value="'.$row['manuId'].'">'.$row['manuName'].'</option>';
                             }

@@ -1,18 +1,48 @@
 
+<?php 
+session_start();
+if(isset($_GET['la'])){
+$_SESSION['la'] = $_GET['la'];
+header('Location:'.$_SERVER['PHP_SELF']);
+exit();
+}
+if(isset($_SESSION['la']))
+{
+switch($_SESSION['la']){
+case "eng":
+require('lang/eng.php'); 
+break;
+case "fre":
+require('lang/fre.php'); 
+break;
+case "ger":
+require('lang/ger.php'); 
+break; 
+case "esp":
+require('lang/esp.php'); 
+break; 
+default: 
+require('lang/esp.php'); 
+}
 
-<?php
+}else{
+require('lang/esp.php');
+}
+
 $html = '';
 $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
 
 $id_scategory = $_POST['id_subcategory'];
 $id_category = $_POST['id_category'];
+$lang2 = $lang['grupos-lang'];
+
 
 $conexion->query("SET CHARACTER SET utf8");
 $conexion->query("SET NAMES utf8");
 
 
 $result = $conexion->query(
-    "SELECT DISTINCT typeName, carId , yearOfConstrFrom, yearOfConstrTo, powerHpFrom, powerKwFrom FROM `vehicledetails` Where   modId = '".$id_scategory."' and manuId = '".$id_category."'   order by typeName"
+    "SELECT DISTINCT typeName, carId , yearOfConstrFrom, yearOfConstrTo, powerHpFrom, powerKwFrom FROM `vehicledetails` Where   modId = '".$id_scategory."' and manuId = '".$id_category."'    order by typeName"
 );
 
 

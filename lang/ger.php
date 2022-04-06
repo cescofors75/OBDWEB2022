@@ -15,6 +15,9 @@ $lang['index-motor'] = 'Fahrzeug';
 $lang['index-search'] = 'Suche referenznummer';
 $lang['index-b-search'] = 'Suche';
 $lang['index-b-clear'] = 'Löschen';
+$lang['index-select'] = 'Auswählen';
+$lang['index-most-popular-makes'] = 'Beliebtesten marken';
+$lang['index-other-makes']= 'Andere Marken';
 
 //grupos
 $lang['grupos-info'] = 'Information';

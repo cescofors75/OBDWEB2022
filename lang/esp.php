@@ -14,6 +14,10 @@ $lang['index-motor'] = 'Motor';
 $lang['index-search'] = 'Buscar referencia';
 $lang['index-b-search'] = 'Buscar';
 $lang['index-b-clear'] = 'Limpiar';
+$lang['index-select'] = 'Seleccionar';
+$lang['index-most-popular-makes'] = 'Las marcas mas populares';
+$lang['index-other-makes']='Otras marcas';
+  
 
 // grupos
 

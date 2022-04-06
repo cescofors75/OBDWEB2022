@@ -211,10 +211,10 @@ $('#solution').html('<br/> <div class="loading"><img src="images/loader.gif" alt
           let body = ""
            body+="<?php echo $lang['grupos-trecomended'];?>";
           for (var i = 0; i < data.length; i++) {   
-            $oem =data[i].OENbr
-            $ref_euro=data[i].REF_EURO
-            $desc=data[i].libelleproduit
-            $prix=data[i].prixeuroht
+            //$oem =data[i].OENbr
+            $ref_euro=data[i].reference
+            $desc=data[i].libelle
+            $prix=data[i].prix
             $familia=$ref_euro.substring(0,3).toLowerCase()
             $ref_euro2=$ref_euro.toLowerCase()
             $partes=data[i].partes
@@ -225,7 +225,7 @@ $('#solution').html('<br/> <div class="loading"><img src="images/loader.gif" alt
             body+="<div class='card' style='width:300px'>"
             body+="<img src='http://blog.euro4x4parts.com/photos/"+ $familia + "/" + $ref_euro2 + "z.jpg'  class='card-img-top' style='width:300px'>"
             body +="<div class='card-body'>"
-            body+="<h5 class='card-title'>"+$ref_euro+" - "+$oem+"</h5>"
+            body+="<h5 class='card-title'>"+$ref_euro+"</h5>"
             body+="<p class='card-text'>"+$desc+"</p>"
             body+="<a href='#' class='btn btn-primary'>+ Buy "+$prix+"€</a></div></div>"
                

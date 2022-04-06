@@ -15,6 +15,9 @@ $lang['index-motor'] = 'Motorisation';
 $lang['index-search'] = 'Rechercher une référence';
 $lang['index-b-search'] = 'Rechercher';
 $lang['index-b-clear'] = 'Réinitialiser';
+$lang['index-select'] = 'Sélectionner';
+$lang['index-most-popular-makes'] = 'Marques les plus recherchées';
+$lang['index-other-makes']='Autres marques';
 //grupos
 $lang['grupos-info'] = 'Information';
 $lang['grupos-option'] = 'Options: Exemple';

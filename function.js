@@ -13,7 +13,7 @@ $(document).ready(function(){
    $("#subcategory").on('change', function () {
         $("#subcategory option:selected").each(function () {
             var id_subcategory = $(this).val();
-            console.log(id_subcategory)
+            //console.log(id_subcategory)
             $.post("ssubcategories.php", {id_subcategory: id_subcategory, id_category: id_category2}, function(data) {
                 $("#ssubcategory").html(data);
             });			

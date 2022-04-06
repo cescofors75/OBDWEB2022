@@ -15,6 +15,11 @@ $lang['index-motor'] = 'Motor';
 $lang['index-search'] = 'Search part number';
 $lang['index-b-search'] = 'Search';
 $lang['index-b-clear'] = 'Clear';
+$lang['index-select'] = 'Select';
+$lang['index-most-popular-makes'] = 'Most popular makes';
+$lang['index-other-makes']='Other makes';
+
+
 // grupos
 $lang['grupos-info'] = 'Information';
 $lang['grupos-option'] = 'Options: Example ';
