@@ -109,7 +109,7 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
         <div id="content" class="col-lg-12">
             <form class="row" action="" method="post">
                 <div class="form-group col-lg-3 t33" >
-                    <label for="category"><?php echo $lang['index-make'];?></label>
+                    <label class="text" for="category"><?php echo $lang['index-make'];?></label>
                     <select name="category" id="category" class="form-control">
                         <?php
                       
@@ -138,12 +138,12 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
                     </select>
                 </div>
                 <div class="form-group col-lg-3 t33">
-                    <label for="subcategory"><?php echo $lang['index-model'];?></label>
+                    <label class="text" for="subcategory"><?php echo $lang['index-model'];?></label>
                     <select name="subcategory" id="subcategory" class="form-control"></select>
                 </div>
 
                 <div class="form-group col-lg-3 t33">
-                    <label for="ssubcategory"><?php echo $lang['index-motor'];?></label>
+                    <label class="text" for="ssubcategory"><?php echo $lang['index-motor'];?></label>
                     <select name="ssubcategory" id="ssubcategory" class="form-control"></select>
                 </div>
             </form>
