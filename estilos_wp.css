@@ -88,6 +88,14 @@ div.b {
   color:white;
   font-family: "Source Code Pro";
 } 
+div.bn {
+  text-align: left;
+  padding: 5px;
+  background:steelblue;
+  font-size:16px;
+  color:black;
+  font-family: "Source Code Pro";
+} 
 
 div.r{
 

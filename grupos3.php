@@ -91,7 +91,7 @@ $html="";
 
   <div class='r'><?php echo $lang['grupos-option'];?>&nbsp; P0201, P0255, P0100 </div>
   <div class='b' ><?php echo $lang['grupos-code'];?>&nbsp; <input type="text" id="code" name="fname" value="P0560" >&nbsp; 
-  <button type="button" onclick="solution()" class="btn btn-primary btn-lg"><?php echo $lang['grupos-solution'];?></button> &nbsp; <button type="button" onclick="ALLsolution()" class="btn btn-primary btn-lg"><?php echo $lang['grupos-allsolution'];?></button>&nbsp;&nbsp;<button type="button" onclick="Clear_solutions()" class="btn btn-primary btn-lg"><?php echo $lang['grupos-clearsolution'];?></button></td></tr>
+  <button type="button" onclick="solution()" class="btn btn-primary btn-lg"><?php echo $lang['grupos-solution'];?></button> &nbsp; <button type="button" onclick="ALLsolution()" class="btn btn-primary btn-lg"><?php echo $lang['grupos-allsolution'];?></button>&nbsp;&nbsp;<button type="button" onclick="Clear_solutions()" class="btn btn-primary btn-lg"><?php echo $lang['grupos-clearsolution'];?></button>
    
   </div>
 
@@ -154,8 +154,14 @@ if ($result->num_rows > 0) {
 
 if ($result->num_rows > 0) {
   $html .="</br><div class='b'>";
-    $html .=$lang['grupos-catalogue']."</div></br>";
+    $html .=$lang['grupos-catalogue']."</div>";
+
+    $html .="</br><div class='b'><input type='text' id='codeT' name='fname' value='Termostato' >&nbsp; ";
+    $html .="<button type='button' onclick='solutionT()' class='btn btn-primary btn-lg'>".$lang['index-b-search']."</button>";
+    $html .="&nbsp;&nbsp;&nbsp;<button type='button' onclick='ClearT()' class='btn btn-primary btn-lg'>".$lang['index-b-clear']."</button></div>";
+
     $html .="<div >";
+    $html .="<div  class='bn' name='solutionT' id='solutionT'> </div>";
     while ($row = $result->fetch_assoc()) {   
        
                       
@@ -425,5 +431,40 @@ function Clear_solutions() {
      
     }
 
-</script>
+function ClearT(){
+  document.getElementById("solutionT").innerHTML =""
 
+}
+
+
+function solutionT(){
+
+  let url = "../mysql_jsonESP_T.php?carid="+document.getElementById("carid").value+"&code="+document.getElementById("codeT").value+"&lang=<?php echo $lang['grupos-lang'] ?>"
+  $('#solutionT').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Read suppliers, One moment, please ...</div>').show()
+
+        fetch(url)
+            .then( response => response.json() )
+            .then( data => mostrarData(data) )
+            .catch( error => console.log(error) )
+
+        const mostrarData = (data) => {
+            console.log(data)
+            if (data.length >0){
+            let body = "<table></br>"
+            for (var i = 0; i < data.length; i++) {      
+               body+="<tr><td class='t20'><img src='../images/images_supplier_logos/"+data[i].logo+".png' width='80'></td><td class='t20'>"+data[i].number+"</td><td class='t20'>"+data[i].designation+"</td></tr>"
+               // body+=`<tr><td>${data[i].id}</td><td>${data[i].name}</td><td>${data[i].email}</td></tr>`
+            
+              }
+            body+="</table>"
+            document.getElementById('solutionT').innerHTML = body
+            }else{
+              $('#solutionT').html("<div class='error'>"+"<?php echo $lang['grupos-notsuppliers'];?>"+"</div>")
+
+            }
+            
+            //console.log(body)
+        }
+}
+
+</script>
