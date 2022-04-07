@@ -37,4 +37,5 @@ $lang['grupos-notcode']='No hay código !!!!';
 $lang['grupos-notreference']='No hay referencia OEM !!!!';
 $lang['grupos-notsuppliers']='No hay referencia proveedor !!!!';
 $lang['grupos-loading']='Leyendo la base de datos, un momento, por favor ...';
+$lang['grupos-text-Thermostat']='Termostato';
 ?>

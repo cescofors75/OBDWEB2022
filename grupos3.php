@@ -156,7 +156,7 @@ if ($result->num_rows > 0) {
   $html .="</br><div class='b'>";
     $html .=$lang['grupos-catalogue']."</div>";
 
-    $html .="</br><div class='b'><input type='text' id='codeT' name='fname' value='Termostato' >&nbsp; ";
+    $html .="</br><div class='b'><input type='text' id='codeT' name='fname' value='".$lang['grupos-text-Thermostat']."' >&nbsp; ";
     $html .="<button type='button' onclick='solutionT()' class='btn btn-primary btn-lg'>".$lang['index-b-search']."</button>";
     $html .="&nbsp;&nbsp;&nbsp;<button type='button' onclick='ClearT()' class='btn btn-primary btn-lg'>".$lang['index-b-clear']."</button></div>";
 
@@ -439,7 +439,7 @@ function ClearT(){
 
 function solutionT(){
 
-  let url = "../mysql_jsonESP_T.php?carid="+document.getElementById("carid").value+"&code="+document.getElementById("codeT").value+"&lang=<?php echo $lang['grupos-lang'] ?>"
+  let url = "../mysql_jsonESP_T2.php?carid="+document.getElementById("carid").value+"&code="+document.getElementById("codeT").value+"&lang=<?php echo $lang['grupos-lang'] ?>"
   $('#solutionT').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Read suppliers, One moment, please ...</div>').show()
 
         fetch(url)
@@ -450,11 +450,14 @@ function solutionT(){
         const mostrarData = (data) => {
             console.log(data)
             if (data.length >0){
-            let body = "<table></br>"
+              let body ="";
+           // let body = "<table></br>"
+           
             for (var i = 0; i < data.length; i++) {      
-               body+="<tr><td class='t20'><img src='../images/images_supplier_logos/"+data[i].logo+".png' width='80'></td><td class='t20'>"+data[i].number+"</td><td class='t20'>"+data[i].designation+"</td></tr>"
+               //body+="<tr><td class='t100'><a id='listDesignation' href='#' onclick='ListDesignation("+data[i].id+");return false;'>"+data[i].designation+"</td></tr>"
                // body+=`<tr><td>${data[i].id}</td><td>${data[i].name}</td><td>${data[i].email}</td></tr>`
-            
+               body+="<div class='b'><a id='listDesignation' href='#' onclick='ListDesignation("+data[i].id+");return false;'>"+data[i].designation+"</div>"
+
               }
             body+="</table>"
             document.getElementById('solutionT').innerHTML = body
@@ -465,6 +468,55 @@ function solutionT(){
             
             //console.log(body)
         }
+}
+
+function ListDesignation(designation){
+
+let url = "../mysql_jsonESP_T.php?carid="+document.getElementById("carid").value+"&code="+designation+"&lang=<?php echo $lang['grupos-lang'] ?>"
+$('#solutionT').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Read database, One moment, please ...</div>').show()
+
+      fetch(url)
+          .then( response => response.json() )
+          .then( data => mostrarData(data) )
+          .catch( error => console.log(error) )
+
+          const mostrarData = (data) => {
+          console.log(data)
+          if (data.length >0){
+          let body = ""
+           //body+="<?php echo $lang['grupos-trecomended'];?>";
+          for (var i = 0; i < data.length; i++) {   
+            //$oem =data[i].OENbr
+            $ref_euro=data[i].reference
+            $desc=data[i].libelle
+            $prix=data[i].prix
+            $familia=$ref_euro.substring(0,3).toLowerCase()
+            $ref_euro2=$ref_euro.toLowerCase()
+            $partes=data[i].partes
+            //console.log($partes)
+
+            //body+="<div class='b'>"+$partes+"</div>"
+             
+            body+="<div class='card' style='width:300px'>"
+            body+="<img src='http://blog.euro4x4parts.com/photos/"+ $familia + "/" + $ref_euro2 + "z.jpg'  class='card-img-top' style='width:300px'>"
+            body +="<div class='card-body'>"
+            body+="<h5 class='card-title'>"+$ref_euro+"</h5>"
+            body+="<p class='card-text'>"+$desc+"</p>"
+            body+="<a href='#' class='btn btn-primary'>+ Buy "+$prix+"€</a></div></div>"
+               
+          
+            }
+          //body+="</table>"
+          document.getElementById('solutionT').innerHTML = body
+         // document.getElementById('solution5').innerHTML = "Spare part solution: "+$partes
+          }else{
+            $('#solutionT').html("<div class='error'>"+"<?php echo $lang['grupos-notparts'];?>"+"</div>")
+
+          }
+          
+          //console.log(body)
+      }
+
 }
 
 </script>

@@ -472,3 +472,13 @@ input.lupa{
   color: hsl(0, 60%, 98%);
   
 }
+
+div.b a:link{
+  color: hsl(0, 60%, 98%);
+
+}
+
+div.b a:visited{
+  color: hsl(0, 60%, 98%);
+  
+}

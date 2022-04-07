@@ -36,5 +36,5 @@ $lang['grupos-notcode']='Kein Code !!!!';
 $lang['grupos-notreference']='Keine Referenz OEM !!!!';
 $lang['grupos-notsuppliers']='Keine Referenz Lieferant !!!!';
 $lang['grupos-loading']='Lese Datenbank, einen Moment, bitte ...';
-
+$lang['grupos-text-Thermostat']='Thermostat';
 ?>
