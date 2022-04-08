@@ -309,7 +309,7 @@ echo $html;
                
                 
                 ?>
-                onerror="this.onerror=null;this.src='no_image.jpg';" /></a></td>
+                onerror="this.onerror=null;this.src='./images/no_image.jpg';" /></a></td>
                 <?php
 
 
@@ -343,7 +343,7 @@ echo $html;
                 echo '<img class="shadow" src="../images/imgSorted/' ; echo $supli; echo "/";
                 echo $num; echo "/"; echo $num; echo '.jpg"  width="150"';  
                 ?>
-                onerror="this.onerror=null;this.src='no_image.jpg';" /></a></td>
+                onerror="this.onerror=null;this.src='./images/no_image.jpg';" /></a></td>
                 <?php
                 
                 

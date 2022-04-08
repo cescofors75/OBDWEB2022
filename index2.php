@@ -60,14 +60,15 @@ require('lang/esp.php');
 
 <?php
 $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
-?>  
+?> 
+
 <div id="langSelect">
 <a href="index2.php?la=esp"><img class='circle' src="flags/esp.png" alt="<?=$lang['lang-esp'];?>" title="<?=$lang['lang-esp'];?>" /></a>  
 <a href="index2.php?la=eng"><img class='circle' src="flags/eng.png" alt="<?=$lang['lang-eng'];?>" title="<?=$lang['lang-eng'];?>" /></a>
 <a href="index2.php?la=fre"><img class='circle' src="flags/fra.png" alt="<?=$lang['lang-fre'];?>" title="<?=$lang['lang-fre'];?>" /></a>
 <a href="index2.php?la=ger"><img class='circle' src="flags/ger.png" alt="<?=$lang['lang-ger'];?>" title="<?=$lang['lang-ger'];?>" /></a>
 </div>
-<div >
+
 
 
 <div class="honeycomb">
@@ -217,12 +218,10 @@ var id_grupos = <?php echo $_SESSION['carid'];?>;
 
 
 
-<br /><br /><br />
+<br /><br />
 
 
 
- <!--<div class='container'>  -->
-<!--<div id="elements"></div>  -->
 
 <div id="display"></div> <!--resultados busqueda referencias -->
 
@@ -233,7 +232,7 @@ var id_grupos = <?php echo $_SESSION['carid'];?>;
 <div  name="grupos" id="grupos"></div>  
  
 
- <!--</div>      -->     
+      
 
 <div class='space'>  </div>       
        
@@ -274,7 +273,7 @@ var id_grupos = <?php echo $_SESSION['carid'];?>;
   </div>
   
 </div>
-
+<div>
 <p>
 <a href="http://jigsaw.w3.org/css-validator/check/referer">
     <img style="border:0;width:88px;height:31px"
@@ -282,7 +281,9 @@ var id_grupos = <?php echo $_SESSION['carid'];?>;
         alt="¡CSS Válido!" />
     </a>
 </p>
-        
+</div>  
+
+
 </body>
 
 

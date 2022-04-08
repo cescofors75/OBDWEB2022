@@ -352,7 +352,7 @@ $('#solution3').html('<br/> <div class="loading"><img src="images/loader.gif" al
             if (data.length >0){
             let body = "<table></br>"
             for (var i = 0; i < data.length; i++) {      
-               body+="<tr><td class='t100'><img src='../images/images_supplier_logos/"+data[i].logo+".png' width='80' onerror=this.onerror=null;this.src='no_image.jpg';></td><td>"+data[i].number+"</td><td>"+data[i].name+"</td></tr>"
+               body+="<tr><td class='t100'><img src='../images/images_supplier_logos/"+data[i].logo+".png' width='80' onerror=this.onerror=null;this.src='./images/no_image.jpg';></td><td>"+data[i].number+"</td><td>"+data[i].name+"</td></tr>"
                // body+=`<tr><td>${data[i].id}</td><td>${data[i].name}</td><td>${data[i].email}</td></tr>`
             
               }
@@ -497,8 +497,8 @@ $('#solutionT').html('<br/> <div class="loading"><img src="images/loader.gif" al
 
             //body+="<div class='b'>"+$partes+"</div>"
              
-            body+="<div class='card' style='width:300px'>"
-            body+="<img src='http://blog.euro4x4parts.com/photos/"+ $familia + "/" + $ref_euro2 + "z.jpg'  class='card-img-top' style='width:300px'>"
+            body+="<div class='card' style='width:250px'>"
+            body+="<img class='shadow' src='http://blog.euro4x4parts.com/photos/"+ $familia + "/" + $ref_euro2 + "z.jpg'  class='card-img-top' style='width:250px'>"
             body +="<div class='card-body'>"
             body+="<h5 class='card-title'>"+$ref_euro+"</h5>"
             body+="<p class='card-text'>"+$desc+"</p>"

@@ -74,7 +74,7 @@ $con->query("SET NAMES utf8");
        
        
       ?>
-       onerror="this.onerror=null;this.src='no_image.jpg';" ></a></td></tr>
+       onerror="this.onerror=null;this.src='./images/no_image.jpg';" ></a></td></tr>
        <?php
        
      
