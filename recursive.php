@@ -9,7 +9,7 @@
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="estilos_wp.css">
+<link rel="stylesheet" href="./css/estilos_wp.css">
 
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
