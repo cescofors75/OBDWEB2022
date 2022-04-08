@@ -23,7 +23,7 @@ $(document).ready(function(){
    $("#ssubcategory").on('change', function () {
         $("#ssubcategory option:selected").each(function () {
             var id_grupos = $(this).val();
-            $.post("grupos3.php", { id_grupos: id_grupos}, function(data) {
+            $.post("grupos.php", { id_grupos: id_grupos}, function(data) {
                 $("#grupos").html(data);
             });			
         });
@@ -174,7 +174,7 @@ function sub(){
     function myFunction(array) {
     
      var id_grupos = array.result[0].carId;
-            $.post("grupos3.php", { id_grupos: id_grupos}, function(data) {
+            $.post("grupos.php", { id_grupos: id_grupos}, function(data) {
                 $("#grupos").html(data);
             });			
     

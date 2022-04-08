@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WORLD PARTS</title>
+<title>OBD2SOLUTION<</title>
 
 
 <!-- Latest compiled and minified CSS -->
@@ -395,7 +395,7 @@ let params = new URLSearchParams(location.search);
 let carid = params.get('carid')*/
 <?php  $carid = $_GET['carid'];?>
 <?php  $grupo= $_GET['grupo'];?>
-let url = "../mysql_jsonESP_EURO.php?carid="+<?php echo $carid; ?>+"&grupo="+<?php echo $grupo; ?>+""
+let url = "./api/mysql_jsonESP_EURO.php?carid="+<?php echo $carid; ?>+"&grupo="+<?php echo $grupo; ?>+""
 $('#refEuro').html("<br/> <div class='loading'><img src='images/loader.gif' /><br/> <br/>"+"<?php echo $lang['grupos-loading'];?>"+"</div>").show();
 
       fetch(url)

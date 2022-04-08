@@ -138,11 +138,11 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {   
         if ($i < 4){
                       
-        $html .= "<td class='menu'><div><img src='../images/images_sections/". $row['shortCutId'] .".png' width='80' ></br><a href='recursive2.php?carid=".$carid."&grupo=". $row['shortCutId'] . "'>". $row['shortCutName'] .   "</a></div></td>" ; 
+        $html .= "<td class='menu'><div><img src='../images/images_sections/". $row['shortCutId'] .".png' width='80' ></br><a href='recursive.php?carid=".$carid."&grupo=". $row['shortCutId'] . "'>". $row['shortCutName'] .   "</a></div></td>" ; 
         $i++;  
       }else {
        $i=0;
-       $html .= "<td class='menu'><div><img src='../images/images_sections/". $row['shortCutId'] .".png' width='80' ></br><a href='recursive2.php?carid=".$carid."&grupo=". $row['shortCutId'] . "'>". $row['shortCutName'] .   "</a></td></div></tr><tr>" ; 
+       $html .= "<td class='menu'><div><img src='../images/images_sections/". $row['shortCutId'] .".png' width='80' ></br><a href='recursive.php?carid=".$carid."&grupo=". $row['shortCutId'] . "'>". $row['shortCutName'] .   "</a></td></div></tr><tr>" ; 
       }
     }
     $html .="<td class='menu'></td><td class='menu'></td><td class='menu'></td></tr></table></div>";
@@ -165,10 +165,10 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {   
        
                       
-        $html .= "<a href='recursive2.php?carid=".$carid."&grupo=". $row['shortCutId'] . "'><img src='../images/images_sections/". $row['shortCutId'] .".png' width='80' title='". $row['shortCutName'] ."'></a>" ; 
+        $html .= "<a href='recursive.php?carid=".$carid."&grupo=". $row['shortCutId'] . "'><img src='../images/images_sections/". $row['shortCutId'] .".png' width='80' title='". $row['shortCutName'] ."'></a>" ; 
         
       
-      // $html .= "<td class='menu'><div><img src='../images/images_sections/". $row['shortCutId'] .".png' width='80' ></br><a href='recursive2.php?carid=".$carid."&grupo=". $row['shortCutId'] . "'>". $row['shortCutName'] .   "</a></td></div></tr><tr>" ; 
+      // $html .= "<td class='menu'><div><img src='../images/images_sections/". $row['shortCutId'] .".png' width='80' ></br><a href='recursive.php?carid=".$carid."&grupo=". $row['shortCutId'] . "'>". $row['shortCutName'] .   "</a></td></div></tr><tr>" ; 
       }
     
     $html .="</div>";
@@ -202,7 +202,7 @@ function solution(){
   document.getElementById('t_solution3').innerHTML="OEM" ;
   document.getElementById('t_solution4').innerHTML="<?php echo $lang['grupos-suppliers'];?>";
 
-let url  = "../mysql_jsonESP.php?carid="+document.getElementById("carid").value+"&code="+document.getElementById("code").value
+let url  = "./api/mysql_jsonESP.php?carid="+document.getElementById("carid").value+"&code="+document.getElementById("code").value
 $('#solution').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Read database solutions </br>One moment, please ...</div>').show()
 
      // fetch(url,{mode: 'cors', headers: {'Access-Control-Allow-Origin': '*'}})
@@ -259,7 +259,7 @@ $('#solution').html('<br/> <div class="loading"><img src="images/loader.gif" alt
 
  function solution_error(){
 
-let url  = "../mysql_json3.php?CODIGO='"+document.getElementById("code").value+"'"
+let url  = "./api/mysql_jsonCODE.php?CODIGO='"+document.getElementById("code").value+"'"
 $('#solution2').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Read database codes, One moment, please ...</div>').show()
 //console.log(x)
 
@@ -303,7 +303,7 @@ $('#solution2').html('<br/> <div class="loading"><img src="images/loader.gif" al
  function solution3_OEM(){
 
 
-let url  = "../mysql_jsonESP_OEM.php?carid="+document.getElementById("carid").value+"&code="+document.getElementById("code").value
+let url  = "./api/mysql_jsonESP_OEM.php?carid="+document.getElementById("carid").value+"&code="+document.getElementById("code").value
 $('#solution3').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Read OEM, One moment, please ...</div>').show()
 
       fetch(url)
@@ -339,7 +339,7 @@ $('#solution3').html('<br/> <div class="loading"><img src="images/loader.gif" al
  function solution4_supliers(){
 
 
-  let url = "../mysql_jsonESP_SUPLIERS.php?carid="+document.getElementById("carid").value+"&code="+document.getElementById("code").value
+  let url = "./api/mysql_jsonESP_SUPLIERS.php?carid="+document.getElementById("carid").value+"&code="+document.getElementById("code").value
   $('#solution4').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Read suppliers, One moment, please ...</div>').show()
 
         fetch(url)
@@ -352,7 +352,7 @@ $('#solution3').html('<br/> <div class="loading"><img src="images/loader.gif" al
             if (data.length >0){
             let body = "<table></br>"
             for (var i = 0; i < data.length; i++) {      
-               body+="<tr><td class='t100'><img src='../images/images_supplier_logos/"+data[i].logo+".png' width='80'></td><td>"+data[i].number+"</td><td>"+data[i].name+"</td></tr>"
+               body+="<tr><td class='t100'><img src='../images/images_supplier_logos/"+data[i].logo+".png' width='80' onerror=this.onerror=null;this.src='no_image.jpg';></td><td>"+data[i].number+"</td><td>"+data[i].name+"</td></tr>"
                // body+=`<tr><td>${data[i].id}</td><td>${data[i].name}</td><td>${data[i].email}</td></tr>`
             
               }
@@ -371,7 +371,7 @@ $('#solution3').html('<br/> <div class="loading"><img src="images/loader.gif" al
 function ReadSolution(code){
 
 
-let url  = "../mysql_jsonESP_OEM_ALL.php?carid="+document.getElementById("carid").value+"&code="+code
+let url  = "./api/mysql_jsonESP_OEM_ALL.php?carid="+document.getElementById("carid").value+"&code="+code
 $('#solution3').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Read solutions, One moment, please ...</div>').show()
 
       fetch(url)
@@ -439,7 +439,7 @@ function ClearT(){
 
 function solutionT(){
 
-  let url = "../mysql_jsonESP_T2.php?carid="+document.getElementById("carid").value+"&code="+document.getElementById("codeT").value+"&lang=<?php echo $lang['grupos-lang'] ?>"
+  let url = "./api/mysql_jsonESP_T2.php?carid="+document.getElementById("carid").value+"&code="+document.getElementById("codeT").value+"&lang=<?php echo $lang['grupos-lang'] ?>"
   $('#solutionT').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Read suppliers, One moment, please ...</div>').show()
 
         fetch(url)
@@ -456,7 +456,7 @@ function solutionT(){
             for (var i = 0; i < data.length; i++) {      
                //body+="<tr><td class='t100'><a id='listDesignation' href='#' onclick='ListDesignation("+data[i].id+");return false;'>"+data[i].designation+"</td></tr>"
                // body+=`<tr><td>${data[i].id}</td><td>${data[i].name}</td><td>${data[i].email}</td></tr>`
-               body+="<div class='b'><a id='listDesignation' href='#' onclick='ListDesignation("+data[i].id+");return false;'>"+data[i].designation+"</div>"
+               body+="<div class='b'><a id='listDesignation' href='#' onclick='listRefEuro("+data[i].id+");return false;'>"+data[i].designation+"</div>"
 
               }
             body+="</table>"
@@ -470,9 +470,9 @@ function solutionT(){
         }
 }
 
-function ListDesignation(designation){
+function listRefEuro(designation){
 
-let url = "../mysql_jsonESP_T.php?carid="+document.getElementById("carid").value+"&code="+designation+"&lang=<?php echo $lang['grupos-lang'] ?>"
+let url = "./api/mysql_jsonESP_T.php?carid="+document.getElementById("carid").value+"&code="+designation+"&lang=<?php echo $lang['grupos-lang'] ?>"
 $('#solutionT').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Read database, One moment, please ...</div>').show()
 
       fetch(url)

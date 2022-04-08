@@ -105,7 +105,7 @@ if ($result->num_rows > 0) {
    
     while ($row = $result->fetch_assoc()) {   
         $html .="<div class='hexagon' ><div class='hexagontent' >";              
-        $html .= "<a href='recursive2.php?carid=".$carid."&grupo=". $row['shortCutId'] . "'>". $row['shortCutName'] .   "</a></div></div>" ; 
+        $html .= "<a href='recursive.php?carid=".$carid."&grupo=". $row['shortCutId'] . "'>". $row['shortCutName'] .   "</a></div></div>" ; 
         
     }
     $html .="</div></div>";

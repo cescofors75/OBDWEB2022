@@ -202,7 +202,7 @@ if(isset($_SESSION['carid']))
 ?>
 <script>
 var id_grupos = <?php echo $_SESSION['carid'];?>;
-            $.post("grupos3.php", { id_grupos: id_grupos}, function(data) {
+            $.post("grupos.php", { id_grupos: id_grupos}, function(data) {
                 $("#grupos").html(data);
             });	
 </script>
