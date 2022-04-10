@@ -83,7 +83,19 @@ $con->query("SET NAMES utf8");
 echo "</table>";
 
 
+}
 
+?>
+
+
+
+<?php
+//Including Database configuration file.
+include "db.php";
+//Getting value of "search" variable from "script.js".
+if (isset($_POST['search'])) {
+//Search box value assigning to $Name variable.
+   $Name = $_POST['search'];
 //Search query.
    $Query = "SELECT DISTINCT articles.genericArticleDescription as descripcion,ambrand.brandName as supli, manufacturers.manuName as manu, articlecrosses.articleNumber as Num , articlecrosses.oemNumber as oem  FROM articlecrosses
    INNER JOIN manufacturers
@@ -95,7 +107,8 @@ echo "</table>";
    
      WHERE  articlecrosses.articleNumber LIKE '$Name%' order by manu  LIMIT 10";
 
-   
+   $con->query("SET CHARACTER SET utf8");
+   $con->query("SET NAMES utf8");
 
    
 //Query execution
@@ -113,7 +126,19 @@ echo "</table>";
    }
    echo "</table>";
 
+}
+?>
 
+
+
+<?php
+//Including Database configuration file.
+include "db.php";
+//Getting value of "search" variable from "script.js".
+if (isset($_POST['search'])) {
+//Search box value assigning to $Name variable.
+   $Name = $_POST['search'];
+//Search query.
 
    $Query = "select DISTINCT vehicledetails.manuName as manu, vehicledetails.modelName as model from vehicledetails 
    INNER JOIN articlesvehicletrees on articlesvehicletrees.linkingTargetId = vehicledetails.carId 
@@ -124,7 +149,8 @@ echo "</table>";
 
 
 
-   
+   $con->query("SET CHARACTER SET utf8");
+   $con->query("SET NAMES utf8");
 
 
    
@@ -136,19 +162,13 @@ echo "<table style='background-color:#444445;width:700px;'>";
    while ($Result = MySQLi_fetch_array($ExecQuery)) {
       echo  "  <tr class='search'> "; 
     
-  echo "<td style='width:120px'><img src='../images/images_carbrands/".$Result['manu'].".png'   ></td><td style='width:40px;color:white'> - </td>";
+  echo "<td style='width:120px'><img src='../images/images_carbrands/".$Result['manu'].".png'   ></td><td style='width:140px;color:white'> - </td>";
    
-       echo " <td style='width:440px; text-align:left;'> "; echo $Result['manu']; echo " -  ";echo $Result['model']; ; echo"</td></tr>"  ; 
+       echo " <td style='width:440px'> "; echo $Result['manu']; echo " -  ";echo $Result['model']; ; echo"</td></tr>"  ; 
   
    
 }
 echo "</table>";
-
-
-
-
-
-
 
 }
 ?>
@@ -164,7 +184,7 @@ echo "</table>";
 
 </div>
 </body>
-</html>
+
 
 
 

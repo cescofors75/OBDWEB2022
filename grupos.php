@@ -1,6 +1,6 @@
 
 
-
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -129,27 +129,7 @@ $conexion->query("SET NAMES utf8");
 
 $result = $conexion->query("SELECT shortCutId,shortCutName FROM `shortcuts` where lang='".$lang['grupos-lang']."' and linkingTargetType='P' order by shortCutName");
 
-/*
 
-if ($result->num_rows > 0) {
-  $html .="</br><div class='b'>";
-    $html .=$lang['grupos-catalogue']."</div></br><table><tr>";
-    $i=0;
-    while ($row = $result->fetch_assoc()) {   
-        if ($i < 4){
-                      
-        $html .= "<td class='menu'><div><img src='../images/images_sections/". $row['shortCutId'] .".png' width='80' ></br><a href='recursive.php?carid=".$carid."&grupo=". $row['shortCutId'] . "'>". $row['shortCutName'] .   "</a></div></td>" ; 
-        $i++;  
-      }else {
-       $i=0;
-       $html .= "<td class='menu'><div><img src='../images/images_sections/". $row['shortCutId'] .".png' width='80' ></br><a href='recursive.php?carid=".$carid."&grupo=". $row['shortCutId'] . "'>". $row['shortCutName'] .   "</a></td></div></tr><tr>" ; 
-      }
-    }
-    $html .="<td class='menu'></td><td class='menu'></td><td class='menu'></td></tr></table></div>";
-} 
-
-
-*/
 
 
 if ($result->num_rows > 0) {
@@ -168,7 +148,6 @@ if ($result->num_rows > 0) {
         $html .= "<a href='recursive.php?carid=".$carid."&grupo=". $row['shortCutId'] . "'><img src='../images/images_sections/". $row['shortCutId'] .".png' width='80' title='". $row['shortCutName'] ."'></a>" ; 
         
       
-      // $html .= "<td class='menu'><div><img src='../images/images_sections/". $row['shortCutId'] .".png' width='80' ></br><a href='recursive.php?carid=".$carid."&grupo=". $row['shortCutId'] . "'>". $row['shortCutName'] .   "</a></td></div></tr><tr>" ; 
       }
     
     $html .="</div>";
@@ -189,6 +168,8 @@ $html="";
 
 
 </body>
+
+</htmnl>
 <script>
 var $card=""
 var $texte=""
@@ -224,9 +205,7 @@ $('#solution').html('<br/> <div class="loading"><img src="images/loader.gif" alt
             $familia=$ref_euro.substring(0,3).toLowerCase()
             $ref_euro2=$ref_euro.toLowerCase()
             $partes=data[i].partes
-            //console.log($partes)
-
-            //body+="<div class='b'>"+$partes+"</div>"
+            
              
             body+="<div class='card' style='width:300px'>"
             body+="<img src='http://blog.euro4x4parts.com/photos/"+ $familia + "/" + $ref_euro2 + "z.jpg'  class='card-img-top' style='width:300px'>"
@@ -237,15 +216,15 @@ $('#solution').html('<br/> <div class="loading"><img src="images/loader.gif" alt
                
           
             }
-          //body+="</table>"
+         
           document.getElementById('solution').innerHTML = body
-         // document.getElementById('solution5').innerHTML = "Spare part solution: "+$partes
+         
           }else{
             $('#solution').html("<div class='error'>"+"<?php echo $lang['grupos-notparts'];?>"+"</div>")
 
           }
           
-          //console.log(body)
+          
       }
 
  solution_error()     
@@ -285,7 +264,7 @@ $('#solution2').html('<br/> <div class="loading"><img src="images/loader.gif" al
 
           }
           
-          //console.log(body)
+         
       }
 
       
@@ -327,10 +306,10 @@ $('#solution3').html('<br/> <div class="loading"><img src="images/loader.gif" al
 
           }
           
-          //console.log(body)
+          
       }
 
- //solution4_supliers()     
+    
 }
 
 

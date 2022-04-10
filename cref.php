@@ -145,69 +145,6 @@ echo $html;
 
 <br><br>
 
-<?php
- /* 
-  $name=$_GET['name'];
-
-  
-  echo "<div class='retro'>". $name."</div>";
- 
-  
-
-
-  $html = '';
- $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
-
- $id_group = $_GET['grupo'];
-$carid = $_GET['carid'];
-$conexion->query("SET CHARACTER SET utf8");
-$conexion->query("SET NAMES utf8");
-
-$result = $conexion->query("Select DISTINCT   GROUP_CONCAT(DISTINCT eurocrossref.REF_EURO  ,' : ', europroducts.prixeuroht ,'€ ') as dades
-                                             
-From articlesvehicletrees
-INNER JOIN articles
-ON articlesvehicletrees.articleId = articles.legacyArticleId
-INNER JOIN articlecrosses
-ON articlecrosses.articleNumber=articles.articleNumber and articlecrosses.dataSupplierId= articles.dataSupplierId
-INNER JOIN ambrand
-on ambrand.brandId=articles.dataSupplierId
-INNER JOIN articlecriteria
-on articlecriteria.legacyArticleId=articles.legacyArticleId
-INNER JOIN manufacturers
-on manufacturers.manuId=articlecrosses.mfrId
-INNER JOIN eurocrossref
-on  eurocrossref.REF_FRN=  articlecrosses.oemNumber 
-INNER JOIN europroducts
-on europroducts.reference= eurocrossref.REF_EURO 
-where articlesvehicletrees.linkingTargetId=$carid and articlesvehicletrees.assemblyGroupNodeId=$id_group 
-order by dades"); // and articlesvehicletrees.linkingTargetType='P'
-
-if ($result->num_rows > 0) {
-  $html .="<div align='left' style='color:white;background-color:#0A1F47' >";
-  $html .="<h2><b>REFERENCES EURO4X4PARTS </b></h2></div>";   
-    
-    while ($row = $result->fetch_assoc()) {  
-             
-        $html .= "<div style='color:#0A1F47;background-color:white'>". $row['dades'] .  "</div>" ; 
-        
-    }
-   
-} 
-$html .="</div>";
-echo $html;
-
-
-  
-  
-*/
-  ?>
- 
-
-
-
-
-
 
 
 <?php
@@ -360,9 +297,7 @@ echo $html;
                
               }
               
-              //echo "<td>"; echo $row['REF_EURO']; echo "</td>";
-              //echo "<td>"; echo $row['descrieuro']; echo "</td>";
-              //echo "<td style='padding: 15px;'>"; echo $row['prix']; echo "€ </td>";
+             
              
               echo "</tr>";
              } 
