@@ -1,7 +1,4 @@
 
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,10 +60,10 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
 ?> 
 
 <div id="langSelect">
-<a href="index2.php?la=esp"><img class='circle' src="flags/esp.png" alt="<?=$lang['lang-esp'];?>" title="<?=$lang['lang-esp'];?>" /></a>  
-<a href="index2.php?la=eng"><img class='circle' src="flags/eng.png" alt="<?=$lang['lang-eng'];?>" title="<?=$lang['lang-eng'];?>" /></a>
-<a href="index2.php?la=fre"><img class='circle' src="flags/fra.png" alt="<?=$lang['lang-fre'];?>" title="<?=$lang['lang-fre'];?>" /></a>
-<a href="index2.php?la=ger"><img class='circle' src="flags/ger.png" alt="<?=$lang['lang-ger'];?>" title="<?=$lang['lang-ger'];?>" /></a>
+<a href="homepage.php?la=esp"><img class='circle' src="flags/esp.png" alt="<?=$lang['lang-esp'];?>" title="<?=$lang['lang-esp'];?>" /></a>  
+<a href="homepage.php?la=eng"><img class='circle' src="flags/eng.png" alt="<?=$lang['lang-eng'];?>" title="<?=$lang['lang-eng'];?>" /></a>
+<a href="homepage.php?la=fre"><img class='circle' src="flags/fra.png" alt="<?=$lang['lang-fre'];?>" title="<?=$lang['lang-fre'];?>" /></a>
+<a href="homepage.php?la=ger"><img class='circle' src="flags/ger.png" alt="<?=$lang['lang-ger'];?>" title="<?=$lang['lang-ger'];?>" /></a>
 </div>
 
 
@@ -114,12 +111,12 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
                     <select name="category" id="category" class="form-control">
                         <?php
                       
-                        $conexion->query("SET CHARACTER SET utf8");
+                        $conexion->query("SET CHARACTER SET utf8"); 
                         $conexion->query("SET NAMES utf8");
                         $result = $conexion->query(
                           "SELECT DISTINCT manuId, manuName FROM `manufacturers` 
-                           where linkingTargetType='P' 
-                           and manuName NOT LIKE '%MOTO%'
+                           where  linkingTargetType='P' and
+                            manuName NOT LIKE '%MOTO%'
                            and manuName NOT LIKE '%SCOOTER%'
                            order by manuName"
                       );

@@ -7,8 +7,7 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
 $id_category = $_POST['id_category'];
 
 
-echo $id_category;
-
+echo $id_category; 
 $conexion->query("SET CHARACTER SET utf8");
 $conexion->query("SET NAMES utf8");
 $result = $conexion->query(

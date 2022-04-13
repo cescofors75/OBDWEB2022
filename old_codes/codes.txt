@@ -762,3 +762,27 @@ $("#solution").html( $card)
 JTEBZ29J400070571  JN10KYY60U0872024 
 
 43512-0K060, 60626888
+
+
+
+
+.then( response => response.json() )
+                  .then( data => mostrarData2(data,i) )
+                  .catch( error => console.log(error) )
+
+                  const mostrarData2 = (data,i) => {
+                      console.log(data)
+                      if (data.length >0){
+                      let body2 = ""
+                      for (var j = 0; j < data.length; j++) {   
+                        body2+="<tr><td></td><td></td><td>"+data[j].criteria+"</td><td>"+data[j].value+"</td><td>"+data[j].unit+"</td></tr>"  
+                        }
+                      body+="</table>"
+                      document.getElementById('euro2td3').innerHTML = body+body2
+                      }else{
+                        $('#euro2td3').html("<div class='error'>"+"<?php echo $lang['grupos-notreference'];?>"+"</div>")
+
+                      }
+                      
+                      
+                  }

@@ -38,9 +38,9 @@
   }
   
 .barcode{
-  width:13%;
+  width:10%;
   font-family: "Libre Barcode 39 Text";
-  font-size: 39px;
+  font-size: 30px;
   color:black;
 }
 
@@ -53,9 +53,10 @@ td.p5{
 
 td.criteria{
 
-  width:13%;
+  width:20%;
   color:black;
-  text-align: Left
+  text-align: Left;
+  font-size: 12px;
 }
 
 td.menu{
