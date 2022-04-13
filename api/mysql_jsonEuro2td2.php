@@ -41,7 +41,7 @@ $statement=$pdo->prepare("Select DISTINCT europroducts.reference as reference,  
 From articlecrosses
 
 INNER JOIN eurocrossref
-ON articlecrosses.oemNumber=eurocrossref.REF_FRN and LEFT(eurocrossref.REF_EURO,3)='$refEuro'
+ON articlecrosses.oemNumber=eurocrossref.REF_FRN and LEFT(eurocrossref.REF_EURO,3)!='$refEuro'
 
 INNER JOIN europroducts
 ON europroducts.reference=eurocrossref.REF_EURO
@@ -59,7 +59,7 @@ on euro2td.code=articlesvehicletrees.genericArticleId
 
 where euro2td.refEuro='$refEuro' and articlesvehicletrees.linkingTargetId=$carid and articlesvehicletrees.linkingTargetType='P'
 
-order by prix LIMIT 4");
+order by prix LIMIT 10");
 
 
 

@@ -793,3 +793,18 @@ JTEBZ29J400070571  JN10KYY60U0872024
 
 
                   <input type="text" id="family2" name="fname" value="BDI" >
+
+
+
+
+
+
+                  /*
+ document.getElementById('euro2td').innerHTML="<?php echo $lang['grupos-recommended'];?>";
+ document.getElementById('euro2td2').innerHTML="OEM" ;
+ document.getElementById('euro2td3').innerHTML="<?php echo $lang['grupos-suppliers'];?>";*/
+
+ //euro2tdSupliers()
+ document.getElementById('euro2td').innerHTML="<?php echo $lang['grupos-recommended'];?>";
+ document.getElementById('euro2td2').innerHTML="OEM" ;
+ document.getElementById('euro2td3').innerHTML="<?php echo $lang['grupos-suppliers'];?>";

@@ -2,7 +2,7 @@
 
 <?php
  $carid = $_GET['carid'];
- $code  = $_GET['code'];
+ $refEuro  = $_GET['code'];
 
 // WHERE article_links.linkageid='15587' and article_links.linkagetypeid='2' AND prd.assemblygroupdescription = 'Mixing' AND prd.normalizeddescription = 'Sensor' AND prd.description = 'Air flow meter' group by article_links.productid order by prd.description asc");
 
@@ -33,9 +33,11 @@ ON manufacturers.manuId=articlecrosses.mfrId and manufacturers.manuName=vehicled
 INNER JOIN legacy2generic
 on legacy2generic.legacyArticleId=articles.legacyArticleId
 
+INNER JOIN euro2td
+on euro2td.code=articlesvehicletrees.genericArticleId
 
 
-where legacy2generic.genericArticleId=$code and articlesvehicletrees.linkingTargetId=$carid and articlesvehicletrees.linkingTargetType='P'
+where euro2td.refEuro='$refEuro' and articlesvehicletrees.linkingTargetId=$carid and articlesvehicletrees.linkingTargetType='P'
 
 order by OEM");
 

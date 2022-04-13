@@ -63,7 +63,7 @@ require('lang/esp.php');
 
 <?php
 
-  $id_group = $_GET['grupo'];
+  $refEuro = $_GET['grupo'];
   $carid=$_GET['carid'];
   $name=$_GET['name'];
 
@@ -114,10 +114,14 @@ require('lang/esp.php');
               on genericarticlesgroups.genericArticleId=articlesvehicletrees.genericArticleId
 
              
-             
+              INNER JOIN euro2td
+              on euro2td.code=articlesvehicletrees.genericArticleId
+              
+              
+               
 
 
-             where genericarticlesgroups.lang='$langV' and articlesvehicletrees.linkingTargetType='P' and articlesvehicletrees.linkingTargetId=$carid and articlesvehicletrees.genericArticleId=$id_group
+             where genericarticlesgroups.lang='$langV' and articlesvehicletrees.linkingTargetType='P' and articlesvehicletrees.linkingTargetId=$carid and euro2td.refEuro='$refEuro'
              order by articles.genericArticleDescription, ambrand.brandName";// 
 
 

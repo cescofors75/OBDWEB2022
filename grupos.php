@@ -185,7 +185,7 @@ $html="";
                           echo '<option >'; echo $lang['index-select'] ; echo'</option>';
                          
                             while ($row = $result->fetch_assoc()) {                
-                                echo '<option value="'.$row['code'].'">'.$row['refEuro'].'</option>';
+                                echo '<option value="'.$row['refEuro'].'">'.$row['refEuro'].'</option>';
                             }
                         }
                         ?>
@@ -474,8 +474,8 @@ function ClearT(){
 function ClearEuro2td(){
   document.getElementById("euro2td").innerHTML =""
   document.getElementById("euro2td2").innerHTML =""
-  document.getElementById("euro2td3").innerHTML =""
-
+  document.getElementById("euro2td3").innerHTML ="" 
+  document.getElementById("euro2tdSupliers").innerHTML =""
 }
 
 
@@ -565,15 +565,13 @@ $('#solutionT').html('<br/> <div class="loading"><img src="images/loader.gif" al
 
 function euro2td(){
 
-var $partes=""
-euro2tdOEM() 
-//euro2tdSupliers()
- document.getElementById('euro2td').innerHTML="<?php echo $lang['grupos-recommended'];?>";
- document.getElementById('euro2td2').innerHTML="OEM" ;
- document.getElementById('euro2td3').innerHTML="<?php echo $lang['grupos-suppliers'];?>";
 
+ 
+ $('#euro2td').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Search Family references, One moment, please ...</div>').show()
+ euro2tdOEM() 
+ euro2tdall()  
+ euro2tdSupliers2()
 let url  = "./api/mysql_jsonEuro2td.php?carid="+document.getElementById("carid").value+"&code="+document.getElementById("family").value
-$('#euro2td').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Read database Euro4x4parts </br>One moment, please ...</div>').show()
 
     // fetch(url,{mode: 'cors', headers: {'Access-Control-Allow-Origin': '*'}})
     fetch(url)
@@ -593,7 +591,7 @@ $('#euro2td').html('<br/> <div class="loading"><img src="images/loader.gif" alt=
            $prix=data[i].prix
            $familia=$ref_euro.substring(0,3).toLowerCase()
            $ref_euro2=$ref_euro.toLowerCase()
-           $partes=data[i].partes
+           //$partes=data[i].partes
            
             
            body+="<div class='card' style='width:300px'>"
@@ -616,16 +614,19 @@ $('#euro2td').html('<br/> <div class="loading"><img src="images/loader.gif" alt=
          
      }
 
-     euro2tdOEM() 
-//
+   
+
+
+
+
 }
 
 
 function euro2tdOEM(){
 
+  $('#euro2td2').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Search  OEM references, One moment, please ...</div>').show()
 
 let url  = "./api/mysql_jsonEuro2tdOEM.php?carid="+document.getElementById("carid").value+"&code="+document.getElementById("family").value
-$('#euro2td2').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Read OEM, One moment, please ...</div>').show()
 
       fetch(url)
           .then( response => response.json() )
@@ -650,12 +651,65 @@ $('#euro2td2').html('<br/> <div class="loading"><img src="images/loader.gif" alt
           
           
       }
-      euro2tdSupliers()
-      euro2tdSupliers2()  
+      
+          
+}
+
+
+function euro2tdall(){
+
+
+
+ $('#euro2td3').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Search all Families, One moment, please ...</div>').show()
+
+let url  = "./api/mysql_jsonEuro2td2.php?carid="+document.getElementById("carid").value+"&code="+document.getElementById("family").value
+
+    // fetch(url,{mode: 'cors', headers: {'Access-Control-Allow-Origin': '*'}})
+    fetch(url)
+         .then( response => response.json() )
+         .then( data => mostrarData(data) )
+         .catch( error => console.log(error) )
+
+     const mostrarData = (data) => {
+         console.log(data)
+         if (data.length >0){
+         let body = ""
+         // body+="<?php echo $lang['grupos-trecomended'];?>";
+         for (var i = 0; i < data.length; i++) {   
+           //$oem =data[i].OENbr
+           $ref_euro=data[i].reference
+           $desc=data[i].libelle
+           $prix=data[i].prix
+           $familia=$ref_euro.substring(0,3).toLowerCase()
+           $ref_euro2=$ref_euro.toLowerCase()
+           //$partes=data[i].partes
+           
+            
+           body+="<div class='card' style='width:300px'>"
+           body+="<img src='http://blog.euro4x4parts.com/photos/"+ $familia + "/" + $ref_euro2 + "z.jpg'  class='card-img-top' style='width:300px'>"
+           body +="<div class='card-body'>"
+           body+="<h5 class='card-title'>"+$ref_euro+"</h5>"
+           body+="<p class='card-text'>"+$desc+"</p>"
+           body+="<a href='#' class='btn btn-primary'>+ Buy "+$prix+"€</a></div></div>"
+              
+         
+           }
+        
+         document.getElementById('euro2td3').innerHTML = body
+        
+         }else{
+           $('#euro2td3').html("<div class='error'>"+"<?php echo $lang['grupos-notparts'];?>"+"</div>")
+
+         }
+         
+         
+     }
+
+     
 }
 function euro2tdSupliers2(){
-
   $('#euro2tdSupliers').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Read suppliers, One moment, please ...</div>').show()
+
             $.get("cref2.php", {grupo:document.getElementById("family").value, carid: document.getElementById("carid").value,name: 'ddd'}, function(data) {
                 $("#euro2tdSupliers").html(data);
             });	
