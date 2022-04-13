@@ -54,7 +54,7 @@ require('lang/esp.php');
 
 <?php
 $html = '';
-
+set_time_limit(300);
 $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
 $carid = $_POST['id_grupos'];
 $_SESSION['carid'] = $carid;
@@ -167,10 +167,36 @@ $html="";
 
 
   <div class='r'><?php echo $lang['grupos-option'];?>&nbsp; BET, DAM </div>
-  <div class='b' ><?php echo $lang['grupos-code'];?>&nbsp; <input type="text" id="family" name="fname" value="BDI" >&nbsp; 
+  <div class='b' ><?php echo $lang['grupos-code'];?>&nbsp; 
+  <select name="category" id="family" class="form-control">
+                        <?php
+                      
+                        $conexion->query("SET CHARACTER SET utf8"); 
+                        $conexion->query("SET NAMES utf8");
+                        $result = $conexion->query(
+                          "SELECT DISTINCT refEuro,code FROM `euro2td` 
+                          
+                           order by refEuro"
+                      );
+
+                        
+
+                        if ($result->num_rows > 0) {
+                          echo '<option >'; echo $lang['index-select'] ; echo'</option>';
+                         
+                            while ($row = $result->fetch_assoc()) {                
+                                echo '<option value="'.$row['code'].'">'.$row['refEuro'].'</option>';
+                            }
+                        }
+                        ?>
+                    </select>
+  
+  
+  &nbsp; 
   <button type="button" onclick="euro2td()" class="btn btn-primary btn-lg"><?php echo $lang['grupos-solution'];?></button> &nbsp; <button type="button" onclick="ALLsolution()" class="btn btn-primary btn-lg"><?php echo $lang['grupos-allsolution'];?></button>&nbsp;&nbsp;<button type="button" onclick="ClearEuro2td()" class="btn btn-primary btn-lg"><?php echo $lang['grupos-clearsolution'];?></button>
    
   </div>
+
 
 <!-- 
 <div  name="solution2" id="solution2"> </div>

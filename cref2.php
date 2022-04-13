@@ -114,11 +114,10 @@ require('lang/esp.php');
               on genericarticlesgroups.genericArticleId=articlesvehicletrees.genericArticleId
 
              
-              INNER JOIN euro2td 
-              ON euro2td.code = articlesvehicletrees.genericArticleId 
+             
 
 
-             where genericarticlesgroups.lang='$langV' and articlesvehicletrees.linkingTargetType='P' and articlesvehicletrees.linkingTargetId=$carid and euro2td.refEuro='$id_group'
+             where genericarticlesgroups.lang='$langV' and articlesvehicletrees.linkingTargetType='P' and articlesvehicletrees.linkingTargetId=$carid and articlesvehicletrees.genericArticleId=$id_group
              order by articles.genericArticleDescription, ambrand.brandName";// 
 
 

@@ -20,7 +20,6 @@ $pdo=new PDO($dsn,"root","",array(
 
 $statement=$pdo->prepare("Select DISTINCT  ambrand.brandId as  logo ,ambrand.brandName as name  ,articles.articleNumber  as number
 
-
 From articles
 INNER JOIN ambrand
 on ambrand.brandId=articles.dataSupplierId
@@ -28,16 +27,11 @@ on ambrand.brandId=articles.dataSupplierId
 INNER JOIN articlesvehicletrees
 ON articlesvehicletrees.articleId = articles.legacyArticleId 
 
-
 INNER JOIN legacy2generic
 on legacy2generic.legacyArticleId=articles.legacyArticleId
 
 
-
-INNER JOIN euro2td 
-ON euro2td.code= legacy2generic.genericArticleId
-
-where euro2td.refEuro='$code' and articlesvehicletrees.linkingTargetId=$carid and articlesvehicletrees.linkingTargetType='P' 
+where legacy2generic.genericArticleId=$code and articlesvehicletrees.linkingTargetId=$carid and articlesvehicletrees.linkingTargetType='P' 
 order by  ambrand.brandName ");
 
 

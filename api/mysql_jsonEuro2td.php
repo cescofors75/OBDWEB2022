@@ -54,17 +54,7 @@ INNER JOIN articlesvehicletrees
 ON articlesvehicletrees.articleId = articles.legacyArticleId 
 
 
-
-
-INNER JOIN legacy2generic
-on legacy2generic.legacyArticleId=articles.legacyArticleId
-
-INNER JOIN euro2td 
-ON euro2td.code = legacy2generic.genericArticleId
-
-
-
-where euro2td.refEuro='$code' and articlesvehicletrees.linkingTargetId=$carid and articlesvehicletrees.linkingTargetType='P'
+where articlesvehicletrees.genericArticleId=$code and articlesvehicletrees.linkingTargetId=$carid and articlesvehicletrees.linkingTargetType='P'
 
 order by prix LIMIT 3");
 

@@ -33,10 +33,9 @@ ON manufacturers.manuId=articlecrosses.mfrId and manufacturers.manuName=vehicled
 INNER JOIN legacy2generic
 on legacy2generic.legacyArticleId=articles.legacyArticleId
 
-INNER JOIN euro2td 
-ON euro2td.code = legacy2generic.genericArticleId
 
-where euro2td.refEuro='$code' and articlesvehicletrees.linkingTargetId=$carid and articlesvehicletrees.linkingTargetType='P'
+
+where legacy2generic.genericArticleId=$code and articlesvehicletrees.linkingTargetId=$carid and articlesvehicletrees.linkingTargetType='P'
 
 order by OEM");
 
