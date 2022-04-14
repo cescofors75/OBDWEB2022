@@ -298,7 +298,7 @@ echo $html;
               $pivot= $row['pivot'];
               $langV= $lang['grupos-lang'] ;
 
-              $sql2="SELECT criteriaDescription as description , rawValue as value FROM `articlecriteria` where articlecriteria.lang = '$langV' and legacyArticleId=$pivot and assemblyGroupNodeId=$id_group order by description";
+              $sql2="SELECT criteriaDescription as description , formattedValue as value FROM `articlecriteria` where articlecriteria.lang = '$langV' and legacyArticleId=$pivot and assemblyGroupNodeId=$id_group order by description";
               $stmt2 = $pdo2->prepare($sql2);
               $stmt2->execute(); 
               $criteria="";

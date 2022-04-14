@@ -15,7 +15,7 @@ $pdo=new PDO($dsn,"root","",array(
 
 
 
-//articlecriteria.criteriaDescription as criteria, articlecriteria.rawValue as value, articlecriteria.criteriaUnitDescription as unit
+//articlecriteria.criteriaDescription as criteria, articlecriteria.formattedValue as value, articlecriteria.criteriaUnitDescription as unit
 
 
 $statement=$pdo->prepare("Select DISTINCT  ambrand.brandId as  logo ,ambrand.brandName as name  ,articles.articleNumber  as number

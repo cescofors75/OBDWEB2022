@@ -157,7 +157,7 @@ require('lang/esp.php');
               $pivot= $row['pivot'];
               $langV= $lang['grupos-lang'] ;
 
-              $sql2="SELECT DISTINCT criteriaDescription as description , rawValue as value FROM `articlecriteria` where articlecriteria.lang = '$langV' and legacyArticleId=$pivot  order by description";
+              $sql2="SELECT DISTINCT criteriaDescription as description , formattedValue as value FROM `articlecriteria` where articlecriteria.lang = '$langV' and legacyArticleId=$pivot  and formattedValue is not null "; //order by description
               $stmt2 = $pdo2->prepare($sql2);
               $stmt2->execute(); 
               $criteria="";
