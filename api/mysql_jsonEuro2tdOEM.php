@@ -12,7 +12,7 @@ $pdo=new PDO($dsn,"root","",array(
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
   ));
-
+  set_time_limit(300);
 
 $statement=$pdo->prepare("Select DISTINCT  manufacturers.manuName as M2 , replace( REPLACE(articlecrosses.oemNumber,'-','' ),' ','' ) as OEM
 From articlecrosses

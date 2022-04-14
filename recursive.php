@@ -119,10 +119,11 @@ if ($result->num_rows > 0) {
         $html .=  $row['yearOfConstrFrom'] . " / ". $row['yearOfConstrTo'] . "<br>" ; 
     }
     $html .= "</div>";
+    mysqli_free_result($result);
 } 
 
 echo $html;
-
+mysqli_close($conexion);
 
 
 ?>

@@ -6,7 +6,7 @@
 
 // WHERE article_links.linkageid='15587' and article_links.linkagetypeid='2' AND prd.assemblygroupdescription = 'Mixing' AND prd.normalizeddescription = 'Sensor' AND prd.description = 'Air flow meter' group by article_links.productid order by prd.description asc");
 
-
+set_time_limit(300);
 $dsn = 'mysql:host=localhost; dbname=td2q2019; charset=UTF8';
 $pdo=new PDO($dsn,"root","",array(
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,

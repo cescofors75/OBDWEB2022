@@ -1,6 +1,7 @@
 
 
 <?php
+set_time_limit(300);
  $carid = $_GET['carid'];
  $refEuro  = $_GET['code'];
 

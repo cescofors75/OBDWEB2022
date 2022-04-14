@@ -246,7 +246,7 @@ echo $html;
                 <?php
 
 
-                echo "</td><td>". $row['descri']."</td><td>". $row['name'] . "</td><td class='barcode' >". $row['number'] ."</td><td class='criteria' >". $criteria ."</td><td class='criteria' >". $criteria2 ."</td>";
+                echo "</td><td class='criteria'>". $row['descri']."</td><td class='criteria'>". $row['name'] . "</td><td class='barcode' >". $row['number'] ."</td><td class='criteria' >". $criteria ."</td><td class='criteria' >". $criteria2 ."</td>";
                 $num=str_replace(" ", "", $row['number']);
                 $num=str_replace("-", "", $num);
                 $num=str_replace(".", "", $num);

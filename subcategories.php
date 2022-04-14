@@ -22,8 +22,8 @@ if ($result->num_rows > 0) {
         $end=    substr($row['yearOfConstrTo'],0,4);               
         $html .= '<option value="'.$row['modelId'].'">'.$row['modelName'].'('.$begin.'-'.$end.')</option>';
     }
-    
+    mysqli_free_result($result); 
 } 
 echo $html;
-
+mysqli_close($conexion);
 ?>

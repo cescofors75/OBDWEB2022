@@ -80,6 +80,7 @@ $con->query("SET NAMES utf8");
      
       
 }
+mysqli_free_result($ExecQuery);
 echo "</table>";
 
 
@@ -111,6 +112,7 @@ echo "</table>";
    
 
    }
+   mysqli_free_result($ExecQuery);
    echo "</table>";
 
 
@@ -142,6 +144,7 @@ echo "<table style='background-color:#444445;width:700px;'>";
   
    
 }
+mysqli_free_result($ExecQuery);
 echo "</table>";
 
 
@@ -151,6 +154,7 @@ echo "</table>";
 
 
 }
+mysqli_close($con);
 ?>
 
 

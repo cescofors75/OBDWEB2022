@@ -173,7 +173,7 @@ require('lang/esp.php');
                 <?php
 
 
-                echo "</td><td>". $row['descri']."</td><td>". $row['name'] . "</td><td class='barcode' >". $row['number'] ."</td><td class='criteria' >". $criteria ."</td><td class='criteria' >". $criteria2 ."</td>";
+                echo "</td><td class='criteria'>". $row['descri']."</td><td class='criteria'>". $row['name'] . "</td><td class='barcode' >". $row['number'] ."</td><td class='criteria' >". $criteria ."</td><td class='criteria' >". $criteria2 ."</td>";
                 $num=str_replace(" ", "", $row['number']);
                 $num=str_replace("-", "", $num);
                 $num=str_replace(".", "", $num);
@@ -244,49 +244,6 @@ require('lang/esp.php');
 
 </body>
 
-<script>
-function Clear() {
-      document.getElementById("refEuro").innerHTML ="";
-  
-    }
 
 
-function referencesEuro(){
-/*
-let params = new URLSearchParams(location.search);
-let carid = params.get('carid')*/
-<?php  $carid = $_GET['carid'];?>
-<?php  $grupo= $_GET['grupo'];?>
-let url = "./api/mysql_jsonESP_EURO.php?carid="+<?php echo $carid; ?>+"&grupo="+<?php echo $grupo; ?>+""
-$('#refEuro').html("<br/> <div class='loading'><img src='images/loader.gif' /><br/> <br/>"+"<?php echo $lang['grupos-loading'];?>"+"</div>").show();
-
-      fetch(url)
-          .then( response => response.json() )
-          .then( data => mostrarData(data) )
-          .catch( error => console.log(error) )
-
-      const mostrarData = (data) => {
-          console.log(data)
-          if (data[0].dades !== null){
-          let body = "<table>"
-          for (var i = 0; i < data.length; i++) {   
-             
-             body+="<tr><td  class='p5'>"+data[0].dades+"</td></tr>"  
-          
-            }
-          body+="</table>"
-          document.getElementById('refEuro').innerHTML = body
-          }else{
-            $('#refEuro').html("<div class='error'>"+"<?php echo $lang['grupos-notparts']?>"+"</div>")
-
-          }
-          
-          //console.log(body)
-      }
-
-   
-}
-
-
-</script>
 </html>

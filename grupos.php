@@ -75,10 +75,12 @@ if ($result->num_rows > 0) {
         $html .=  $row['yearOfConstrFrom'] . " / ". $row['yearOfConstrTo'] . "<br>" ; 
     }
     $html .= "</div><br>";
+    mysqli_free_result($result); 
 } 
 
 echo($html);
 $html="";
+
 ?>
 
 
@@ -151,6 +153,7 @@ if ($result->num_rows > 0) {
       }
     
     $html .="</div>";
+    mysqli_free_result($result); 
 } 
 
 
@@ -187,7 +190,9 @@ $html="";
                             while ($row = $result->fetch_assoc()) {                
                                 echo '<option value="'.$row['refEuro'].'">'.$row['refEuro'].'</option>';
                             }
+                            mysqli_free_result($result);
                         }
+                        mysqli_close($conexion);
                         ?>
                     </select>
   

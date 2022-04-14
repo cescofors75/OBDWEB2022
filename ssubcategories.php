@@ -30,9 +30,9 @@ if ($result->num_rows > 0) {
         
         $html .= '<option value="'.$row['carId'].'">'.$row['carName'].'('.$begin.'-'.$end.') - '.$row['powerHpFrom'].'cv - '.$row['powerKwFrom'].'hp</option>';
     }
-    
+    mysqli_free_result($result);   
 } 
 
 echo $html;
-
+mysqli_close($conexion);
 ?>

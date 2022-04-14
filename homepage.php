@@ -131,7 +131,9 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
                             while ($row = $result->fetch_assoc()) {                
                                 echo '<option value="'.$row['manuId'].'">'.$row['manuName'].'</option>';
                             }
+                            mysqli_free_result($result); 
                         }
+                        mysqli_close($conexion);
                         ?>
                     </select>
                 </div>
