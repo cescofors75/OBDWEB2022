@@ -34,18 +34,21 @@ switch($_SESSION['metode']){
 case 0:
 	$_SESSION['url'] =	'SELECT COUNT(*) as total_products FROM ambrand where active=0';
 	include('pagination.php');
+	$_SESSION['color'] = 'red';
     $_SESSION['url'] = "SELECT distinct ambrand.brandId,  ambrand.brandName, ambrand.active, left(ambrand.brandName,1) as initial ,ambrandsaddress.city as pobla, ambrandsaddress.street as direc FROM ambrand inner join ambrandsaddress on ambrand.brandId=ambrandsaddress.brandId  where active = 0 order by brandName LIMIT ".$start.",".NUM_ITEMS_BY_PAGE;
     $_SESSION['url_initial'] = "SELECT distinct left(ambrand.brandName,1) as initial FROM ambrand join (SELECT distinct ambrand.brandId,  ambrand.brandName,  ambrand.active, left(ambrand.brandName,1) as initial ,ambrandsaddress.city as direc, ambrandsaddress.street as pobla  FROM ambrand  inner join ambrandsaddress on ambrand.brandId=ambrandsaddress.brandId order by brandName LIMIT ".$start.",".NUM_ITEMS_BY_PAGE.") d on ambrand.brandName in(d.brandName) where ambrand.active = 0";
 break;
 case 1:
 	$_SESSION['url'] =	'SELECT COUNT(*) as total_products FROM ambrand where active=1';
 	include('pagination.php');
+	$_SESSION['color'] = 'green';
     $_SESSION['url'] = "SELECT distinct ambrand.brandId,  ambrand.brandName,  ambrand.active, left(ambrand.brandName,1) as initial ,ambrandsaddress.city as pobla, ambrandsaddress.street as direc FROM ambrand inner join ambrandsaddress on ambrand.brandId=ambrandsaddress.brandId  where active = 1 order by brandName LIMIT ".$start.",".NUM_ITEMS_BY_PAGE;
     $_SESSION['url_initial'] = "SELECT distinct left(ambrand.brandName,1) as initial FROM ambrand join (SELECT distinct ambrand.brandId,  ambrand.brandName,  ambrand.active, left(ambrand.brandName,1) as initial ,ambrandsaddress.city as direc, ambrandsaddress.street as pobla  FROM ambrand  inner join ambrandsaddress on ambrand.brandId=ambrandsaddress.brandId order by brandName LIMIT ".$start.",".NUM_ITEMS_BY_PAGE.") d on ambrand.brandName in(d.brandName) where ambrand.active = 1";
 break;
 case 2:
 	$_SESSION['url'] = 'SELECT COUNT(*) as total_products FROM ambrand ';
 	include('pagination.php');
+	$_SESSION['color'] = 'orange';
 	$_SESSION['url'] = "SELECT distinct ambrand.brandId,  ambrand.brandName, ambrand.active, left(ambrand.brandName,1) as initial,ambrandsaddress.city as pobla, ambrandsaddress.street as direc  FROM ambrand inner join ambrandsaddress on ambrand.brandId=ambrandsaddress.brandId  order by brandName LIMIT ".$start.",".NUM_ITEMS_BY_PAGE;
 	$_SESSION['url_initial'] = "SELECT distinct left(ambrand.brandName,1) as initial FROM ambrand join (SELECT distinct ambrand.brandId,  ambrand.brandName,  ambrand.active, left(ambrand.brandName,1) as initial ,ambrandsaddress.city as direc, ambrandsaddress.street as pobla  FROM ambrand  inner join ambrandsaddress on ambrand.brandId=ambrandsaddress.brandId order by brandName LIMIT ".$start.",".NUM_ITEMS_BY_PAGE.") d on ambrand.brandName in(d.brandName)";
 break;
@@ -53,6 +56,7 @@ break;
 }else{
 	$_SESSION['url'] = 'SELECT COUNT(*) as total_products FROM ambrand ';
 	include('pagination.php');
+	$_SESSION['color'] = 'orange';
 	$_SESSION['url'] = "SELECT distinct ambrand.brandId,  ambrand.brandName,  ambrand.active, left(ambrand.brandName,1) as initial ,ambrandsaddress.city as pobla, ambrandsaddress.street as direc  FROM ambrand  inner join ambrandsaddress on ambrand.brandId=ambrandsaddress.brandId order by brandName LIMIT ".$start.",".NUM_ITEMS_BY_PAGE;
 	$_SESSION['url_initial'] = "SELECT distinct left(ambrand.brandName,1) as initial FROM ambrand join (SELECT distinct ambrand.brandId,  ambrand.brandName,  ambrand.active, left(ambrand.brandName,1) as initial ,ambrandsaddress.city as direc, ambrandsaddress.street as pobla  FROM ambrand  inner join ambrandsaddress on ambrand.brandId=ambrandsaddress.brandId order by brandName LIMIT ".$start.",".NUM_ITEMS_BY_PAGE.") d on ambrand.brandName in(d.brandName)";
 	
@@ -91,13 +95,16 @@ break;
 	    <button onclick="location.href ='./index.php?metode=0'" type="button" class="btn btn-danger pull-right">LIST DISABLES</button>&nbsp;	
 	    <button onclick="location.href ='./index.php?metode=1'" type="button" class="btn btn-success pull-right">LIST ENABLES</button>&nbsp;		
 		<button onclick="location.href ='./index.php?metode=2'" type="button" class="btn btn-warning pull-right">LIST ALL</button>	</h2>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='texte'>Initial search</span>&nbsp;&nbsp;
+		
 	<?php
 		 $resultset= mysqli_query($conn, $_SESSION['url_initial'] ) or die("database error:". mysqli_error($conn));
+		 echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='texte' style='color:".$_SESSION['color']."'>Browse index</span>&nbsp;&nbsp;";
 		 while( $rows = mysqli_fetch_assoc($resultset) ) { 	
-		 ?>
-			  <td class='text'>&nbsp;<a class='init' href='#<?php echo $rows['initial']; ?>'><?php echo $rows['initial']; ?></a>&nbsp;</td> 
-		 <?php
+		/* ?>*/
+		    
+			 echo "<td  class='text' style='color:".$_SESSION['color']."'>&nbsp;<a class='init' style='color:".$_SESSION['color']."' href='#".$rows['initial']."'>".$rows['initial']."</a>&nbsp;</td> ";
+		 /*			 echo "<td class='text'>&nbsp;<a class='init' href='#<?php echo $rows['initial']; ?>'><?php echo $rows['initial']; ?></a>&nbsp;</td> ";
+             <?php*/
 		 }
 		 mysqli_free_result($resultset);
 		$resultset = mysqli_query($conn, $_SESSION['url']) or die("database error:". mysqli_error($conn));
