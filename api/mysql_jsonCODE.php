@@ -2,16 +2,12 @@
 
 <?php
  $ref = $_GET['CODIGO'];
-
-
-
-$dsn = 'mysql:host=localhost; dbname=bd_dtc2; charset=UTF8';
+$dsn = 'mysql:host=localhost; dbname=td2q2019; charset=UTF8';
 $pdo=new PDO($dsn,"root","",array(
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
     PDO::ATTR_EMULATE_PREPARES => false
   ));
-
 //$pdo->query("SET NAMES 'UTF8' "); from table1 spanish
 $statement=$pdo->prepare("Select * from codes_english where Codigo=$ref");
 $statement->execute();
@@ -26,7 +22,8 @@ if (!$statement){
   
  }
 echo json_encode($arreglo, JSON_UNESCAPED_UNICODE );
-
+mysqli_free_result($statement); 
+mysqli_close($pdo);
 ?>
 
 

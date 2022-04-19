@@ -107,7 +107,7 @@ require('lang/esp.php');
              ON articlesvehicletrees.articleId = articles.legacyArticleId
             
              INNER JOIN ambrand
-             on ambrand.brandId=articles.dataSupplierId
+             on ambrand.brandId=articles.dataSupplierId and ambrand.active=1
              
 
               INNER JOIN genericarticlesgroups

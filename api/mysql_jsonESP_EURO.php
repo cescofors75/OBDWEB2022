@@ -13,17 +13,11 @@
   $limite = $_GET['lim'];
 
  }
-
-// WHERE article_links.linkageid='15587' and article_links.linkagetypeid='2' AND prd.assemblygroupdescription = 'Mixing' AND prd.normalizeddescription = 'Sensor' AND prd.description = 'Air flow meter' group by article_links.productid order by prd.description asc");
-
-
 $dsn = 'mysql:host=localhost; dbname=td2q2019; charset=UTF8';
 $pdo=new PDO($dsn,"root","",array(
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
   ));
-
-
 
 $statement=$pdo->prepare("Select DISTINCT   GROUP_CONCAT(DISTINCT eurocrossref.REF_EURO ,': ',europroducts.prixeuroht,'€ ') as dades
                                              
@@ -37,13 +31,8 @@ INNER JOIN eurocrossref
 on  eurocrossref.REF_FRN=  articlecrosses.oemNumber 
 INNER JOIN europroducts
 on europroducts.reference= eurocrossref.REF_EURO 
-where articlesvehicletrees.linkingTargetId=$carid and articlesvehicletrees.assemblyGroupNodeId=$id_group 
+where articlesvehicletrees.linkingTargetId=$carid and articlesvehicletrees.assemblyGroupNodeId=$id_group  and articlesvehicletrees.linkingTargetType='P'
 order by dades"); // and articlesvehicletrees.linkingTargetType='P' ASC LIMIT $limite");
-
-
-
-
-
 $statement->execute();
 if (!$statement){
 
@@ -54,7 +43,8 @@ if (!$statement){
 	$arreglo=$statement->fetchAll(PDO::FETCH_ASSOC);
  }
 echo json_encode($arreglo, JSON_UNESCAPED_UNICODE );
-
+mysqli_free_result($statement); 
+mysqli_close($pdo);
 ?>
 
 
