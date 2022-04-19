@@ -9,7 +9,18 @@ include_once("db_connect.php");
 <script src="./bootstrap_toggle/bootstrap-toggle.min.js"></script> 
 <link rel="stylesheet" href="./css/style.css" type="text/css" media="all">
 <script type="text/javascript" src="script/delete_script.js"></script>
+<style>
+	
+img.circle {
+  box-shadow: 0 0 15px #999;
+border-radius: 50%;
+}
 
+img.shadow {
+  box-shadow: 0 0 15px #999;
+
+}
+</style>
 <?php 
 session_start();
 if(isset($_GET['metode'])){
@@ -113,7 +124,7 @@ break;
 		?>
 		  <tr id="<?php echo $rows["brandId"]; ?>">
 			 <td id="<?php echo $rows["initial"]; ?>"><input type="checkbox" class="emp_checkbox" data-emp-id="<?php echo $rows["brandId"]; ?>"></td>
-			 <td><?php echo "<img src='./suppliers_logos/jpg/".$rows["brandId"].".jpg'  "?>
+			 <td><?php echo "<img class='circle shadow' src='./suppliers_logos/jpg/".$rows["brandId"].".jpg'  "?>
                 onerror="this.onerror=null;this.src='./images/no_image.jpg';" /></td>  
 			 <td class='text'><?php echo $rows["brandName"]; ?></td>	
 			 <td class='text'><?php echo $rows["direc"]; ?></td>

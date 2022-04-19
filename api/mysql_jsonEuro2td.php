@@ -35,8 +35,7 @@ if (!$statement){
   
  }
 echo json_encode($arreglo, JSON_UNESCAPED_UNICODE );
-mysqli_free_result($statement); 
-mysqli_close($pdo);
+$statement->closeCursor();
 ?>
 
 
