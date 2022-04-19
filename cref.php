@@ -188,7 +188,7 @@ echo $html;
              ON articlesvehicletrees.articleId = articles.legacyArticleId
             
              INNER JOIN ambrand
-             on ambrand.brandId=articles.dataSupplierId
+             on ambrand.brandId=articles.dataSupplierId 
              
 
               INNER JOIN genericarticlesgroups
