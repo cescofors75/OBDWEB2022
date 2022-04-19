@@ -104,24 +104,22 @@ require('lang/esp.php');
              $sql="Select DISTINCT  ambrand.brandName as name , genericarticlesgroups.designation as descri ,articles.articleNumber  as number, articles.legacyArticleId as pivot , articles.dataSupplierId as su_id 
              From articlesvehicletrees
              INNER JOIN articles
-             ON articlesvehicletrees.articleId = articles.legacyArticleId
+             ON articlesvehicletrees.articleId = articles.legacyArticleId and articlesvehicletrees.linkingTargetType='P'
             
              INNER JOIN ambrand
              on ambrand.brandId=articles.dataSupplierId and ambrand.active=1
              
-
-              INNER JOIN genericarticlesgroups
-              on genericarticlesgroups.genericArticleId=articlesvehicletrees.genericArticleId
-
-             
+              INNER JOIN legacy2generic
+              on legacy2generic.legacyArticleId=articles.legacyArticleId
               INNER JOIN euro2td
-              on euro2td.code=articlesvehicletrees.genericArticleId
+              on euro2td.code=legacy2generic.genericArticleId
               
-              
+              INNER JOIN genericarticlesgroups
+              on genericarticlesgroups.genericArticleId=legacy2generic.genericArticleId and genericarticlesgroups.lang='$langV'
                
 
 
-             where genericarticlesgroups.lang='$langV' and articlesvehicletrees.linkingTargetType='P' and articlesvehicletrees.linkingTargetId=$carid and euro2td.refEuro='$refEuro'
+             where   articlesvehicletrees.linkingTargetId=$carid and euro2td.refEuro='$refEuro'
              order by articles.genericArticleDescription, ambrand.brandName";// 
 
 

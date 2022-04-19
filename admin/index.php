@@ -98,7 +98,7 @@ break;
 		
 	<?php
 		 $resultset= mysqli_query($conn, $_SESSION['url_initial'] ) or die("database error:". mysqli_error($conn));
-		 echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='texte' style='color:".$_SESSION['color']."'>Browse index</span>&nbsp;&nbsp;";
+		 echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='texte' style='color:".$_SESSION['color']."'>Browse </span>&nbsp;&nbsp;";
 		 while( $rows = mysqli_fetch_assoc($resultset) ) { 	
 		/* ?>*/
 		    
@@ -112,6 +112,8 @@ break;
 		?>
 		<a type="button" id="active_records" class="btn btn-primary pull-left ">Enable</a>
 		<a type="button" id="deactive_records" class="btn btn-primary pull-left ">Disable</a>
+		<a type="button" id="All_active_records" class="btn btn-success pull-left ">All Enable</a>
+		<a type="button" id="All_deactive_records" class="btn btn-danger pull-left ">All Disable</a>
 	    <div id="console-event"></div>
 	<table id="employee_grid" class="table table-condensed table-hover table-striped bootgrid-table" width="60%" cellspacing="0">
 		<thead>

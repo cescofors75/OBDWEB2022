@@ -189,12 +189,13 @@ echo $html;
             
              INNER JOIN ambrand
              on ambrand.brandId=articles.dataSupplierId and ambrand.active=1
-             
+             INNER JOIN legacy2generic
+              on legacy2generic.legacyArticleId=articles.legacyArticleId
 
               INNER JOIN genericarticlesgroups
-              on genericarticlesgroups.genericArticleId=articlesvehicletrees.genericArticleId
+              on genericarticlesgroups.genericArticleId=legacy2generic.genericArticleId and genericarticlesgroups.lang='$langV'
 
-             where genericarticlesgroups.lang='$langV' and articlesvehicletrees.linkingTargetType='P' and articlesvehicletrees.linkingTargetId=$carid and articlesvehicletrees.assemblyGroupNodeId=$id_group 
+             where   articlesvehicletrees.linkingTargetType='P' and articlesvehicletrees.linkingTargetId=$carid and articlesvehicletrees.assemblyGroupNodeId=$id_group 
              order by articles.genericArticleDescription, ambrand.brandName";// 
 
 

@@ -14,8 +14,10 @@ $statement=$pdo->prepare("Select DISTINCT  manufacturers.manuName as M2 , replac
 From articlecrosses
 INNER JOIN articles
 ON articlecrosses.articleNumber=articles.articleNumber and articlecrosses.dataSupplierId= articles.dataSupplierId
+INNER JOIN ambrand
+on ambrand.brandId=articles.dataSupplierId and ambrand.active=1
 INNER JOIN articlesvehicletrees
-ON articlesvehicletrees.articleId = articles.legacyArticleId 
+ON articlesvehicletrees.articleId = articles.legacyArticleId and articlesvehicletrees.linkingTargetType='P'
 INNER JOIN vehicledetails
 ON vehicledetails.carId=articlesvehicletrees.linkingTargetId
 INNER JOIN manufacturers
@@ -23,8 +25,8 @@ ON manufacturers.manuId=articlecrosses.mfrId and manufacturers.manuName=vehicled
 INNER JOIN legacy2generic
 on legacy2generic.legacyArticleId=articles.legacyArticleId
 INNER JOIN euro2td
-on euro2td.code=articlesvehicletrees.genericArticleId
-where euro2td.refEuro='$refEuro' and articlesvehicletrees.linkingTargetId=$carid and articlesvehicletrees.linkingTargetType='P'
+on euro2td.code=legacy2generic.genericArticleId
+where euro2td.refEuro='$refEuro' and articlesvehicletrees.linkingTargetId=$carid 
 order by OEM");
 $statement->execute();
 if (!$statement){

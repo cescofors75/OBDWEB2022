@@ -79,7 +79,55 @@ $('document').ready(function() {
 			}  
 		}  
 	});
-	
+	jQuery('#All_active_records').on('click', function(e) { 
+		var selected_values = ""; 
+		WRN_PROFILE_DELETE = "Are you sure you want All enable ?";  
+		var checked = confirm(WRN_PROFILE_DELETE);  
+		if(checked == true) {
+				$.ajax({ 
+					type: "POST",  
+					url: "All_active.php",  
+					cache:false,  
+					data: 'emp_id='+selected_values,  
+					success: function(response) {	
+						// remove deleted employee rows
+						/*var emp_ids = response.split(",");
+						for (var i=0; i<emp_ids.length; i++ ) {						
+							$("#"+emp_ids[i]).update();
+						}	*/
+						location.reload(true)
+						
+
+					}   
+				});				
+		} 
+		 
+	});
+
+	jQuery('#All_deactive_records').on('click', function(e) { 
+		var selected_values = ""; 
+		WRN_PROFILE_DELETE = "Are you sure you want All disable ?";  
+		var checked = confirm(WRN_PROFILE_DELETE);  
+		if(checked == true) {
+				$.ajax({ 
+					type: "POST",  
+					url: "All_deactive.php",  
+					cache:false,  
+					data: 'emp_id='+selected_values,  
+					success: function(response) {	
+						// remove deleted employee rows
+						/*var emp_ids = response.split(",");
+						for (var i=0; i<emp_ids.length; i++ ) {						
+							$("#"+emp_ids[i]).update();
+						}	*/
+						location.reload(true)
+						
+
+					}   
+				});				
+		} 
+		 
+	});
 
 	$(function() {
 		$('#toggle-event2').change(function() {
