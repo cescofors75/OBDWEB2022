@@ -20,6 +20,24 @@ img.shadow {
   box-shadow: 0 0 15px #999;
 
 }
+
+select {
+    width:150px;
+    border:1px solid red;
+    -webkit-border-top-right-radius: 15px;
+    -webkit-border-bottom-right-radius: 15px;
+    -moz-border-radius-topright: 15px;
+    -moz-border-radius-bottomright: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding:2px;
+}
+#nitems {
+border-radius: 15px;
+width:170px;
+border-color: #ccc;
+}
+
 </style>
 <?php 
 session_start();
@@ -118,10 +136,13 @@ break;
     echo '</ul>';
     echo '</nav>';
  	?> 
-	     &nbsp;&nbsp;<label >Nº Items/page</label>
 
-    <select id="nitems" >
-    <option value="">Selected</option>
+
+
+	     &nbsp;&nbsp;&nbsp;
+
+    <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="nitems" >
+    <option selected>Select Nº items/page</option>
     <option value=15>15</option>
     <option value=25>25</option>
     <option value=50>50</option>
@@ -129,13 +150,16 @@ break;
 	<option value=200>200</option>
 	<option value=300>300</option>
     </select>
+
+
+
 	    <button onclick="location.href ='./index.php?metode=0'" type="button" class="btn btn-danger pull-right">LIST DISABLES</button>&nbsp;	
 	    <button onclick="location.href ='./index.php?metode=1'" type="button" class="btn btn-success pull-right">LIST ENABLES</button>&nbsp;		
 		<button onclick="location.href ='./index.php?metode=2'" type="button" class="btn btn-warning pull-right">LIST ALL</button>	</h2>
 		
 	<?php
 		 $resultset= mysqli_query($conn, $_SESSION['url_initial'] ) or die("database error:". mysqli_error($conn));
-		 echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='texte' style='color:".$_SESSION['color']."'>Browse </span>&nbsp;&nbsp;";
+		 echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='texte' style='color:".$_SESSION['color']."'>Browse </span>&nbsp;&nbsp;";
 		 while( $rows = mysqli_fetch_assoc($resultset) ) { 	
 		/* ?>*/
 		    
@@ -225,31 +249,33 @@ break;
 <?php include('./template/footer.php');?> 
 
 <script>
-$(function(){
-$("#nitems").change(function () {
-     
-     
-         var id_category =$(this).val();
-        
-        var request=  $.ajax({ 
-                    type: "GET",  
-                    url: "index.php",  
-                    cache:false,  
-                    
-                    data: {'items':id_category},
-                    
-                    
-                    
-                    success: function(data) {
-                        //$("#root").html(data);
-                        document.body.innerHTML = data
-						location.reload(false)
-					}
-                    } )               
-     
- })
+$(function() {
+		$("#nitems").change(function () {
+			 
+			 
+				 var id_category =$(this).val();
+				
+				var request=  $.ajax({ 
+							type:"GET",  
+							url: "index.php",  
+							cache:false,  
+							
+							data: {'items':id_category},
+							
+							
+							
+							success: function(data) {
+								//$("#root").html(data);
+								document.body.innerHTML = data
+								location.reload(false)
+							}
+							} )               
+			 
+		 
+		
+		})
 
-});
+	})
 
 
-    </script>
+</script>
