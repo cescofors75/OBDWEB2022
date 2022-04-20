@@ -23,6 +23,32 @@ img.shadow {
 </style>
 <?php 
 session_start();
+
+
+
+IF (isset($_GET['items'])){
+    $_SESSION['items'] = $_GET['items'];
+    header('Location:'.$_SERVER['PHP_SELF']);
+    exit();
+    //header('Location:'.$_SERVER['PHP_SELF']);
+
+}
+
+    if(isset($_SESSION['items']))
+    {
+
+	define('NUM_ITEMS_BY_PAGE', $_SESSION['items']);
+	
+    }else{
+
+		define('NUM_ITEMS_BY_PAGE',  50);
+		
+	}
+  
+	
+
+
+
 if(isset($_GET['metode'])){
 $_SESSION['metode'] = $_GET['metode'];
 header('Location:'.$_SERVER['PHP_SELF']);
@@ -91,7 +117,18 @@ break;
     }
     echo '</ul>';
     echo '</nav>';
-	?>
+ 	?> 
+	     &nbsp;&nbsp;<label >Nº Items/page</label>
+
+    <select id="nitems" >
+    <option value="">Selected</option>
+    <option value=15>15</option>
+    <option value=25>25</option>
+    <option value=50>50</option>
+    <option value=100>100</option>
+	<option value=200>200</option>
+	<option value=300>300</option>
+    </select>
 	    <button onclick="location.href ='./index.php?metode=0'" type="button" class="btn btn-danger pull-right">LIST DISABLES</button>&nbsp;	
 	    <button onclick="location.href ='./index.php?metode=1'" type="button" class="btn btn-success pull-right">LIST ENABLES</button>&nbsp;		
 		<button onclick="location.href ='./index.php?metode=2'" type="button" class="btn btn-warning pull-right">LIST ALL</button>	</h2>
@@ -186,3 +223,33 @@ break;
 	</div>	
 </div>	
 <?php include('./template/footer.php');?> 
+
+<script>
+$(function(){
+$("#nitems").change(function () {
+     
+     
+         var id_category =$(this).val();
+        
+        var request=  $.ajax({ 
+                    type: "GET",  
+                    url: "index.php",  
+                    cache:false,  
+                    
+                    data: {'items':id_category},
+                    
+                    
+                    
+                    success: function(data) {
+                        //$("#root").html(data);
+                        document.body.innerHTML = data
+						location.reload(false)
+					}
+                    } )               
+     
+ })
+
+});
+
+
+    </script>
