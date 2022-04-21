@@ -227,7 +227,7 @@ $html="";
 
 
   <div  id="euro2tdSupliers"> </div>
-
+  <div  id="euro2tdean"> </div>
 
 </body>
 
@@ -576,6 +576,7 @@ function euro2td(){
  euro2tdOEM() 
  euro2tdall()  
  euro2tdSupliers2()
+ euro2tdean()
 let url  = "./api/mysql_jsonEuro2td.php?carid="+document.getElementById("carid").value+"&code="+document.getElementById("family").value
 
     // fetch(url,{mode: 'cors', headers: {'Access-Control-Allow-Origin': '*'}})
@@ -724,11 +725,11 @@ function euro2tdSupliers2(){
 
 }
 
-function euro2tdSupliers(){
+function euro2tdean(){
 
-
-let url = "./api/mysql_jsonEuro2tdSUPLIERS.php?carid="+document.getElementById("carid").value+"&code="+document.getElementById("family").value
-$('#euro2td3').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Read suppliers, One moment, please ...</div>').show()
+  document.getElementById('euro2tdean').innerHTML =""
+let url = "./api/mysql_jsonEuro2tdean.php?carid="+document.getElementById("carid").value+"&code="+document.getElementById("family").value
+//$('#euro2tdean').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Read suppliers, One moment, please ...</div>').show()
 
       fetch(url)
           .then( response => response.json() )
@@ -740,16 +741,16 @@ $('#euro2td3').html('<br/> <div class="loading"><img src="images/loader.gif" alt
           if (data.length >0){
           let body = "<table></br>"
           for (var i = 0; i < data.length; i++) {      
-             body+="<tr><td class='t50'><img src='../images/images_supplier_logos/"+data[i].logo+".png' width='50' onerror=this.onerror=null;this.src='./images/no_image.jpg';></td><td  class='t50'>"+data[i].number+"</td><td  class='t50'>"+data[i].name+"</td></tr>"
+             //body+="<tr><td  class='t50'>"+data[i].EAN+"</td></tr>"
              //body+="<tr><td>"+data[i].criteria+"</td><td>"+data[i].value+"</td><td>"+data[i].unit+"</td></tr>"
              //body+=euro2tdSupliersLegacy(data[i].legacy)
-
+             euro2tdean222(data[i].EAN)
 
             }
           body+="</table>"
-          document.getElementById('euro2td3').innerHTML = body
+          //document.getElementById('euro2tdean').innerHTML = body
           }else{
-            $('#euro2td3').html("<div class='error'>"+"<?php echo $lang['grupos-notsuppliers'];?>"+"</div>")
+           // $('#euro2tdean').html("<div class='error'>"+"<?php echo $lang['grupos-notsuppliers'];?>"+"</div>")
 
           }
           
@@ -759,9 +760,16 @@ $('#euro2td3').html('<br/> <div class="loading"><img src="images/loader.gif" alt
 
 
 
+  function euro2tdean222(ean)
+  {
+    $.post("test.php", {ean: ean}, function(data) {
+                /*body=$("#euro2tdean").html()+data;
+                $("#euro2tdean").html(body);*/
+                document.getElementById('euro2tdean').innerHTML +=data;
 
 
-
+  })
+  }
 
 
 </script>

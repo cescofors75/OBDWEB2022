@@ -892,3 +892,139 @@ xmlhttp.onreadystatechange = function() {
 
 
 
+
+
+    function  myFunction(myArr){
+  
+    console.log(myArr.products[0].title);
+       console.log(myArr.products[0].stores[0].name);
+       console.log(myArr.products[0].stores[0].country);
+       console.log(myArr.products[0].stores[0].price);
+       console.log(myArr.products[0].stores[0].currency_symbol);
+   
+        console.log(myArr.products[0].stores[0].last_update);
+
+    if (myArr.products[0].length >0){
+      
+          let body = "<table></br>"
+          for (var i = 0; i < myArr.products[0].length; i++) {      
+             body+="<tr><td  class='t50'>"+myArr.products[0].stores[i].name+"</td></tr>"
+             //body+="<tr><td>"+data[i].criteria+"</td><td>"+data[i].value+"</td><td>"+data[i].unit+"</td></tr>"
+             //body+=euro2tdSupliersLegacy(data[i].legacy)
+
+
+            }
+          body+="</table>"
+          document.getElementById('euro2tdean').innerHTML = body
+/*
+       console.log(myArr.products[0].title);
+       console.log(myArr.products[0].stores[0].name);
+       console.log(myArr.products[0].stores[0].country);
+       console.log(myArr.products[0].stores[0].price);
+       console.log(myArr.products[0].stores[0].currency_symbol);
+   
+        console.log(myArr.products[0].stores[0].last_update);*/
+
+
+
+   }
+
+
+  }
+
+
+
+  function euro2tdean22(ean){
+
+  let url = "https://cors-anywhere.herokuapp.com/"+"https://api.barcodelookup.com/v3/products?barcode="+ean+"&formatted=y&key=l1sb4dr7rnng4ftxp41smz54soubg2";
+
+//let url = "./api/mysql_jsonEuro2tdean.php?carid="+document.getElementById("carid").value+"&code="+document.getElementById("family").value
+$('#euro2tdean').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Read suppliers, One moment, please ...</div>').show()
+
+      fetch(url)
+          .then( response => response.json() )
+          .then( data => mostrarData(data) )
+          .catch( error => console.log(error) )
+
+      const mostrarData = (data) => {
+          
+          if (data.length >0){
+          let body = "<table></br>"
+          for (var i = 0; i < data.length; i++) {      
+             body+="<tr><td  class='t50'>"+data.products[0].stores[i].name+"</td></tr>"
+             //body+="<tr><td>"+data[i].criteria+"</td><td>"+data[i].value+"</td><td>"+data[i].unit+"</td></tr>"
+             //body+=euro2tdSupliersLegacy(data[i].legacy)
+
+
+            }
+          body+="</table>"
+          document.getElementById('euro2tdean').innerHTML += body
+          }else{
+            //$('#euro2tdean').html("<div class='error'>"+"<?php echo $lang['grupos-notsuppliers'];?>"+"</div>")
+
+          }
+          
+          //console.log(body)
+      }
+}
+
+function euro2tdean2(ean)
+{
+var xmlhttp = new XMLHttpRequest();
+var url = "https://cors-anywhere.herokuapp.com/"+"https://api.barcodelookup.com/v3/products?barcode="+ean+"&formatted=y&key=l1sb4dr7rnng4ftxp41smz54soubg2";
+xmlhttp.onreadystatechange = function() {
+     if (this.readyState == 4 && this.status == 200) {
+     var myArr = JSON.parse(this.responseText);
+
+
+  
+      myFunction(myArr);  
+     }
+     };
+    
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+
+   
+   function  myFunction(myArr){
+  
+    console.log(myArr.products[0].title);
+       console.log(myArr.products[0].stores[0].name);
+       console.log(myArr.products[0].stores[0].country);
+       console.log(myArr.products[0].stores[0].price);
+       console.log(myArr.products[0].stores[0].currency_symbol);
+   
+        console.log(myArr.products[0].stores[0].last_update);
+
+    
+       body = "<table>"
+              
+             body+="<tr><td  class='t50'>"+myArr.products[0].stores[0].title+"</td></tr>"
+             body+="<tr><td  class='t50'>"+myArr.products[0].stores[0].name+"</td></tr>"
+              body+="<tr><td  class='t50'>"+myArr.products[0].stores[0].country+"</td></tr>"
+              body+="<tr><td  class='t50'>"+myArr.products[0].stores[0].price+"</td></tr>"
+              body+="<tr><td  class='t50'>"+myArr.products[0].stores[0].currency_symbol+"</td></tr>"
+              body+="<tr><td  class='t50'>"+myArr.products[0].stores[0].last_update+"</td></tr>"
+
+             //body+="<tr><td>"+data[i].criteria+"</td><td>"+data[i].value+"</td><td>"+data[i].unit+"</td></tr>"
+             //body+=euro2tdSupliersLegacy(data[i].legacy)
+
+
+            
+          body+="</table>"
+          document.getElementById('euro2tdean').innerHTML += body
+
+
+
+
+   
+
+
+  }
+
+  }
+
+
+
+
+
