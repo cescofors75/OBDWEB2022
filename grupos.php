@@ -198,7 +198,7 @@ $html="";
   
   
   &nbsp; 
-  <button type="button" onclick="euro2td()" class="btn btn-primary btn-lg"><?php echo $lang['grupos-solution'];?></button> &nbsp; <button type="button" onclick="ALLsolution()" class="btn btn-primary btn-lg"><?php echo $lang['grupos-allsolution'];?></button>&nbsp;&nbsp;<button type="button" onclick="ClearEuro2td()" class="btn btn-primary btn-lg"><?php echo $lang['grupos-clearsolution'];?></button>
+  <button type="button" onclick="euro2td()" class="btn btn-primary btn-lg"><?php echo $lang['grupos-solution'];?></button> &nbsp; &nbsp;&nbsp;<button type="button" onclick="ClearEuro2td()" class="btn btn-primary btn-lg"><?php echo $lang['grupos-clearsolution'];?></button>
    
   </div>
 
