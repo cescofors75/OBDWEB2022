@@ -166,36 +166,59 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
 
 <div class='container'>
 
-<div class="row">
+  <div class="row">
     <div class="col-sm">
       
-    <div  name="solution" id=""  class='b'> VIN&nbsp;&nbsp;
-    <input type="text" id="fname" name="fname" value="JTEAZ99J900006367" > &nbsp;
-    <button type="button" onclick="sub();" class="btn btn-primary btn-lg"><?php echo $lang['index-b-search'];?></button></div>
-
-
-
+      <div  name="solution" id=""  class='b'> VIN&nbsp;&nbsp;
+       <input type="text" id="fname" name="fname" value="JTEAZ99J900006367" > &nbsp;
+      <button type="button" onclick="sub();" class="btn btn-primary btn-lg"><?php echo $lang['index-b-search'];?></button></div>
     </div>
     
     <div class="col-sm">
     
     <div  name="solution3" id="" class='b' >
-    <?php echo $lang['index-search'];?>&nbsp;&nbsp;
-    <input type="text" id="search" placeholder="4056A026" />&nbsp;
-   <button type="button" onclick="Clear();" class="btn btn-primary btn-lg"><?php echo $lang['index-b-clear'];?></button>
-   
-  
+       <?php echo $lang['index-search'];?>&nbsp;&nbsp;
+       <input type="text" id="search" placeholder="4056A026" />&nbsp;
+       <button type="button" onclick="Clear();" class="btn btn-primary btn-lg"><?php echo $lang['index-b-clear'];?></button></div>
     </div>
+
     
+    
+  
+
   </div>
 
+
+
+  <div class="row">
+  <div class="col-sm">
+
+  </div>
+  <div class="col-sm">
+      
+      <div  name="solution" id=""  class='b'> BARCODE&nbsp;&nbsp;
+      <input type="text" id="barcode" name="fname" value="837290004230" > &nbsp;
+      <button type="button" onclick="subbarcode();" class="btn btn-primary btn-lg"><?php echo $lang['index-b-search'];?></button>&nbsp;&nbsp;
+      <button type="button" onclick="Clear();" class="btn btn-primary btn-lg"><?php echo $lang['index-b-clear'];?></button>
+    </div>
+  
+  
+  
+      </div>
+
+
+      </div>
 
 </div>
 
 
 
 
-</diV>
+
+
+
+
+
 <?php
 if(isset($_SESSION['carid']))
 {
@@ -284,6 +307,24 @@ var id_grupos = <?php echo $_SESSION['carid'];?>;
 
 
 </body>
+<script>
 
+function euro2tdeanHomepage(ean)
+{
+  $.post("test.php", {ean: ean}, function(data) {
+              /*body=$("#euro2tdean").html()+data;
+              $("#euro2tdean").html(body);*/
+             // document.getElementById('euro2tdean').innerHTML +=data;
+             document.getElementById('display').innerHTML +=data;
+
+})
+};
+
+function subbarcode(){
+
+    var barcode = $("#barcode").val();
+    euro2tdeanHomepage(barcode);
+};
+</script>
 
 </html>
