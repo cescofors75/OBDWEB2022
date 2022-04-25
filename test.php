@@ -9,9 +9,10 @@ $data = get_data($url, $ch);
 
 $response = array();
 $response = json_decode($data);
+echo '<table>';
 if ($response){
 // echo '<strong>Barcode Number:</strong> ' . $response->products[0]->barcode_number . '<br><br>';
-echo '<table>';
+
 echo '<tr><td class="menu"><strong>Title:</strong> ' . $response->products[0]->title . '</td></tr>';
 echo '<tr><td class="menu"><strong>Image:</strong><img  src=" ' . $response->products[0]->images[0] . '" width="150px"></td></tr>';
 echo '<tr><td class="menu"><strong>Stores:</strong> ' . count($response->products[0]->stores) . '</td></tr>';
@@ -31,8 +32,18 @@ echo '<tr><td class="criteria"><strong>Update:</strong> ' . $response->products[
 echo '<tr><td>----------------------------------------------------------------------------------------------</td></tr>';
 
 }
-echo '</table>';
-}
+
+
+
+
+
+}else{
+
+    echo '<tr><td class="menu"><strong>No DATA</strong> </td></tr>';
+
+
+}echo '</table>';
+
 
 
 

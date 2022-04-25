@@ -196,11 +196,7 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
   </div>
   <div class="col-sm">
       
-      <div  name="solution" id=""  class='b'> BARCODE&nbsp;&nbsp;
-      <input type="text" id="barcode" name="fname" value="837290004230" > &nbsp;
-      <button type="button" onclick="subbarcode();" class="btn btn-primary btn-lg"><?php echo $lang['index-b-search'];?></button>&nbsp;&nbsp;
-      <button type="button" onclick="Clear();" class="btn btn-primary btn-lg"><?php echo $lang['index-b-clear'];?></button>
-    </div>
+      
   
   
   
