@@ -171,7 +171,7 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
       
       <div  name="solution" id=""  class='b'> VIN&nbsp;&nbsp;
        <input type="text" id="fname" name="fname" value="JTEAZ99J900006367" > &nbsp;
-      <button type="button" onclick="sub();" class="btn btn-primary btn-lg"><?php echo $lang['index-b-search'];?></button></div>
+      <button type="button" onclick="sub();" class="btn btn-success btn-lg"><?php echo $lang['index-b-search'];?></button></div>
     </div>
     
     <div class="col-sm">
@@ -179,7 +179,7 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
     <div  name="solution3" id="" class='b' >
        <?php echo $lang['index-search'];?>&nbsp;&nbsp;
        <input type="text" id="search" placeholder="4056A026" />&nbsp;
-       <button type="button" onclick="Clear();" class="btn btn-primary btn-lg"><?php echo $lang['index-b-clear'];?></button></div>
+       <button type="button" onclick="Clear();" class="btn btn-danger btn-lg"><?php echo $lang['index-b-clear'];?></button></div>
     </div>
 
     

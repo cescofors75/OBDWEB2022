@@ -53,6 +53,95 @@ require('lang/esp.php');
 ?>
 
 
+<div id="langSelect">
+<a href="homepage.php?la=esp"><img class='circle' src="flags/esp.png" alt="<?=$lang['lang-esp'];?>" title="<?=$lang['lang-esp'];?>" /></a>  
+<a href="homepage.php?la=eng"><img class='circle' src="flags/eng.png" alt="<?=$lang['lang-eng'];?>" title="<?=$lang['lang-eng'];?>" /></a>
+<a href="homepage.php?la=fre"><img class='circle' src="flags/fra.png" alt="<?=$lang['lang-fre'];?>" title="<?=$lang['lang-fre'];?>" /></a>
+<a href="homepage.php?la=ger"><img class='circle' src="flags/ger.png" alt="<?=$lang['lang-ger'];?>" title="<?=$lang['lang-ger'];?>" /></a>
+</div>
+<div class="loader-wrapper">
+      <span class="loader"><span class="loader-inner"></span></span>
+    </div>
+    <script>
+        $(window).on("load",function(){
+          $(".loader-wrapper").fadeOut("slow");
+        });
+    </script>
+<div class="honeycomb">
+  
+  <div class="ibws-fix">
+    <div class="hexagon">
+      <div class="hexagontent">
+        <h1>OBD2</h1>
+      </div>
+    </div>
+    <div class="hexagon">
+      <div class="hexagontent"><h1>Solution</h1></div>
+    </div>
+    <div class="hexanone">
+      <div class="hexagontent"></div>
+    </div>
+    
+    <div class="hexagon">
+      <div class="hexagontent"><h1></H1></div>
+    </div>
+    <div class="hexagon">
+      <div class="hexagontent"><h1>ALL</H1></div>
+    </div>
+    <div class="hexanone">
+      <div class="hexagontent"></div>
+    </div>
+    <div class="hexagon">
+      <div class="hexagontent"><h1>PARTS</H1></div>
+    </div>
+  </div>
+</div>
+<br><br><br><br>
+<br><br><br><br>
+<div class='container2'>
+<?php
+
+
+$html = '';
+
+$conexion = new mysqli('localhost', 'root','' , 'td2q2019');
+
+$carid = $_GET['carid'];
+
+$conexion->query("SET CHARACTER SET utf8");
+$conexion->query("SET NAMES utf8");
+$result = $conexion->query("SELECT manuName,modelName,typeName,yearOfConstrFrom,yearOfConstrTo FROM vehicledetails WHERE carId=$carid  LIMIT 1");
+
+
+if ($result->num_rows > 0) {
+  $html .="<div class='info'>";
+    $html .="<h2>INFO</h2>";
+    
+    while ($row = $result->fetch_assoc()) {                
+        $html .=  $row['manuName'] . " / ". $row['modelName'] .  " / ". $row['typeName'] . "*" ; 
+        $html .=  $row['yearOfConstrFrom'] . " / ". $row['yearOfConstrTo'] . "<br>" ; 
+    }
+    $html .= "</div>";
+} 
+
+////////////////////////////////////////////////////////////////
+$html .="<div></br>";
+$html .="<button type='button' onclick='referencesEuro()' class='btn btn-primary btn-lg'>References Euro4x4</button>&nbsp;";
+$html .="<button type='button' onclick='Clear()' class='btn btn-primary btn-lg'>Clear</button>";
+$html .="</div>";
+$html .="<div id='refEuro'></div> ";
+
+
+
+
+///////////////////////////////////////////////////////////////////
+
+echo $html;
+
+
+
+?>
+
 <br><br>
 
 

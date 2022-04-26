@@ -93,7 +93,7 @@ $html="";
 
   <div class='r'><?php echo $lang['grupos-option'];?>&nbsp; P0201, P0255, P0100 </div>
   <div class='b' ><?php echo $lang['grupos-code'];?>&nbsp; <input type="text" id="code" name="fname" value="P0190" >&nbsp; 
-  <button type="button" onclick="solution()" class="btn btn-primary btn-lg"><?php echo $lang['grupos-solution'];?></button> &nbsp; <button type="button" onclick="ALLsolution()" class="btn btn-primary btn-lg"><?php echo $lang['grupos-allsolution'];?></button>&nbsp;&nbsp;<button type="button" onclick="Clear_solutions()" class="btn btn-primary btn-lg"><?php echo $lang['grupos-clearsolution'];?></button>
+  <button type="button" onclick="solution()" class="btn btn-success btn-lg"><?php echo $lang['grupos-solution'];?></button> &nbsp; <button type="button" onclick="ALLsolution()" class="btn btn-warning btn-lg"><?php echo $lang['grupos-allsolution'];?></button>&nbsp;&nbsp;<button type="button" onclick="Clear_solutions()" class="btn btn-danger btn-lg"><?php echo $lang['grupos-clearsolution'];?></button>
    
   </div>
 
@@ -139,8 +139,8 @@ if ($result->num_rows > 0) {
     $html .=$lang['grupos-catalogue']."</div>";
 
     $html .="</br><div class='b'><input type='text' id='codeT' name='fname' value='".$lang['grupos-text-Thermostat']."' >&nbsp; ";
-    $html .="<button type='button' onclick='solutionT()' class='btn btn-primary btn-lg'>".$lang['index-b-search']."</button>";
-    $html .="&nbsp;&nbsp;&nbsp;<button type='button' onclick='ClearT()' class='btn btn-primary btn-lg'>".$lang['index-b-clear']."</button></div>";
+    $html .="<button type='button' onclick='solutionT()' class='btn btn-success btn-lg'>".$lang['index-b-search']."</button>";
+    $html .="&nbsp;&nbsp;&nbsp;<button type='button' onclick='ClearT()' class='btn btn-danger btn-lg'>".$lang['index-b-clear']."</button></div>";
 
     $html .="<div >";
     $html .="<div  class='bn' name='solutionT' id='solutionT'> </div>";
@@ -198,7 +198,7 @@ $html="";
   
   
   &nbsp; 
-  <button type="button" onclick="euro2td()" class="btn btn-primary btn-lg"><?php echo $lang['grupos-solution'];?></button> &nbsp; &nbsp;&nbsp;<button type="button" onclick="ClearEuro2td()" class="btn btn-primary btn-lg"><?php echo $lang['grupos-clearsolution'];?></button>
+  <button type="button" onclick="euro2td()" class="btn btn-success btn-lg"><?php echo $lang['grupos-solution'];?></button> &nbsp; &nbsp;&nbsp;<button type="button" onclick="ClearEuro2td()" class="btn btn-danger btn-lg"><?php echo $lang['grupos-clearsolution'];?></button>
    
   </div>
 
@@ -481,6 +481,8 @@ function ClearEuro2td(){
   document.getElementById("euro2td2").innerHTML =""
   document.getElementById("euro2td3").innerHTML ="" 
   document.getElementById("euro2tdSupliers").innerHTML =""
+  document.getElementById("euro2tdean").innerHTML =""
+
 }
 
 
