@@ -19,5 +19,8 @@ if ($num_total_rows > 0) {
     }
     //calculo el total de paginas
     $total_pages = ceil($num_total_rows / NUM_ITEMS_BY_PAGE);
+}else{
+    $total_pages = 0;
+    $start = 0;
 }
 ?>
