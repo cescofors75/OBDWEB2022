@@ -482,3 +482,12 @@ div.b a:visited{
   color: hsl(0, 60%, 98%);
   
 }
+
+td.r{
+
+  color: hsl(0, 85%, 48%);
+}
+td.v{
+
+  color: hsl(120, 85%, 48%);
+}

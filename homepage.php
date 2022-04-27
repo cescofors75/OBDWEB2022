@@ -191,19 +191,27 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
 
 
   <div class="row">
-  <div class="col-sm">
-
-  </div>
-  <div class="col-sm">
+      <div class="col-sm">
+      <div  name="solution" id=""  class='b'> REF UERO4x4PARTS&nbsp;&nbsp;
+      <input type="text" id="refeuro" name="fname" value="BCY1015" > &nbsp;  &nbsp;
+      <button type="button" onclick="subrefeuro();" class="btn btn-primary btn-lg"><?php echo $lang['index-b-search'];?></button>&nbsp;&nbsp;
+      <button type="button" onclick="Clear();" class="btn btn-primary btn-lg"><?php echo $lang['index-b-clear'];?></button>
+    </div>
+      </div>
+      <div class="col-sm">
       
-      
+      <div  name="solution" id=""  class='b'> BARCODE&nbsp;&nbsp;
+      <input type="text" id="barcode" name="fname" value="837290004230" > &nbsp; 052767060506 &nbsp;9312891029765
+      <button type="button" onclick="subbarcode();" class="btn btn-primary btn-lg"><?php echo $lang['index-b-search'];?></button>&nbsp;&nbsp;
+      <button type="button" onclick="Clear();" class="btn btn-primary btn-lg"><?php echo $lang['index-b-clear'];?></button>
+      </div>
   
   
   
       </div>
 
 
-      </div>
+     
 
 </div>
 
@@ -320,6 +328,26 @@ function subbarcode(){
 
     var barcode = $("#barcode").val();
     euro2tdeanHomepage(barcode);
+};
+
+
+function subrefeuro(){
+
+var reuro = $("#refeuro").val();
+
+
+$.post("test2.php", {reuro: reuro}, function(data) {
+              /*body=$("#euro2tdean").html()+data;
+              $("#euro2tdean").html(body);*/
+             // document.getElementById('euro2tdean').innerHTML +=data;
+             document.getElementById('display').innerHTML +=data;
+
+})
+
+
+
+
+
 };
 </script>
 
