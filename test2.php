@@ -31,11 +31,11 @@ $response = json_decode($data);
 echo '<table>';
 if ($response){
 // echo '<strong>Barcode Number:</strong> ' . $response->products[0]->barcode_number . '<br><br>';
-echo '<tr><td class="menu"><strong>Title Euro4x4:</strong> ' . $row['description'] . '</td></tr>';
-echo '<tr><td class="menu"><strong>Price Euro4x4:</strong> ' . $row['prix'] . '€</td></tr>';
-echo '<tr><td class="menu"><strong>Title:</strong> ' . $response->products[0]->title . '</td></tr>';
-echo '<tr><td class="menu"><strong>Image:</strong><img  src=" ' . $response->products[0]->images[0] . '" width="150px"></td></tr>';
-echo '<tr><td class="menu"><strong>Stores:</strong> ' . count($response->products[0]->stores) . '</td></tr>';
+echo '<tr><td class="menuM"><strong>Title Euro4x4:</strong> ' . $row['description'] . '</td></tr>';
+echo '<tr><td class="menuM"><strong>Price Euro4x4:</strong> ' . $row['prix'] . '€</td></tr>';
+echo '<tr><td class="menu"><strong>Product:</strong> ' . $response->products[0]->title . '</td></tr>';
+echo '<tr><td class="menu"><img  src=" ' . $response->products[0]->images[0] . '" width="150px"></td></tr>';
+echo '<tr><td class="menuM"><strong>Stores:</strong> ' . count($response->products[0]->stores) . '</td></tr>';
 
 echo '<tr><td>----------------------------------------------------------------------------------------------</td></tr>';
 
@@ -106,16 +106,16 @@ if(false !== $response_json) {
 
 //
 $dif=(float)$prix-(float)$EUR_price;
-echo '<tr><td class="criteria"><strong>Name:</strong> ' . $response->products[0]->stores[$i]->name . '</td></tr>';
-echo '<tr><td class="criteria"><strong>Country:</strong> ' . $response->products[0]->stores[$i]->country . '</td></tr>';
-echo '<tr><td class="criteria"><strong>Price Store:</strong> ' . $response->products[0]->stores[$i]->price ;
+echo '<tr><td class="criteriaM"><strong>Name:</strong> ' . $response->products[0]->stores[$i]->name . '</td></tr>';
+echo '<tr><td class="criteriaM"><strong>Country:</strong> ' . $response->products[0]->stores[$i]->country . '</td></tr>';
+echo '<tr><td class="criteriaM"><strong>Price Store:</strong> ' . $response->products[0]->stores[$i]->price ;
 echo      $response->products[0]->stores[$i]->currency_symbol. ' === '.(float)$EUR_price.'€</td></tr>';
-echo '<tr><td class="criteria"><strong>Price Euro4x4:</strong> ' . $row['prix'] . '€</td></tr>';
+echo '<tr><td class="criteriaM"><strong>Price Euro4x4:</strong> ' . $row['prix'] . '€</td></tr>';
 
 if ($dif>0){
-echo '<tr><td class="criteria r"><strong>DIF: + ' .$dif.'€</strong></td></tr>';
+echo '<tr><td class="criteriaM r"><strong>DIF: + ' .$dif.'€</strong>&nbsp;&nbsp;<img src="./images/xroja22.png"></td></tr>';
 }else{
-    echo '<tr><td class="criteria v"><strong>DIF:  ' .$dif . '€</strong></td></tr>';
+    echo '<tr><td class="criteriaM v"><strong>DIF:  ' .$dif . '€</strong>&nbsp;&nbsp;<img src="./images/ok2.png"></td></tr>';
 
 }
 echo '<tr><td class="criteria"><strong>Link:</strong> <a href=" ' . $response->products[0]->stores[$i]->link . '" >'. $response->products[0]->stores[$i]->link .'</td></tr>';
@@ -130,7 +130,7 @@ echo '<tr><td>------------------------------------------------------------------
 
 }else{
 
-    echo '<tr><td class="menu"><strong>No DATA</strong> </td></tr>';
+    //echo '<tr><td class="menu"><strong>No DATA</strong> </td></tr>';
 
 
 }echo '</table>';

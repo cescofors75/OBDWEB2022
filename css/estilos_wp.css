@@ -69,6 +69,24 @@ td.menu{
   font-family: "Source Code Pro" ;
 
 }
+td.criteriaM{
+
+  width:20%;
+  color:black;
+  text-align: Left;
+  font-size: 14px;
+}
+
+td.menuM{
+  text-align: left ;
+  padding: 2px ;
+  background:steelblue ;
+  font-size:14px ;
+  color:white ;
+  width : 25% ;
+  font-family: "Source Code Pro" ;
+
+}
 
 .text
 {
