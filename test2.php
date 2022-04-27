@@ -32,7 +32,7 @@ echo '<table>';
 if ($response){
 // echo '<strong>Barcode Number:</strong> ' . $response->products[0]->barcode_number . '<br><br>';
 echo '<tr><td class="menu"><strong>Title Euro4x4:</strong> ' . $row['description'] . '</td></tr>';
-echo '<tr><td class="menu"><strong>Prix Euro4x4:</strong> ' . $row['prix'] . '€</td></tr>';
+echo '<tr><td class="menu"><strong>Price Euro4x4:</strong> ' . $row['prix'] . '€</td></tr>';
 echo '<tr><td class="menu"><strong>Title:</strong> ' . $response->products[0]->title . '</td></tr>';
 echo '<tr><td class="menu"><strong>Image:</strong><img  src=" ' . $response->products[0]->images[0] . '" width="150px"></td></tr>';
 echo '<tr><td class="menu"><strong>Stores:</strong> ' . count($response->products[0]->stores) . '</td></tr>';
@@ -53,6 +53,10 @@ if ($response->products[0]->stores[$i]->country !='EU'){
     if ($response->products[0]->stores[$i]->country ==='SE'){
 
         $country='SEK';
+      }
+      if ($response->products[0]->stores[$i]->country ==='DK'){
+
+        $country='DKK';
       }
 
       if ($response->products[0]->stores[$i]->country ==='CA'){
@@ -104,8 +108,10 @@ if(false !== $response_json) {
 $dif=(float)$prix-(float)$EUR_price;
 echo '<tr><td class="criteria"><strong>Name:</strong> ' . $response->products[0]->stores[$i]->name . '</td></tr>';
 echo '<tr><td class="criteria"><strong>Country:</strong> ' . $response->products[0]->stores[$i]->country . '</td></tr>';
-echo '<tr><td class="criteria"><strong>Price:</strong> ' . $response->products[0]->stores[$i]->price ;
-echo      $response->products[0]->stores[$i]->currency_symbol. ' - '.(float)$EUR_price.'€</td></tr>';
+echo '<tr><td class="criteria"><strong>Price Store:</strong> ' . $response->products[0]->stores[$i]->price ;
+echo      $response->products[0]->stores[$i]->currency_symbol. ' === '.(float)$EUR_price.'€</td></tr>';
+echo '<tr><td class="criteria"><strong>Price Euro4x4:</strong> ' . $row['prix'] . '€</td></tr>';
+
 if ($dif>0){
 echo '<tr><td class="criteria r"><strong>DIF: + ' .$dif.'€</strong></td></tr>';
 }else{

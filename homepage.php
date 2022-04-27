@@ -192,19 +192,15 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
 
   <div class="row">
       <div class="col-sm">
-      <div  name="solution" id=""  class='b'> REF UERO4x4PARTS&nbsp;&nbsp;
+      <div  name="solution" id=""  class='b'> REF EURO4x4PARTS&nbsp;&nbsp;
       <input type="text" id="refeuro" name="fname" value="BCY1015" > &nbsp;  &nbsp;
-      <button type="button" onclick="subrefeuro();" class="btn btn-primary btn-lg"><?php echo $lang['index-b-search'];?></button>&nbsp;&nbsp;
-      <button type="button" onclick="Clear();" class="btn btn-primary btn-lg"><?php echo $lang['index-b-clear'];?></button>
+      <button type="button" onclick="subrefeuro();" class="btn btn-success btn-lg"><?php echo $lang['index-b-search'];?></button>&nbsp;&nbsp;
+      <button type="button" onclick="Clear();" class="btn btn-danger btn-lg"><?php echo $lang['index-b-clear'];?></button>
     </div>
       </div>
       <div class="col-sm">
       
-      <div  name="solution" id=""  class='b'> BARCODE&nbsp;&nbsp;
-      <input type="text" id="barcode" name="fname" value="837290004230" > &nbsp; 052767060506 &nbsp;9312891029765
-      <button type="button" onclick="subbarcode();" class="btn btn-primary btn-lg"><?php echo $lang['index-b-search'];?></button>&nbsp;&nbsp;
-      <button type="button" onclick="Clear();" class="btn btn-primary btn-lg"><?php echo $lang['index-b-clear'];?></button>
-      </div>
+     
   
   
   
@@ -315,10 +311,14 @@ var id_grupos = <?php echo $_SESSION['carid'];?>;
 
 function euro2tdeanHomepage(ean)
 {
+  document.getElementById('display').innerHTML ="";
+  $('#display').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Read info, One moment, please ...</div>').show()
+
   $.post("test.php", {ean: ean}, function(data) {
               /*body=$("#euro2tdean").html()+data;
               $("#euro2tdean").html(body);*/
              // document.getElementById('euro2tdean').innerHTML +=data;
+             document.getElementById('display').innerHTML ="";
              document.getElementById('display').innerHTML +=data;
 
 })
@@ -334,12 +334,15 @@ function subbarcode(){
 function subrefeuro(){
 
 var reuro = $("#refeuro").val();
+document.getElementById('display').innerHTML ="";
+$('#display').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Read info, One moment, please ...</div>').show()
 
 
 $.post("test2.php", {reuro: reuro}, function(data) {
               /*body=$("#euro2tdean").html()+data;
               $("#euro2tdean").html(body);*/
              // document.getElementById('euro2tdean').innerHTML +=data;
+             document.getElementById('display').innerHTML ="";
              document.getElementById('display').innerHTML +=data;
 
 })

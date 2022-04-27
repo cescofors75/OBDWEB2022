@@ -1027,9 +1027,8 @@ xmlhttp.onreadystatechange = function() {
 
 
 
-
-<div  name="solution" id=""  class='b'> BARCODE&nbsp;&nbsp;
+ <div  name="solution" id=""  class='b'> BARCODE&nbsp;&nbsp;
       <input type="text" id="barcode" name="fname" value="837290004230" > &nbsp; 052767060506 &nbsp;9312891029765
-      <button type="button" onclick="subbarcode();" class="btn btn-primary btn-lg"><?php echo $lang['index-b-search'];?></button>&nbsp;&nbsp;
-      <button type="button" onclick="Clear();" class="btn btn-primary btn-lg"><?php echo $lang['index-b-clear'];?></button>
-    </div>
+      <button type="button" onclick="subbarcode();" class="btn btn-success btn-lg"><?php echo $lang['index-b-search'];?></button>&nbsp;&nbsp;
+      <button type="button" onclick="Clear();" class="btn btn-danger btn-lg"><?php echo $lang['index-b-clear'];?></button>
+      </div>
