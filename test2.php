@@ -15,7 +15,9 @@ $conexion->query("SET CHARACTER SET utf8");
                         
 
                         if ($result->num_rows > 0) {
-                          
+                            $row = $result->fetch_assoc();
+                            echo '<table><tr><td class="menuMR" ><strong>Title Euro4x4:</strong> ' . $row['description'] . '</td></tr>';
+                            echo '<tr><td class="menuMR" ><strong>Price Euro4x4:</strong> ' . $row['prix'] . '€</td></tr></table>';
                             while ($row = $result->fetch_assoc()) {                
                                
                            
@@ -31,9 +33,9 @@ $response = json_decode($data);
 echo '<table>';
 if ($response){
 // echo '<strong>Barcode Number:</strong> ' . $response->products[0]->barcode_number . '<br><br>';
-echo '<tr><td class="menuM"><strong>Title Euro4x4:</strong> ' . $row['description'] . '</td></tr>';
-echo '<tr><td class="menuM"><strong>Price Euro4x4:</strong> ' . $row['prix'] . '€</td></tr>';
+
 echo '<tr><td class="menu"><strong>Product:</strong> ' . $response->products[0]->title . '</td></tr>';
+echo '<tr><td class="menu"><strong>Description:</strong> ' . $response->products[0]->description . '</td></tr>';
 echo '<tr><td class="menu"><img  src=" ' . $response->products[0]->images[0] . '" width="150px"></td></tr>';
 echo '<tr><td class="menuM"><strong>Stores:</strong> ' . count($response->products[0]->stores) . '</td></tr>';
 

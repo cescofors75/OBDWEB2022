@@ -87,6 +87,18 @@ td.menuM{
   font-family: "Source Code Pro" ;
 
 }
+td.menuMR{
+  text-align: left ;
+  padding: 2px ;
+  background-color: hsl(0, 93%, 34%);
+  font-size:14px ;
+  color:white ;
+  width : 25% ;
+  font-family: "Source Code Pro" ;
+
+}
+
+
 
 .text
 {
