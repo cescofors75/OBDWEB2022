@@ -1,5 +1,4 @@
 <?php
-session_start();
 $reuro=$_POST['reuro'];
 
 $api_key = 'l1sb4dr7rnng4ftxp41smz54soubg2';
@@ -8,7 +7,7 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
 $conexion->query("SET CHARACTER SET utf8"); 
                         $conexion->query("SET NAMES utf8");
                         $result = $conexion->query(
-                          "SELECT distinct europroducts.reference as ref, europroducts.libelleproduit AS description, europroducts.prixeuroht as prix , oemnumbers.legacyArticleId as legacy, articleean.eancode as ean 
+                          "SELECT distinct europroducts.libelleproduit AS description, europroducts.prixeuroht as prix , oemnumbers.legacyArticleId as legacy, articleean.eancode as ean 
                           FROM `eurocrossref` INNER JOIN europroducts ON europroducts.reference=eurocrossref.REF_EURO inner join oemnumbers on oemnumbers.articleNumber=eurocrossref.REF_FRN 
                           inner join articleean on articleean.legacyArticleId=oemnumbers.legacyArticleId WHERE REF_EURO='".$reuro."'");
                       
@@ -17,16 +16,8 @@ $conexion->query("SET CHARACTER SET utf8");
 
                         if ($result->num_rows > 0) {
                             $row = $result->fetch_assoc();
-                            $familia=strtolower(substr($row['ref'],0,3));
-                            $ref_euro2=strtolower($row['ref']);
                             echo '<table><tr><td class="menuMR" ><strong>Title Euro4x4:</strong> ' . $row['description'] . '</td></tr>';
-                            echo '<tr><td class="menuMR" ><strong>Price Euro4x4:</strong> ' . $row['prix'] . '€</td></tr>';
-                            echo "<tr><td class='menuMR' ><img class='shadow' src='http://blog.euro4x4parts.com/photos/". $familia . "/" . $ref_euro2 . "z.jpg'   style='width:150px'"
-                            ?>
-                            onerror="this.onerror=null;this.src='./images/no_image.jpg';" /></td></tr></table>
-                            <?php
-                          
-                            echo '</br>';
+                            echo '<tr><td class="menuMR" ><strong>Price Euro4x4:</strong> ' . $row['prix'] . '€</td></tr></table>';
                             while ($row = $result->fetch_assoc()) {                
                                
                            
@@ -53,45 +44,35 @@ echo '<tr><td>------------------------------------------------------------------
 $stores=count($response->products[0]->stores);
 for ($i=0;$i<$stores;$i++){
 $prix=str_replace(",",".",$row['prix']);
-$base_price = (float)$response->products[0]->stores[$i]->price;
+
 //
-$EUR_price =round($base_price,2);
 if ($response->products[0]->stores[$i]->country !='EU'){
-  if ($response->products[0]->stores[$i]->country ==='GB'){
-    
-     $EUR_price = round(($base_price / $_SESSION['GBP']), 2);
-  }
+     $country='GBP';
     if ($response->products[0]->stores[$i]->country ==='NO'){
 
-      
-      $EUR_price = round(($base_price / $_SESSION['NOK']), 2);
-      
+      $country='NOK';
     }
     if ($response->products[0]->stores[$i]->country ==='SE'){
 
-        $EUR_price = round(($base_price / $_SESSION['SEK']), 2);
+        $country='SEK';
       }
       if ($response->products[0]->stores[$i]->country ==='DK'){
 
-        
-        $EUR_price = round(($base_price / $_SESSION['DKK']), 2);
+        $country='DKK';
       }
 
       if ($response->products[0]->stores[$i]->country ==='CA'){
 
-        
-        $EUR_price = round(($base_price / $_SESSION['CAD']), 2);
+        $country='CAD';
       }
       if ($response->products[0]->stores[$i]->country ==='US'){
 
-        
-        $EUR_price = round(($base_price / $_SESSION['USD']), 2);
+        $country='USD';
       }
 
-       // Your price in USD
-			
-    }
-/*
+
+
+
 $req_url = 'https://v6.exchangerate-api.com/v6/b1c79e722136aa3fa32e5909/latest/'.$country;
 $response_json = file_get_contents($req_url);
 
@@ -124,7 +105,7 @@ if(false !== $response_json) {
 
 
 }
-*/
+
 //
 $dif=(float)$prix-(float)$EUR_price;
 $dif=round($dif,2);

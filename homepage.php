@@ -24,6 +24,7 @@
 
 
 <body >
+
 <?php 
 session_start();
 if(isset($_GET['la'])){
@@ -295,6 +296,7 @@ var id_grupos = <?php echo $_SESSION['carid'];?>;
   </div>
   
 </div>
+<?php include('./test3.php');?>
 <div>
 <p>
 <a href="http://jigsaw.w3.org/css-validator/check/referer">
