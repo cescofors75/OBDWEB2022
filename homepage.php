@@ -201,7 +201,11 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
       </div>
       <div class="col-sm">
       
-     
+      <div  name="solution" id=""  class='b'> BARCODE&nbsp;&nbsp;
+      <input type="text" id="barcode" name="fname" value="837290004230" > &nbsp; 052767060506 &nbsp;9312891029765
+      <button type="button" onclick="subbarcode();" class="btn btn-success btn-lg"><?php echo $lang['index-b-search'];?></button>&nbsp;&nbsp;
+      <button type="button" onclick="Clear();" class="btn btn-danger btn-lg"><?php echo $lang['index-b-clear'];?></button>
+      </div>
   
   
   
@@ -297,7 +301,8 @@ var id_grupos = <?php echo $_SESSION['carid'];?>;
   
 </div>
 <?php include('./currency.php');?>
-<div>
+<br />
+<div style='text-align:left;'>
 <p>
 <a href="http://jigsaw.w3.org/css-validator/check/referer">
     <img style="border:0;width:88px;height:31px"

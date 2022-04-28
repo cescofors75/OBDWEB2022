@@ -1032,3 +1032,13 @@ xmlhttp.onreadystatechange = function() {
       <button type="button" onclick="subbarcode();" class="btn btn-success btn-lg"><?php echo $lang['index-b-search'];?></button>&nbsp;&nbsp;
       <button type="button" onclick="Clear();" class="btn btn-danger btn-lg"><?php echo $lang['index-b-clear'];?></button>
       </div>
+
+
+
+
+      $_SESSION['GBP']=$response2->conversion_rates->GBP;
+      $_SESSION['NOK']=$response2->conversion_rates->NOK;
+        $_SESSION['SEK']=$response2->conversion_rates->SEK;
+        $_SESSION['DKK']=$response2->conversion_rates->DKK;
+        $_SESSION['CAD']=$response2->conversion_rates->CAD;
+        $_SESSION['USD']=$response2->conversion_rates->USD;
