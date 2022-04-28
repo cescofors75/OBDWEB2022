@@ -16,7 +16,7 @@ if ($response){
 
 echo '<tr><td class="menu"><strong>Title:</strong> ' . $response->products[0]->title . '</td></tr>';
 echo '<tr><td class="menu"><strong></strong><img  src=" ' . $response->products[0]->images[0] . '" width="150px"></td></tr>';
-echo '<tr><td class="menu"><strong>Stores:</strong> ' . count($response->products[0]->stores) . '</td></tr>';
+echo '<tr><td class="menuM"><strong>Stores:</strong> ' . count($response->products[0]->stores) . '</td></tr>';
 
 echo '<tr><td>----------------------------------------------------------------------------------------------</td></tr>';
 
@@ -71,11 +71,11 @@ for ($i=0;$i<$stores;$i++){
 
 
 
-echo '<tr><td class="criteria"><strong>Name:</strong> ' . $response->products[0]->stores[$i]->name . '</td></tr>';
-echo '<tr><td class="criteria"><strong>Country:</strong> ' . $response->products[0]->stores[$i]->country . '</td></tr>';
-echo '<tr><td class="criteria"><strong>Price:</strong> ' . $response->products[0]->stores[$i]->price ;
+echo '<tr><td class="criteriaM"><strong>Name:</strong> ' . $response->products[0]->stores[$i]->name . '</td></tr>';
+echo '<tr><td class="criteriaM"><strong>Country:</strong> ' . $response->products[0]->stores[$i]->country . '</td></tr>';
+echo '<tr><td class="criteriaM"><strong>Price:</strong> ' . $response->products[0]->stores[$i]->price ;
 echo      $response->products[0]->stores[$i]->currency_symbol. ' === '.(float)$EUR_price.'€</td></tr>';
-echo '<tr><td class="criteria"><strong>Link:</strong> <a href=" ' . $response->products[0]->stores[$i]->link . '" >'. $response->products[0]->stores[$i]->link .'</td></tr>';
+echo '<tr><td class="criteriaM"><strong>Link:</strong> <a href=" ' . $response->products[0]->stores[$i]->link . '" >'. $response->products[0]->stores[$i]->link .'</td></tr>';
 echo '<tr><td class="criteria"><strong>Update:</strong> ' . $response->products[0]->stores[$i]->last_update . '</td></tr>';
 echo '<tr><td>----------------------------------------------------------------------------------------------</td></tr>';
 

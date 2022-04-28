@@ -198,27 +198,30 @@ $response_json = file_get_contents($req_url);
     }
 
 }
-}
-echo ('<div style="background-color:steelblue; color:white;">');
-        echo ('<marquee behavior="scroll" scrollamount="8" width="100%" direction="left" height="20px">');
+}  
+
+
+
+echo ('<div style="background-color:steelblue; color:white; ">');
+        echo ('<marquee behavior="scroll" scrollamount="6" width="100%" direction="left" height="14px">');
         
-        echo ('GBP '.$_SESSION['GBP'].'€&nbsp;&nbsp;');
-        echo ('NOK '.$_SESSION['NOK'].'€&nbsp;&nbsp;');
-        echo ('SEK '.$_SESSION['SEK'].'€&nbsp;&nbsp;');
-        echo ('DKK '.$_SESSION['DKK'].'€&nbsp;&nbsp;');
-        echo ('CAD '.$_SESSION['CAD'].'€&nbsp;&nbsp;');
-        echo ('USD '.$_SESSION['USD'].'€&nbsp;&nbsp;');
-        echo ('AUD '.$_SESSION['AUD'].'€&nbsp;&nbsp;');
-        echo ('NZD '.$_SESSION['NZD'].'€&nbsp;&nbsp;');
-        echo ('CNY '.$_SESSION['CNY'].'€&nbsp;&nbsp;');
-        echo ('JPY '.$_SESSION['JPY'].'€&nbsp;&nbsp;');
-        echo ('EUR '.$_SESSION['EUR'].'€&nbsp;&nbsp;');
-        echo ('RUB '.$_SESSION['RUB'].'€&nbsp;&nbsp;');
-        
+        echo ('GBP '.ROUND(1/(FLOAT)$_SESSION['GBP'],2).'€&nbsp;&nbsp;');
+        echo ('NOK '.ROUND(1/(FLOAT)$_SESSION['NOK'],2).'€&nbsp;&nbsp;');
+        echo ('SEK '.ROUND(1/(FLOAT)$_SESSION['SEK'],2).'€&nbsp;&nbsp;');
+        echo ('DKK '.ROUND(1/(FLOAT)$_SESSION['DKK'],2).'€&nbsp;&nbsp;');
+        echo ('CAD '.ROUND(1/(FLOAT)$_SESSION['CAD'],2).'€&nbsp;&nbsp;');
+        echo ('USD '.ROUND(1/(FLOAT)$_SESSION['USD'],2).'€&nbsp;&nbsp;');
+        echo ('AUD '.ROUND(1/(FLOAT)$_SESSION['AUD'],2).'€&nbsp;&nbsp;');
+        echo ('NZD '.ROUND(1/(FLOAT)$_SESSION['NZD'],2).'€&nbsp;&nbsp;');
+        echo ('CNY '.ROUND(1/(FLOAT)$_SESSION['CNY'],2).'€&nbsp;&nbsp;');
+        echo ('JPY '.ROUND(1/(FLOAT)$_SESSION['JPY'],2).'€&nbsp;&nbsp;');
+        echo ('RUB '.ROUND(1/(FLOAT)$_SESSION['RUB'],2).'€&nbsp;&nbsp;');
+        echo ('EUR '.ROUND(1/(FLOAT)$_SESSION['EUR'],2).'€&nbsp;&nbsp;');
         
         
        
         echo ('</marquee>');
         echo ('</div>');
+        
 
 ?>
