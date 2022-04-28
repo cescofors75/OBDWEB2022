@@ -1,6 +1,8 @@
 
 <?php
 //session_start();
+
+if (!isset($_SESSION['GBP'])){
 $api_key = 'l1sb4dr7rnng4ftxp41smz54soubg2';
 $req_url = 'https://v6.exchangerate-api.com/v6/b1c79e722136aa3fa32e5909/latest/EUR';
 $response_json = file_get_contents($req_url);
@@ -27,7 +29,17 @@ $response_json = file_get_contents($req_url);
         $_SESSION['DKK']=$response2->conversion_rates->DKK;
         $_SESSION['CAD']=$response2->conversion_rates->CAD;
         $_SESSION['USD']=$response2->conversion_rates->USD;
-        echo ('<div style="background-color:steelblue; color:white;">');
+        
+    }
+
+    }
+    catch(Exception $e) {
+        // Handle JSON parse error...
+    }
+
+}
+}
+echo ('<div style="background-color:steelblue; color:white;">');
         echo ('<marquee behavior="scroll" scrollamount="8" width="100%" direction="left" height="20px">');
         
         echo ('GBP '.$_SESSION['GBP'].'€&nbsp;&nbsp;');
@@ -39,15 +51,5 @@ $response_json = file_get_contents($req_url);
        
         echo ('</marquee>');
         echo ('</div>');
-    }
-
-    }
-    catch(Exception $e) {
-        // Handle JSON parse error...
-    }
-
-}
-
-
 
 ?>

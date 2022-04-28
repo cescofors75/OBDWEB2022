@@ -193,8 +193,8 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
 
   <div class="row">
       <div class="col-sm">
-      <div  name="solution" id=""  class='b'> REF EURO4x4PARTS&nbsp;&nbsp;
-      <input type="text" id="refeuro" name="fname" value="BCY1015" > &nbsp;  &nbsp;
+      <div  name="solution" id=""  class='b'> REF EURO4x4&nbsp;&nbsp;
+      <input type="text" id="refeuro" name="fname" value="PER2112" > &nbsp;  &nbsp;TCP1010
       <button type="button" onclick="subrefeuro();" class="btn btn-success btn-lg"><?php echo $lang['index-b-search'];?></button>&nbsp;&nbsp;
       <button type="button" onclick="Clear();" class="btn btn-danger btn-lg"><?php echo $lang['index-b-clear'];?></button>
     </div>
@@ -296,7 +296,7 @@ var id_grupos = <?php echo $_SESSION['carid'];?>;
   </div>
   
 </div>
-<?php include('./test3.php');?>
+<?php include('./currency.php');?>
 <div>
 <p>
 <a href="http://jigsaw.w3.org/css-validator/check/referer">
@@ -316,7 +316,7 @@ function euro2tdeanHomepage(ean)
   document.getElementById('display').innerHTML ="";
   $('#display').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Read info, One moment, please ...</div>').show()
 
-  $.post("test.php", {ean: ean}, function(data) {
+  $.post("ean.php", {ean: ean}, function(data) {
               /*body=$("#euro2tdean").html()+data;
               $("#euro2tdean").html(body);*/
              // document.getElementById('euro2tdean').innerHTML +=data;
@@ -340,7 +340,7 @@ document.getElementById('display').innerHTML ="";
 $('#display').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Read info, One moment, please ...</div>').show()
 
 
-$.post("test2.php", {reuro: reuro}, function(data) {
+$.post("ean2.php", {reuro: reuro}, function(data) {
               /*body=$("#euro2tdean").html()+data;
               $("#euro2tdean").html(body);*/
              // document.getElementById('euro2tdean').innerHTML +=data;

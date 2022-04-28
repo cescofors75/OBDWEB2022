@@ -51,8 +51,10 @@ echo '<tr><td class="menuM"><strong>Stores:</strong> ' . count($response->produc
 echo '<tr><td>----------------------------------------------------------------------------------------------</td></tr>';
 
 $stores=count($response->products[0]->stores);
+$prix_temp=str_replace(".","",$row['prix']);
+$prix=str_replace(",",".",$prix_temp);
 for ($i=0;$i<$stores;$i++){
-$prix=str_replace(",",".",$row['prix']);
+
 $base_price = (float)$response->products[0]->stores[$i]->price;
 //
 $EUR_price =round($base_price,2);
@@ -132,7 +134,7 @@ echo '<tr><td class="criteriaM"><strong>Name:</strong> ' . $response->products[0
 echo '<tr><td class="criteriaM"><strong>Country:</strong> ' . $response->products[0]->stores[$i]->country . '</td></tr>';
 echo '<tr><td class="criteriaM"><strong>Price Store:</strong> ' . $response->products[0]->stores[$i]->price ;
 echo      $response->products[0]->stores[$i]->currency_symbol. ' === '.(float)$EUR_price.'€</td></tr>';
-echo '<tr><td class="criteriaM"><strong>Price Euro4x4:</strong> ' . $row['prix'] . '€</td></tr>';
+echo '<tr><td class="criteriaM"><strong>Price Euro4x4:</strong> ' . $prix . '€</td></tr>';
 
 if ($dif>0){
 echo '<tr><td class="criteriaM r"><strong>DIF: + ' .$dif.'€</strong>&nbsp;&nbsp;<img src="./images/xroja22.png"></td></tr>';

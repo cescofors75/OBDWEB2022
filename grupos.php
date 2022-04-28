@@ -764,7 +764,7 @@ let url = "./api/mysql_jsonEuro2tdean.php?carid="+document.getElementById("carid
 
   function euro2tdean222(ean)
   {
-    $.post("test.php", {ean: ean}, function(data) {
+    $.post("ean.php", {ean: ean}, function(data) {
                 /*body=$("#euro2tdean").html()+data;
                 $("#euro2tdean").html(body);*/
                 document.getElementById('euro2tdean').innerHTML +=data;
