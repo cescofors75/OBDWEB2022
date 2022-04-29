@@ -21,10 +21,10 @@ ON europroducts.reference=eurocrossref.REF_EURO
 INNER JOIN articles
 ON articlecrosses.articleNumber=articles.articleNumber and articlecrosses.dataSupplierId= articles.dataSupplierId
 INNER JOIN articlesvehicletrees
-ON articlesvehicletrees.articleId = articles.legacyArticleId 
+ON articlesvehicletrees.articleId = articles.legacyArticleId and articlesvehicletrees.linkingTargetType='P'
 INNER JOIN legacy2generic
 on legacy2generic.legacyArticleId=articles.legacyArticleId
-where articlesvehicletrees.linkingTargetId=$carid and legacy2generic.genericArticleId=$code and articlesvehicletrees.linkingTargetType='P' and articles.lang='$lang'
+where articlesvehicletrees.linkingTargetId=$carid and legacy2generic.genericArticleId=$code  and articles.lang='$lang'
 order by prix");
 
 $statement->execute();

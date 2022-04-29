@@ -1042,3 +1042,29 @@ xmlhttp.onreadystatechange = function() {
         $_SESSION['DKK']=$response2->conversion_rates->DKK;
         $_SESSION['CAD']=$response2->conversion_rates->CAD;
         $_SESSION['USD']=$response2->conversion_rates->USD;
+
+
+
+        /*<html>
+  <head>
+    <title>Geocoding Service</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script type="module" src="./index.js"></script>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDH8EOaUJxu-Vy2sjDVAbPh_SL0nNc52WM&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>*/
