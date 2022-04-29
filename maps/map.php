@@ -30,15 +30,16 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
 
 $conexion->query("SET CHARACTER SET utf8");
 $conexion->query("SET NAMES utf8");
-$result = $conexion->query("Select DISTINCT * from ambrand inner join ambrandsaddress on ambrand.brandId=ambrandsaddress.brandId LIMIT 15");
+$result = $conexion->query("Select DISTINCT ambrandsaddress.brandId as brandId, ambrandsaddress.wwwURL as wwwURL, ambrandsaddress.city as city, ambrandsaddress.street as street, ambrandsaddress.name as name from ambrand inner join ambrandsaddress on ambrand.brandId=ambrandsaddress.brandId LIMIT 5");
 
 
 if ($result->num_rows > 0) {
   ?><script>
     var loca = [];<?php
     
-    while ($row = $result->fetch_assoc()) {  
-      ?>loca.push(['<?php echo($row['name']) ?>','<?php echo($row['city'])?>','<?php echo($row['wwwURL']) ?>','<?php echo($row['brandId']) ?>']);<?php
+    while ($row = $result->fetch_assoc()) { 
+      $str=str_replace("'","",$row['street']).','.$row['city'];
+      ?>loca.push(['<?php echo($row['name']) ?>','<?php echo($str)?>','<?php echo($row['wwwURL']) ?>','<?php echo($row['brandId']) ?>']);<?php
 
 
     }
@@ -94,8 +95,12 @@ google.maps.event.addDomListener(window, "load", initialize);
 function geocodeAddress(locations, i) {
   var title = locations[i][0];
   var address = locations[i][1];
- 
+  var img = locations[i][3];
   var url = locations[i][2];
+  var img = {url:'../admin/suppliers_logos/png/'+locations[i][3]+'.png',
+    scaledSize: new google.maps.Size(50, 50),
+    
+  };
   geocoder.geocode({
       'address': locations[i][1]
     },
@@ -103,7 +108,8 @@ function geocodeAddress(locations, i) {
     function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
         var marker = new google.maps.Marker({
-          icon: 'http://maps.google.com/mapfiles/ms/icons/blue.png',
+          //icon: 'http://maps.google.com/mapfiles/ms/icons/blue.png',
+          icon: img,
           map: map,
           position: results[0].geometry.location,
           title: title,
