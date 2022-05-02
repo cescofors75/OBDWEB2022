@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 $reuro=$_POST['reuro'];
@@ -111,11 +112,22 @@ $prix=str_replace(",",".",$prix_temp);
 }
 
 array_multisort(array_column($name, 'eprice'), SORT_ASC, $name);
+
+$names=[];
+$marks=[];
+
+array_push($names,'EURO4x4PARTS');
+array_push($marks,$prix);
 for ($j=0; $j < $i; $j++) {
 //
 $dif=(float)$prix-(float)$name[$j]['eprice'];
 $dif=round($dif,2);
 echo '<tr><td class="criteriaM"><strong>Name:</strong> ' . $name[$j]['name']. '</td></tr>';
+
+  array_push($names,$name[$j]['name']);
+  array_push($marks,$name[$j]['eprice']);
+
+
 echo '<tr><td class="criteriaM"><strong>Country:</strong> ' . $name[$j]['country'] . '</td></tr>';
 echo '<tr><td class="criteriaM"><strong>Price Store:</strong> ' . $name[$j]['price'] ;
 echo     $name[$j]['currency_symbol']. ' === '.(float)$name[$j]['eprice'].'€</td></tr>';
@@ -132,12 +144,18 @@ echo '<tr><td class="criteria"><strong>Update:</strong> ' . $name[$j]['last_upda
 echo '<tr><td>----------------------------------------------------------------------------------------------</td></tr>';
 
 }
+
+
+
+echo '</table>'; 
+//var_dump ($names);
+$names = serialize($names);
+$names = urlencode($names);
+$marks = serialize($marks);
+$marks = urlencode($marks);
+echo '<iframe src="graf.php?names='.$names.'&marks='.$marks.'" width="100%" height="500px" frameborder="0" scrolling="no"></iframe>';
+
 }
-
-
-echo '</table>';
-
- 
 }
 mysqli_free_result($result); 
 }
@@ -155,8 +173,8 @@ function get_data($url, $ch) {
 
     return $data;
 }
-                           
-                           
+  ?>    
+                    
                            
                            
                            
