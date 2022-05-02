@@ -50,75 +50,90 @@ echo '<tr><td class="menuM"><strong>Stores:</strong> ' . count($response->produc
 
 echo '<tr><td>----------------------------------------------------------------------------------------------</td></tr>';
 
-//$stores=count($response->products[0]->stores);
+$stores=count($response->products[0]->stores);
 $prix_temp=str_replace(".","",$row['prix']);
 $prix=str_replace(",",".",$prix_temp);
+for ($i=0;$i<$stores;$i++){
 
-//for ($i=0;$i<$stores;$i++){
+$base_price = (float)$response->products[0]->stores[$i]->price;
+//
+$EUR_price =round($base_price,2);
+if ($response->products[0]->stores[$i]->country !='EU'){
+  if ($response->products[0]->stores[$i]->country ==='GB'){
+    
+     $EUR_price = round(($base_price / $_SESSION['GBP']), 2);
+  }
+    if ($response->products[0]->stores[$i]->country ==='NO'){
 
-  $decoded_json = json_decode($data,true);
-  $name = $decoded_json['products'][0]['stores'];
+      
+      $EUR_price = round(($base_price / $_SESSION['NOK']), 2);
+      
+    }
+    if ($response->products[0]->stores[$i]->country ==='SE'){
 
-  $i=(count($name));
-  for ($j=0; $j < $i; $j++) {
-    $base_price = (float)$name[$j]['price'];
-    //
-    $EUR_price =round($base_price,2);
-    if ($name[$j]['country'] !='EU'){
-
-      if ($name[$j]['country']==='GB'){
-        
-         $EUR_price = round(($base_price / $_SESSION['GBP']), 2);
-         
+        $EUR_price = round(($base_price / $_SESSION['SEK']), 2);
       }
-        if ($name[$j]['country'] ==='NO'){
-    
-          
-          $EUR_price = round(($base_price / $_SESSION['NOK']), 2);
-          
-        }
-        if ($name[$j]['country'] ==='SE'){
-    
-            $EUR_price = round(($base_price / $_SESSION['SEK']), 2);
-          }
-          if ($name[$j]['country'] ==='DK'){
-    
-            
-            $EUR_price = round(($base_price / $_SESSION['DKK']), 2);
-          }
-    
-          if ($name[$j]['country'] ==='CA'){
-    
-            
-            $EUR_price = round(($base_price / $_SESSION['CAD']), 2);
-          }
-          if ($name[$j]['country'] ==='US'){
-    
-            
-            $EUR_price = round(($base_price / $_SESSION['USD']), 2);
-          }
-          if ($name[$j]['country'] ==='PL'){
-    
-            
-            $EUR_price = round(($base_price / $_SESSION['PLN']), 2);
-          }
-    
-           // Your price in USD
-              
-        }
-        $name[$j]['eprice'] = $EUR_price;    
+      if ($response->products[0]->stores[$i]->country ==='DK'){
+
+        
+        $EUR_price = round(($base_price / $_SESSION['DKK']), 2);
+      }
+
+      if ($response->products[0]->stores[$i]->country ==='CA'){
+
+        
+        $EUR_price = round(($base_price / $_SESSION['CAD']), 2);
+      }
+      if ($response->products[0]->stores[$i]->country ==='US'){
+
+        
+        $EUR_price = round(($base_price / $_SESSION['USD']), 2);
+      }
+
+       // Your price in USD
+			
+    }
+/*
+$req_url = 'https://v6.exchangerate-api.com/v6/b1c79e722136aa3fa32e5909/latest/'.$country;
+$response_json = file_get_contents($req_url);
+
+// Continuing if we got a result
+if(false !== $response_json) {
+
+    // Try/catch for json_decode operation
+    try {
+
+		// Decoding
+		$response2 = json_decode($response_json);
+
+		// Check for success
+		if('success' === $response2->result) {
+
+			// YOUR APPLICATION CODE HERE, e.g.
+			$base_price = (float)$response->products[0]->stores[$i]->price; // Your price in USD
+			$EUR_price = round(($base_price * $response2->conversion_rates->EUR), 2);
+            //echo ($EUR_price);
+		}
+
+    }
+    catch(Exception $e) {
+        // Handle JSON parse error...
+    }
 
 }
+}else{
+    $EUR_price=$response->products[0]->stores[$i]->price;
 
-array_multisort(array_column($name, 'eprice'), SORT_ASC, $name);
-for ($j=0; $j < $i; $j++) {
+
+}
+*/
 //
-$dif=(float)$prix-(float)$name[$j]['eprice'];
+$dif=(float)$prix-(float)$EUR_price;
 $dif=round($dif,2);
-echo '<tr><td class="criteriaM"><strong>Name:</strong> ' . $name[$j]['name']. '</td></tr>';
-echo '<tr><td class="criteriaM"><strong>Country:</strong> ' . $name[$j]['country'] . '</td></tr>';
-echo '<tr><td class="criteriaM"><strong>Price Store:</strong> ' . $name[$j]['price'] ;
-echo     $name[$j]['currency_symbol']. ' === '.(float)$name[$j]['eprice'].'€</td></tr>';
+echo '<tr><td class="criteriaM"><strong>Name:</strong> ' . $response->products[0]->stores[$i]->name . '</td></tr>';
+echo '<tr><td class="criteriaM"><strong>Country:</strong> ' . $response->products[0]->stores[$i]->country . '</td></tr>';
+echo '<tr><td class="criteriaM"><strong>Price Store:</strong> ' . $response->products[0]->stores[$i]->price ;
+echo      $response->products[0]->stores[$i]->currency_symbol. ' === '.(float)$EUR_price.'€</td></tr>';
 echo '<tr><td class="criteriaM"><strong>Price Euro4x4:</strong> ' . $prix . '€</td></tr>';
 
 if ($dif>0){
@@ -127,15 +142,22 @@ echo '<tr><td class="criteriaM r"><strong>DIF: + ' .$dif.'€</strong>&nbsp;&nbs
     echo '<tr><td class="criteriaM v"><strong>DIF:  ' .$dif . '€</strong>&nbsp;&nbsp;<img src="./images/ok2.png"></td></tr>';
 
 }
-echo '<tr><td class="criteria"><strong>Link:</strong> <a href=" ' . $name[$j]['link'] . '" >'. $name[$j]['link'] .'</td></tr>';
-echo '<tr><td class="criteria"><strong>Update:</strong> ' . $name[$j]['last_update'] . '</td></tr>';
+echo '<tr><td class="criteria"><strong>Link:</strong> <a href=" ' . $response->products[0]->stores[$i]->link . '" >'. $response->products[0]->stores[$i]->link .'</td></tr>';
+echo '<tr><td class="criteria"><strong>Update:</strong> ' . $response->products[0]->stores[$i]->last_update . '</td></tr>';
 echo '<tr><td>----------------------------------------------------------------------------------------------</td></tr>';
 
 }
-}
 
 
-echo '</table>';
+
+
+
+}else{
+
+    //echo '<tr><td class="menu"><strong>No DATA</strong> </td></tr>';
+
+
+}echo '</table>';
 
  
 }

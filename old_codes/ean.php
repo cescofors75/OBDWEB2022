@@ -20,80 +20,77 @@ echo '<tr><td class="menuM"><strong>Stores:</strong> ' . count($response->produc
 
 echo '<tr><td>----------------------------------------------------------------------------------------------</td></tr>';
 
-$decoded_json = json_decode($data,true);
-$name = $decoded_json['products'][0]['stores'];
-/*$stores=count($response->products[0]->stores);
-for ($i=0;$i<$stores;$i++){*/
-  $i=(count($name));
-  for ($j=0; $j < $i; $j++) {
+$stores=count($response->products[0]->stores);
+for ($i=0;$i<$stores;$i++){
 
-    $base_price = (float)$name[$j]['price'];
+
+    $base_price = (float)$response->products[0]->stores[$i]->price;
     //
     $EUR_price =round($base_price,2);
-    if ($name[$j]['country'] !='EU'){
-      if ($name[$j]['country'] ==='GB'){
+    if ($response->products[0]->stores[$i]->country !='EU'){
+      if ($response->products[0]->stores[$i]->country ==='GB'){
         
          $EUR_price = round(($base_price / $_SESSION['GBP']), 2);
       }
-        if ($name[$j]['country'] ==='NO'){
+        if ($response->products[0]->stores[$i]->country ==='NO'){
     
           
           $EUR_price = round(($base_price / $_SESSION['NOK']), 2);
           
         }
-        if ($name[$j]['country'] ==='SE'){
+        if ($response->products[0]->stores[$i]->country ==='SE'){
     
             $EUR_price = round(($base_price / $_SESSION['SEK']), 2);
           }
-          if ($name[$j]['country'] ==='DK'){
+          if ($response->products[0]->stores[$i]->country ==='DK'){
     
             
             $EUR_price = round(($base_price / $_SESSION['DKK']), 2);
           }
     
-          if ($name[$j]['country'] ==='CA'){
+          if ($response->products[0]->stores[$i]->country ==='CA'){
     
             
             $EUR_price = round(($base_price / $_SESSION['CAD']), 2);
           }
-          if ($name[$j]['country'] ==='US'){
+          if ($response->products[0]->stores[$i]->country ==='US'){
     
             
             $EUR_price = round(($base_price / $_SESSION['USD']), 2);
-          }
-          if ($name[$j]['country'] ==='PL'){
-    
-            
-            $EUR_price = round(($base_price / $_SESSION['PLN']), 2);
           }
     
            // Your price in USD
                 
         }
 
-        $name[$j]['eprice'] = $EUR_price;    
-
-      }
 
 
 
 
 
 
-      array_multisort(array_column($name, 'eprice'), SORT_ASC, $name);
-      for ($j=0; $j < $i; $j++) {
-      
-      echo '<tr><td class="criteriaM"><strong>Name:</strong> ' . $name[$j]['name']. '</td></tr>';
-      echo '<tr><td class="criteriaM"><strong>Country:</strong> ' . $name[$j]['country'] . '</td></tr>';
-      echo '<tr><td class="criteriaM"><strong>Price:</strong> ' . $name[$j]['price'] ;
-      echo      $name[$j]['currency_symbol']. ' === '.$name[$j]['eprice'].'€</td></tr>';
-      echo '<tr><td class="criteriaM"><strong>Link:</strong> <a href=" ' . $name[$j]['link'] . '" >'. $name[$j]['link'] .'</td></tr>';
-      echo '<tr><td class="criteria"><strong>Update:</strong> ' . $name[$j]['last_update'] . '</td></tr>';
-      echo '<tr><td>----------------------------------------------------------------------------------------------</td></tr>';
-      }
-      }
-      
-      echo '</table>';
+
+
+echo '<tr><td class="criteriaM"><strong>Name:</strong> ' . $response->products[0]->stores[$i]->name . '</td></tr>';
+echo '<tr><td class="criteriaM"><strong>Country:</strong> ' . $response->products[0]->stores[$i]->country . '</td></tr>';
+echo '<tr><td class="criteriaM"><strong>Price:</strong> ' . $response->products[0]->stores[$i]->price ;
+echo      $response->products[0]->stores[$i]->currency_symbol. ' === '.(float)$EUR_price.'€</td></tr>';
+echo '<tr><td class="criteriaM"><strong>Link:</strong> <a href=" ' . $response->products[0]->stores[$i]->link . '" >'. $response->products[0]->stores[$i]->link .'</td></tr>';
+echo '<tr><td class="criteria"><strong>Update:</strong> ' . $response->products[0]->stores[$i]->last_update . '</td></tr>';
+echo '<tr><td>----------------------------------------------------------------------------------------------</td></tr>';
+
+}
+
+
+
+
+
+}else{
+
+    echo '<tr><td class="menu"><strong>No DATA</strong> </td></tr>';
+
+
+}echo '</table>';
 
 
 
