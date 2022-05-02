@@ -3,8 +3,6 @@
     <title>Geocoding Service</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDH8EOaUJxu-Vy2sjDVAbPh_SL0nNc52WM"> </script>
-    <link rel="stylesheet" type="text/css" href="./style.css" />
-    <script  src="./index.js"></script>
     <style>
 
 #map_canvas {
@@ -19,9 +17,11 @@
 
 
 
-<div id="map_canvas" style="border: 2px solid #3872ac;"></div>
+  
+
 
 <?php
+
 $html = '';
 set_time_limit(300);
 $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
@@ -30,30 +30,34 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
 
 $conexion->query("SET CHARACTER SET utf8");
 $conexion->query("SET NAMES utf8");
-$result = $conexion->query("Select DISTINCT ambrandsaddress.brandId as brandId, ambrandsaddress.wwwURL as wwwURL, ambrandsaddress.city as city, ambrandsaddress.street as street, ambrandsaddress.name as name from ambrand inner join ambrandsaddress on ambrand.brandId=ambrandsaddress.brandId LIMIT 5");
+//$result = $conexion->query("Select DISTINCT ambrandsaddress.brandId as brandId, ambrandsaddress.wwwURL as wwwURL, ambrandsaddress.city as city, ambrandsaddress.street as street, ambrandsaddress.name as name from ambrand inner join ambrandsaddress on ambrand.brandId=ambrandsaddress.brandId LIMIT 5");
 
-
+$result = $conexion->query($_SESSION['url']);
 if ($result->num_rows > 0) {
   ?><script>
     var loca = [];<?php
     
     while ($row = $result->fetch_assoc()) { 
-      $str=str_replace("'","",$row['street']).','.$row['city'];
-      ?>loca.push(['<?php echo($row['name']) ?>','<?php echo($str)?>','<?php echo($row['wwwURL']) ?>','<?php echo($row['brandId']) ?>']);<?php
+      if (($row['direc'] != '') and ($row['pobla'] != '')) {
+      $str=str_replace("'"," ",$row['direc']).','.str_replace("'"," ",$row['pobla']);
+      ?>loca.push(['<?php echo($row['brandName']) ?>','<?php echo($str)?>','<?php echo($row['wwwURL']) ?>','<?php echo($row['brandId']) ?>']);<?php
 
 
     }
-    
+  }
     mysqli_free_result($result); 
+  ?>
+locations2(loca)
+
+<?php
+
+
+
 } 
-
-//echo($html);
-
-
 ?>
 
-console.log(loca)
-locations2(loca)
+
+
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -68,7 +72,7 @@ function locations2(locations){
 var geocoder;
 var map;
 var bounds = new google.maps.LatLngBounds();
-console.log(locations);
+//console.log(locations);
 async function initialize() {
   map = new google.maps.Map(
     document.getElementById("map_canvas"), {
@@ -82,7 +86,7 @@ async function initialize() {
 
 
     geocodeAddress(locations, i);
-    await sleep(1000);
+    await sleep(100);
   }
 }
 
@@ -121,14 +125,14 @@ function geocodeAddress(locations, i) {
         bounds.extend(marker.getPosition());
         map.fitBounds(bounds);
       } else {
-        alert("geocode of " + address + " failed:" + status);
+        //alert("geocode of " + address + " failed:" + status);
       }
     });
 }
 
 function infoWindow(marker, map, title, address, url) {
   google.maps.event.addListener(marker, 'click', function() {
-    var html = "<div><h3>" + title + "</h3><p>" + address + "<br></div><a href='" + url + "'>View location</a></p></div>";
+    var html = "<div><h3>" + title + "</h3><p>" + address + "<br></div><a href=http://" + url + ">" + url + "</a></p></div>";
     iw = new google.maps.InfoWindow({
       content: html,
       maxWidth: 350

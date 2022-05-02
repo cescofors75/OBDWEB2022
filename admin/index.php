@@ -59,7 +59,7 @@ IF (isset($_GET['items'])){
 	
     }else{
 
-		define('NUM_ITEMS_BY_PAGE',  50);
+		define('NUM_ITEMS_BY_PAGE',  15);
 		
 	}
   
@@ -79,21 +79,21 @@ case 0:
 	$_SESSION['url'] =	'SELECT COUNT(*) as total_products FROM ambrand where active=0';
 	include('pagination.php');
 	$_SESSION['color'] = 'red';
-    $_SESSION['url'] = "SELECT distinct ambrand.brandId,  ambrand.brandName, ambrand.active, left(ambrand.brandName,1) as initial ,ambrandsaddress.city as pobla, ambrandsaddress.street as direc FROM ambrand inner join ambrandsaddress on ambrand.brandId=ambrandsaddress.brandId  where active = 0 order by brandName LIMIT ".$start.",".NUM_ITEMS_BY_PAGE;
+    $_SESSION['url'] = "SELECT distinct ambrandsaddress.wwwURL as wwwURL, ambrand.brandId,  ambrand.brandName, ambrand.active, left(ambrand.brandName,1) as initial ,ambrandsaddress.city as pobla, ambrandsaddress.street as direc FROM ambrand inner join ambrandsaddress on ambrand.brandId=ambrandsaddress.brandId  where active = 0 order by brandName LIMIT ".$start.",".NUM_ITEMS_BY_PAGE;
     $_SESSION['url_initial'] = "SELECT distinct left(ambrand.brandName,1) as initial FROM ambrand join (SELECT distinct ambrand.brandId,  ambrand.brandName,  ambrand.active, left(ambrand.brandName,1) as initial ,ambrandsaddress.city as direc, ambrandsaddress.street as pobla  FROM ambrand  inner join ambrandsaddress on ambrand.brandId=ambrandsaddress.brandId order by brandName LIMIT ".$start.",".NUM_ITEMS_BY_PAGE.") d on ambrand.brandName in(d.brandName) where ambrand.active = 0";
 break;
 case 1:
 	$_SESSION['url'] =	'SELECT COUNT(*) as total_products FROM ambrand where active=1';
 	include('pagination.php');
 	$_SESSION['color'] = 'green';
-    $_SESSION['url'] = "SELECT distinct ambrand.brandId,  ambrand.brandName,  ambrand.active, left(ambrand.brandName,1) as initial ,ambrandsaddress.city as pobla, ambrandsaddress.street as direc FROM ambrand inner join ambrandsaddress on ambrand.brandId=ambrandsaddress.brandId  where active = 1 order by brandName LIMIT ".$start.",".NUM_ITEMS_BY_PAGE;
+    $_SESSION['url'] = "SELECT distinct ambrandsaddress.wwwURL as wwwURL, ambrand.brandId,  ambrand.brandName,  ambrand.active, left(ambrand.brandName,1) as initial ,ambrandsaddress.city as pobla, ambrandsaddress.street as direc FROM ambrand inner join ambrandsaddress on ambrand.brandId=ambrandsaddress.brandId  where active = 1 order by brandName LIMIT ".$start.",".NUM_ITEMS_BY_PAGE;
     $_SESSION['url_initial'] = "SELECT distinct left(ambrand.brandName,1) as initial FROM ambrand join (SELECT distinct ambrand.brandId,  ambrand.brandName,  ambrand.active, left(ambrand.brandName,1) as initial ,ambrandsaddress.city as direc, ambrandsaddress.street as pobla  FROM ambrand  inner join ambrandsaddress on ambrand.brandId=ambrandsaddress.brandId order by brandName LIMIT ".$start.",".NUM_ITEMS_BY_PAGE.") d on ambrand.brandName in(d.brandName) where ambrand.active = 1";
 break;
 case 2:
 	$_SESSION['url'] = 'SELECT COUNT(*) as total_products FROM ambrand ';
 	include('pagination.php');
 	$_SESSION['color'] = 'orange';
-	$_SESSION['url'] = "SELECT distinct ambrand.brandId,  ambrand.brandName, ambrand.active, left(ambrand.brandName,1) as initial,ambrandsaddress.city as pobla, ambrandsaddress.street as direc  FROM ambrand inner join ambrandsaddress on ambrand.brandId=ambrandsaddress.brandId  order by brandName LIMIT ".$start.",".NUM_ITEMS_BY_PAGE;
+	$_SESSION['url'] = "SELECT distinct ambrandsaddress.wwwURL as wwwURL, ambrand.brandId,  ambrand.brandName, ambrand.active, left(ambrand.brandName,1) as initial,ambrandsaddress.city as pobla, ambrandsaddress.street as direc  FROM ambrand inner join ambrandsaddress on ambrand.brandId=ambrandsaddress.brandId  order by brandName LIMIT ".$start.",".NUM_ITEMS_BY_PAGE;
 	$_SESSION['url_initial'] = "SELECT distinct left(ambrand.brandName,1) as initial FROM ambrand join (SELECT distinct ambrand.brandId,  ambrand.brandName,  ambrand.active, left(ambrand.brandName,1) as initial ,ambrandsaddress.city as direc, ambrandsaddress.street as pobla  FROM ambrand  inner join ambrandsaddress on ambrand.brandId=ambrandsaddress.brandId order by brandName LIMIT ".$start.",".NUM_ITEMS_BY_PAGE.") d on ambrand.brandName in(d.brandName)";
 break;
 }
@@ -101,7 +101,7 @@ break;
 	$_SESSION['url'] = 'SELECT COUNT(*) as total_products FROM ambrand ';
 	include('pagination.php');
 	$_SESSION['color'] = 'orange';
-	$_SESSION['url'] = "SELECT distinct ambrand.brandId,  ambrand.brandName,  ambrand.active, left(ambrand.brandName,1) as initial ,ambrandsaddress.city as pobla, ambrandsaddress.street as direc  FROM ambrand  inner join ambrandsaddress on ambrand.brandId=ambrandsaddress.brandId order by brandName LIMIT ".$start.",".NUM_ITEMS_BY_PAGE;
+	$_SESSION['url'] = "SELECT distinct ambrandsaddress.wwwURL as wwwURL, ambrand.brandId,  ambrand.brandName,  ambrand.active, left(ambrand.brandName,1) as initial ,ambrandsaddress.city as pobla, ambrandsaddress.street as direc  FROM ambrand  inner join ambrandsaddress on ambrand.brandId=ambrandsaddress.brandId order by brandName LIMIT ".$start.",".NUM_ITEMS_BY_PAGE;
 	$_SESSION['url_initial'] = "SELECT distinct left(ambrand.brandName,1) as initial FROM ambrand join (SELECT distinct ambrand.brandId,  ambrand.brandName,  ambrand.active, left(ambrand.brandName,1) as initial ,ambrandsaddress.city as direc, ambrandsaddress.street as pobla  FROM ambrand  inner join ambrandsaddress on ambrand.brandId=ambrandsaddress.brandId order by brandName LIMIT ".$start.",".NUM_ITEMS_BY_PAGE.") d on ambrand.brandName in(d.brandName)";
 	
 }
@@ -143,6 +143,7 @@ break;
 
     <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="nitems" >
     <option selected>Select Nº items/page</option>
+	<option value=5>5</option>
     <option value=15>15</option>
     <option value=25>25</option>
     <option value=50>50</option>
@@ -245,10 +246,18 @@ break;
 	?>
 		<a class="btn btn-default read-more" style="background:#3399ff;color:white" href="#top" title="">Back to Top</a>			
 	</div>	
-</div>	
+</div>
+<div>
+
+
+<div id="map_canvas" style="border: 2px solid #3872ac; height:300px"></div>
+<?php include('../maps/map.php');?> 
 <?php include('./template/footer.php');?> 
 
+
 <script>
+	
+	
 $(function() {
 		$("#nitems").change(function () {
 			 

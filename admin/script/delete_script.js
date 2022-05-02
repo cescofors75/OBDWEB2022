@@ -128,6 +128,7 @@ $('document').ready(function() {
 		} 
 		 
 	});
+	
 
 	$(function() {
 		$('#toggle-event2').change(function() {
