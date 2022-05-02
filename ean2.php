@@ -153,7 +153,7 @@ $names = serialize($names);
 $names = urlencode($names);
 $marks = serialize($marks);
 $marks = urlencode($marks);
-echo '<iframe src="graf.php?names='.$names.'&marks='.$marks.'" width="100%" height="500px" frameborder="0" scrolling="no"></iframe>';
+echo '<iframe src="graf.php?names='.$names.'&marks='.$marks.'"  width="100%" height="600px"   frameborder="0" scrolling="no"/>';
 
 }
 }
@@ -175,8 +175,7 @@ function get_data($url, $ch) {
 }
   ?>    
                     
-                           
-                           
+                               
                            
                            
                            

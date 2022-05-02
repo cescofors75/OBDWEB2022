@@ -4,7 +4,9 @@
 ?>
 <head>                
     <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js'></script>  
-    </head>
+                           
+            
+  </head>
     <body>
     <canvas id="densityChart" width="600" ></canvas>
     </body>
@@ -13,9 +15,8 @@
     var densityCanvas = document.getElementById("densityChart");
     
     Chart.defaults.global.defaultFontFamily = "Lato";
-    Chart.defaults.global.defaultFontSize = 18;
-    const DATA_COUNT = 7;
-    const NUMBER_CFG = {count: DATA_COUNT, min: -100, max: 100};
+    Chart.defaults.global.defaultFontSize = 14;
+   
 
 
 
@@ -27,8 +28,35 @@
           
         echo 'data: '.json_encode($marks).','; ?>
       
-      backgroundColor: 'rgba(0, 99, 132, 0.6)',
-      borderColor: 'rgba(0, 99, 132, 1)',
+      backgroundColor: [
+        'rgba(0, 99, 132, 0.6)',
+      
+      <?php
+      for ($i=1; $i<count($names); $i++){
+        if ($marks[$i]<$marks[0]){
+        echo json_encode('rgba(199, 0, 0, 0.6)').',';
+        }else{
+        echo json_encode('rgba(0, 199, 0, 0.6)').',';
+        } 
+        
+      }
+      
+
+      echo json_encode('rgba(0, 255, 0, 0.6)');
+
+       
+      ?>
+      ],
+      borderColor: [
+        'rgba(0, 99, 132, 1)',
+      <?php
+      for ($i=1; $i<count($names); $i++){
+        
+        echo json_encode('rgba(0, 0, 0, 1)').',';
+      }
+      echo json_encode('rgba(0, 0, 0, 1)');
+      ?>
+      ],
       borderWidth: 2,
       hoverBorderWidth: 0,
       
