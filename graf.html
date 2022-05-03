@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Graf</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+    <div>
+        <canvas id="myChart"></canvas>
+      </div>
+</body>
+
+<script>
+    const labels = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+    ];
+  
+    const data = {
+      labels: labels,
+      datasets: [{
+        label: 'Stores €',
+        backgroundColor: 'rgb(255, 99, 32)',
+        borderColor: 'rgb(255, 99, 32)',
+        data: [0, 10, 5, 2, 20, 30, 45],
+        order: 1
+      },
+      {
+        label: 'Euro4x4parts €',
+        backgroundColor: 'rgb(0, 99, 255)',
+        borderColor: 'rgb(0, 99, 255)',
+        data: [10, 10, 10, 10, 10, 10, 10],
+        type: 'line',
+        order: 0
+    }] };
+
+
+  
+    const config = {
+        type: 'bar',
+  data: data,
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Chart comparative Euro4x4parts and Stores'
+      }
+    }
+  },
+    };
+  </script>
+
+<script>
+    const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
+  </script>
+</html>

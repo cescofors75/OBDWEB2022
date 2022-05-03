@@ -1,14 +1,18 @@
-<?php  $names = unserialize($_GET['names']);$marks = unserialize($_GET['marks']);
+ <?php  
+ 
+ $names = unserialize($_GET['names']);$marks = unserialize($_GET['marks']);
 //var_dump($names);
 
-?>
+ ?>
 <head>                
     <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js'></script>  
                            
             
   </head>
     <body>
+   
     <canvas id="densityChart" width="600" ></canvas>
+    
     </body>
     
     <script>
@@ -22,7 +26,7 @@
 
     var densityData = {
      
-      label: 'Comparative Price (€)',
+      label: 'Euro4x4parts (€)',
       <?php
         
           
@@ -57,7 +61,7 @@
       echo json_encode('rgba(0, 0, 0, 1)');
       ?>
       ],
-      borderWidth: 2,
+      borderWidth: 0,
       hoverBorderWidth: 0,
       
     
@@ -90,4 +94,7 @@
       options: chartOptions
     });
     
+
+
      </script> 
+
