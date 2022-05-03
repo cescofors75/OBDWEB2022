@@ -190,10 +190,18 @@ function sub(){
     
     
     
-    function Clear() {
-          document.getElementById("display").innerHTML ="";
-          /* document.getElementById("grupos").innerHTML =""; 
-          document.getElementById("cars").innerHTML =""; */
-        }   
+       
+
+
+
+
+
+        function Clear() {
+            document.getElementById("display").innerHTML ="";
+            /* document.getElementById("grupos").innerHTML =""; 
+            document.getElementById("cars").innerHTML =""; */
+          } 
+
+         
     
  

@@ -172,7 +172,9 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
       
       <div  name="solution" id=""  class='b'> VIN&nbsp;&nbsp;
        <input type="text" id="fname" name="fname" value="JTEAZ99J900006367" > &nbsp;
-      <button type="button" onclick="sub();" class="btn btn-success btn-lg"><?php echo $lang['index-b-search'];?></button></div>
+      <button type="button" onclick="sub();" class="btn btn-success btn-lg"><?php echo $lang['index-b-search'];?></button>
+      <button type="button" onclick="ClearVin();" class="btn btn-danger btn-lg"><?php echo $lang['index-b-clear'];?></button> 
+    </div>
     </div>
     
     <div class="col-sm">
@@ -180,7 +182,8 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
     <div  name="solution3" id="" class='b' >
        <?php echo $lang['index-search'];?>&nbsp;&nbsp;
        <input type="text" id="search" placeholder="4056A026" />&nbsp;
-       <button type="button" onclick="Clear();" class="btn btn-danger btn-lg"><?php echo $lang['index-b-clear'];?></button></div>
+       <button type="button" onclick="Clear();" class="btn btn-danger btn-lg"><?php echo $lang['index-b-clear'];?></button>&nbsp;
+      </div>
     </div>
 
     
@@ -196,11 +199,11 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
       <div  name="solution" id=""  class='b'> REF EURO4x4&nbsp;
       <input type="text" id="refeuro" name="fname" value="PCV1020" > &nbsp;  
       <button type="button" onclick="subrefeuro();" class="btn btn-success btn-lg"><?php echo $lang['index-b-search'];?></button>&nbsp;
-      <button type="button" onclick="Clear();" class="btn btn-danger btn-lg"><?php echo $lang['index-b-clear'];?></button> &nbsp;&nbsp; TCP1010 - PER2112
-    </div>
+      <button type="button" onclick="Clear();" class="btn btn-danger btn-lg"><?php echo $lang['index-b-clear'];?></button> &nbsp;&nbsp; TCP1010 - PER2112 - KPE1613 - GAL1227 - MPR1034 -BMC1703
       </div>
       <div class="col-sm">
       
+     </div>
       
   
   
@@ -355,6 +358,13 @@ $.post("ean2.php", {reuro: reuro}, function(data) {
 
 
 };
+
+
+function ClearVin() {
+          document.getElementById("grupos").innerHTML ="";
+          /* document.getElementById("grupos").innerHTML =""; 
+          document.getElementById("cars").innerHTML =""; */
+        }
 </script>
 
 </html>
