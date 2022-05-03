@@ -113,7 +113,7 @@ const config = {
       },
       title: {
         display: true,
-        text: 'Chart comparative Euro4x4parts and Stores'
+        text: 'Comparative Euro4x4parts and Stores'
       }
     }
   },

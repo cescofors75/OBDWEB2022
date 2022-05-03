@@ -123,58 +123,45 @@ array_push($names,'EURO4x4PARTS');
 array_push($marks,$prix);
 
 for ($j=0; $j < $i; $j++) {
+//
+$dif=(float)$prix-(float)$name[$j]['eprice'];
+$dif=round($dif,2);
+echo '<tr><td class="criteriaM"><strong>Name:</strong> ' . $name[$j]['name']. '</td></tr>';
 
   array_push($names,$name[$j]['name']);
   array_push($marks,$name[$j]['eprice']);
 
 
+echo '<tr><td class="criteriaM"><strong>Country:</strong> ' . $name[$j]['country'] . '</td></tr>';
+echo '<tr><td class="criteriaM"><strong>Price Store:</strong> ' . $name[$j]['price'] ;
+echo     $name[$j]['currency_symbol']. ' === '.(float)$name[$j]['eprice'].'€</td></tr>';
+echo '<tr><td class="criteriaM"><strong>Price Euro4x4:</strong> ' . $prix . '€</td></tr>';
+
+if ($dif>0){
+echo '<tr><td class="criteriaM r"><strong>DIF: + ' .$dif.'€</strong>&nbsp;&nbsp;<img src="./images/xroja22.png"></td></tr>';
+}else{
+    echo '<tr><td class="criteriaM v"><strong>DIF:  ' .$dif . '€</strong>&nbsp;&nbsp;<img src="./images/ok2.png"></td></tr>';
+
+}
+echo '<tr><td class="criteria"><strong>Link:</strong> <a href=" ' . $name[$j]['link'] . '" >'. $name[$j]['link'] .'</td></tr>';
+echo '<tr><td class="criteria"><strong>Update:</strong> ' . $name[$j]['last_update'] . '</td></tr>';
+echo '<tr><td>----------------------------------------------------------------------------------------------</td></tr>';
 
 }
 
 
 
-
+echo '</table>'; 
 //var_dump ($names);
-$names2 = serialize($names);
-$names2 = urlencode($names2);
-$marks2 = serialize($marks);
-$marks2 = urlencode($marks2);
+$names = serialize($names);
+$names = urlencode($names);
+$marks = serialize($marks);
+$marks = urlencode($marks);
 
-echo '<div>';
-echo '<iframe src="graf2.php?names='.$names2.'&marks='.$marks2.'"  width="50%" height="300px"   frameborder="0" scrolling="no"></iframe>';
-echo '<iframe src="graf.php?names='.$names2.'&marks='.$marks2.'"  width="50%" height="300px"   frameborder="0" scrolling="no"></iframe>';
-echo '</div>';
-for ($j=0; $j < $i; $j++) {
-  //
-  $dif=(float)$prix-(float)$name[$j]['eprice'];
-  $dif=round($dif,2);
-  echo '<tr><td class="criteriaM"><strong>Name:</strong> ' . $name[$j]['name']. '</td></tr>';
-  
-    array_push($names,$name[$j]['name']);
-    array_push($marks,$name[$j]['eprice']);
-  
-  
-  echo '<tr><td class="criteriaM"><strong>Country:</strong> ' . $name[$j]['country'] . '</td></tr>';
-  echo '<tr><td class="criteriaM"><strong>Price Store:</strong> ' . $name[$j]['price'] ;
-  echo     $name[$j]['currency_symbol']. ' === '.(float)$name[$j]['eprice'].'€</td></tr>';
-  echo '<tr><td class="criteriaM"><strong>Price Euro4x4:</strong> ' . $prix . '€</td></tr>';
-  
-  if ($dif>0){
-  echo '<tr><td class="criteriaM r"><strong>DIF: + ' .$dif.'€</strong>&nbsp;&nbsp;<img src="./images/xroja22.png"></td></tr>';
-  }else{
-      echo '<tr><td class="criteriaM v"><strong>DIF:  ' .$dif . '€</strong>&nbsp;&nbsp;<img src="./images/ok2.png"></td></tr>';
-  
-  }
-  echo '<tr><td class="criteria"><strong>Link:</strong> <a href=" ' . $name[$j]['link'] . '" >'. $name[$j]['link'] .'</td></tr>';
-  echo '<tr><td class="criteria"><strong>Update:</strong> ' . $name[$j]['last_update'] . '</td></tr>';
-  echo '<tr><td>----------------------------------------------------------------------------------------------</td></tr>';
-  
-  }
-  
-  
-  
-  echo '</table>'; 
-//echo '<iframe src="graf.php?names='.$names2.'&marks='.$marks2.'"  width="100%" height="600px"   frameborder="0" scrolling="no"></iframe>';
+
+echo '<iframe src="graf2.php?names='.$names.'&marks='.$marks.'"  width="100%" height="600px"   frameborder="0" scrolling="no"></iframe>';
+
+echo '<iframe src="graf.php?names='.$names.'&marks='.$marks.'"  width="100%" height="600px"   frameborder="0" scrolling="no"></iframe>';
 
 }
 }
