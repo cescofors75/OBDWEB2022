@@ -193,19 +193,15 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
 
   <div class="row">
       <div class="col-sm">
-      <div  name="solution" id=""  class='b'> REF EURO4x4&nbsp;&nbsp;
-      <input type="text" id="refeuro" name="fname" value="PER2112" > &nbsp;  &nbsp;TCP1010
-      <button type="button" onclick="subrefeuro();" class="btn btn-success btn-lg"><?php echo $lang['index-b-search'];?></button>&nbsp;&nbsp;
-      <button type="button" onclick="Clear();" class="btn btn-danger btn-lg"><?php echo $lang['index-b-clear'];?></button>
+      <div  name="solution" id=""  class='b'> REF EURO4x4&nbsp;
+      <input type="text" id="refeuro" name="fname" value="PCV1020" > &nbsp;  
+      <button type="button" onclick="subrefeuro();" class="btn btn-success btn-lg"><?php echo $lang['index-b-search'];?></button>&nbsp;
+      <button type="button" onclick="Clear();" class="btn btn-danger btn-lg"><?php echo $lang['index-b-clear'];?></button> &nbsp;&nbsp; TCP1010 - PER2112
     </div>
       </div>
       <div class="col-sm">
       
-      <div  name="solution" id=""  class='b'> BARCODE&nbsp;&nbsp;
-      <input type="text" id="barcode" name="fname" value="837290004230" > &nbsp; 052767060506 &nbsp;9312891029765
-      <button type="button" onclick="subbarcode();" class="btn btn-success btn-lg"><?php echo $lang['index-b-search'];?></button>&nbsp;&nbsp;
-      <button type="button" onclick="Clear();" class="btn btn-danger btn-lg"><?php echo $lang['index-b-clear'];?></button>
-      </div>
+      
   
   
   

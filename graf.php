@@ -18,8 +18,7 @@
     <script>
     var densityCanvas = document.getElementById("densityChart");
     
-    Chart.defaults.global.defaultFontFamily = "Lato";
-    Chart.defaults.global.defaultFontSize = 14;
+  
    
 
 
@@ -40,7 +39,7 @@
         if ($marks[$i]<$marks[0]){
         echo json_encode('rgba(199, 0, 0, 0.6)').',';
         }else{
-        echo json_encode('rgba(0, 199, 0, 0.6)').',';
+        echo json_encode('rgba(49, 164, 45, 0.6)').',';
         } 
         
       }

@@ -20,9 +20,9 @@ $conexion->query("SET CHARACTER SET utf8");
                             $row = $result->fetch_assoc();
                             $familia=strtolower(substr($row['ref'],0,3));
                             $ref_euro2=strtolower($row['ref']);
-                            echo '<table><tr><td class="menuMR" ><strong>Title Euro4x4:</strong> ' . $row['description'] . '</td></tr>';
-                            echo '<tr><td class="menuMR" ><strong>Price Euro4x4:</strong> ' . $row['prix'] . '€</td></tr>';
-                            echo "<tr><td class='menuMR' ><img class='shadow' src='http://blog.euro4x4parts.com/photos/". $familia . "/" . $ref_euro2 . "z.jpg'   style='width:150px'"
+                            echo '<table><tr><td class="menuM" ><strong>Title Euro4x4:</strong> ' . $row['description'] . '</td></tr>';
+                            echo '<tr><td class="menuM" ><strong>Price Euro4x4:</strong> ' . $row['prix'] . '€</td></tr>';
+                            echo "<tr><td class='menuM' ><img class='shadow' src='http://blog.euro4x4parts.com/photos/". $familia . "/" . $ref_euro2 . "z.jpg'   style='width:150px'"
                             ?>
                             onerror="this.onerror=null;this.src='./images/no_image.jpg';" /></td></tr></table>
                             
@@ -47,10 +47,10 @@ echo '<table>';
 if ($response){
 // echo '<strong>Barcode Number:</strong> ' . $response->products[0]->barcode_number . '<br><br>';
 
-echo '<tr><td class="menu"><strong>Product:</strong> ' . $response->products[0]->title . '</td></tr>';
-echo '<tr><td class="menu"><strong>Description:</strong> ' . $response->products[0]->description . '</td></tr>';
-echo '<tr><td class="menu"><img  src=" ' . $response->products[0]->images[0] . '" width="150px"></td></tr>';
-echo '<tr><td class="menuM"><strong>Stores:</strong> ' . count($response->products[0]->stores) . '</td></tr>';
+echo '<tr><td class="menuR"><strong>Product:</strong> ' . $response->products[0]->title . '</td></tr>';
+echo '<tr><td class="menuR"><strong>Description:</strong> ' . $response->products[0]->description . '</td></tr>';
+echo '<tr><td class="menuR"><img  src=" ' . $response->products[0]->images[0] . '" width="150px"></td></tr>';
+echo '<tr><td class="menuMR"><strong>Stores:</strong> ' . count($response->products[0]->stores) . '</td></tr>';
 
 echo '<tr><td>----------------------------------------------------------------------------------------------</td></tr>';
 
@@ -144,6 +144,7 @@ echo '<div>';
 echo '<iframe src="graf2.php?names='.$names2.'&marks='.$marks2.'"  width="50%" height="300px"   frameborder="0" scrolling="no"></iframe>';
 echo '<iframe src="graf.php?names='.$names2.'&marks='.$marks2.'"  width="50%" height="300px"   frameborder="0" scrolling="no"></iframe>';
 echo '</div>';
+echo '</br>';
 for ($j=0; $j < $i; $j++) {
   //
   $dif=(float)$prix-(float)$name[$j]['eprice'];
