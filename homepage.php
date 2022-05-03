@@ -181,7 +181,7 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
     
     <div  name="solution3" id="" class='b' >
        <?php echo $lang['index-search'];?>&nbsp;&nbsp;
-       <input type="text" id="search" placeholder="4056A026" />&nbsp;
+       <input type="text" id="search" placeholder="4056A026" />&nbsp;&nbsp;&nbsp;&nbsp;
        <button type="button" onclick="Clear();" class="btn btn-danger btn-lg"><?php echo $lang['index-b-clear'];?></button>&nbsp;
       </div>
     </div>
@@ -192,23 +192,26 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
 
   </div>
 
+ 
 
-
-  <div class="row">
+  <div class="row" >
       <div class="col-sm">
       <div  name="solution" id=""  class='b'> REF EURO4x4&nbsp;
       <input type="text" id="refeuro" name="fname" value="PCV1020" > &nbsp;  
       <button type="button" onclick="subrefeuro();" class="btn btn-success btn-lg"><?php echo $lang['index-b-search'];?></button>&nbsp;
-      <button type="button" onclick="Clear();" class="btn btn-danger btn-lg"><?php echo $lang['index-b-clear'];?></button> &nbsp;&nbsp; TCP1010 - PER2112 - KPE1613 - GAL1227 - MPR1034 -BMC1703
+      <button type="button" onclick="Clear();" class="btn btn-danger btn-lg"><?php echo $lang['index-b-clear'];?></button> 
+      </div>
       </div>
       <div class="col-sm">
-      
-     </div>
-      
-  
-  
-  
+      <div class='b'>
+      &nbsp;&nbsp; TCP1010 - PER2112 - KPE1613 - GAL1227 - MPR1034 -BMC1703
       </div>
+      </div>
+      
+  
+  
+  
+   </div>
 
 
      
@@ -247,11 +250,11 @@ var id_grupos = <?php echo $_SESSION['carid'];?>;
 <br /><br />
 
 
-
+<div class='container'>
 
 <div id="display"></div> <!--resultados busqueda referencias -->
 
-
+</div>
  <!--<div  name="cars" id="cars"> </div> -->
 
 

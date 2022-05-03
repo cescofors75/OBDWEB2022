@@ -1081,3 +1081,9 @@ xmlhttp.onreadystatechange = function() {
       <button type="button" onclick="subbarcode();" class="btn btn-success btn-lg"><?php echo $lang['index-b-search'];?></button>&nbsp;&nbsp;
       <button type="button" onclick="Clear();" class="btn btn-danger btn-lg"><?php echo $lang['index-b-clear'];?></button>
       </div>
+
+
+
+       <div class='b'>
+      &nbsp;&nbsp; TCP1010 - PER2112 - KPE1613 - GAL1227 - MPR1034 -BMC1703
+      </div>
