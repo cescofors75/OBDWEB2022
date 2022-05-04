@@ -379,7 +379,7 @@ $.post("ean3.php", {reuro: 'PCV1020'}, function(data) {
             document.getElementById('display').innerHTML +=data;
 
 })
-$.post("ean3.php", {reuro: 'PCV1021'}, function(data) {
+$.post("ean3.php", {reuro: 'DRE1007'}, function(data) {
              
              //document.getElementById('display').innerHTML ="";
              document.getElementById('display').innerHTML +=data;

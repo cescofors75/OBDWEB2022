@@ -1,3 +1,4 @@
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 <?php
 session_start();
@@ -157,23 +158,23 @@ $marks2 = urlencode($marks2);
 //echo '<iframe src="graf.php?names='.$names2.'&marks='.$marks2.'"  width="70%"  height="250px"  frameborder="0" scrolling="no"></iframe></td>';
 
 if ($prix<$min){
-  echo '<td style="width:100px; background:green;"></td>';
+  echo '<td style="width:150px;"><div class="alert alert-success alert-dismissible fade show">OK</div></td>';
 
 }
 
 if($prix>$min and $prix<$avg){
-  echo '<td style="width:100px; background:yellow;"></td>';
+  echo '<td style="width:150px;"><div class="alert alert-info alert-dismissible fade show">WARNING!</div></td>';
 }
 
 if($prix>$avg and $prix<$max){
-  echo '<td style="width:100px; background:orange;"></td>';
+  echo '<td style="width:150px;"><div class="alert alert-warning alert-dismissible fade show">WARNING!!</div></td>';
 }
 if($prix>$max){
-  echo '<td style="width:100px; background:red;"></td>';
+  echo '<td style="width:150px;"><div class="alert alert-danger alert-dismissible fade show">ERROR!!!</div></td>';
 }
 
 
-echo '<td style="width:400px; background:white;"><iframe src="graf.php?names='.$names2.'&marks='.$marks2.'"  width="90%"  height="200px"  frameborder="0" scrolling="no"></iframe></td>';
+echo '<td style="width:350px; background:white;"><iframe src="graf.php?names='.$names2.'&marks='.$marks2.'"  width="90%"  height="200px"  frameborder="0" scrolling="no"></iframe></td>';
 
 
 
