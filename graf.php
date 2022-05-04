@@ -25,7 +25,7 @@
 
     var densityData = {
      
-      label: 'Euro4x4parts (€)',
+      label: '(€)',
       <?php
         
           
@@ -83,11 +83,11 @@
     var barChart = new Chart(densityCanvas, {
       type: 'bar',
       data: {
-        
         <?php
         
           
-          echo 'labels: '.json_encode($names).','; ?>
+        echo 'labels: '.json_encode($names).','; ?>
+      
         datasets: [densityData],
       },
       options: chartOptions

@@ -340,7 +340,7 @@ function subbarcode(){
 };
 
 
-function subrefeuro(){
+function subrefeuro_GOOD(){
 
 var reuro = $("#refeuro").val();
 document.getElementById('display').innerHTML ="";
@@ -348,14 +348,11 @@ $('#display').html('<br/> <div class="loading"><img src="images/loader.gif" alt=
 
 
 $.post("ean2.php", {reuro: reuro}, function(data) {
-              /*body=$("#euro2tdean").html()+data;
-              $("#euro2tdean").html(body);*/
-             // document.getElementById('euro2tdean').innerHTML +=data;
-             document.getElementById('display').innerHTML ="";
-             document.getElementById('display').innerHTML +=data;
+             
+  document.getElementById('display').innerHTML ="";
+            document.getElementById('display').innerHTML +=data;
 
 })
-
 
 
 
@@ -368,6 +365,67 @@ function ClearVin() {
           /* document.getElementById("grupos").innerHTML =""; 
           document.getElementById("cars").innerHTML =""; */
         }
+
+function subrefeuro(){
+
+var reuro = $("#refeuro").val();
+document.getElementById('display').innerHTML ="";
+$('#display').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Read info, One moment, please ...</div>').show()
+document.getElementById('display').innerHTML ="";
+//$.post("ean3.php", {reuro: reuro}, function(data) {
+$.post("ean3.php", {reuro: 'PCV1020'}, function(data) {
+             
+             //
+            document.getElementById('display').innerHTML +=data;
+
+})
+$.post("ean3.php", {reuro: 'PCV1021'}, function(data) {
+             
+             //document.getElementById('display').innerHTML ="";
+             document.getElementById('display').innerHTML +=data;
+
+})
+
+$.post("ean3.php", {reuro: 'KPE1613'}, function(data) {
+             
+            // document.getElementById('display').innerHTML ="";
+             document.getElementById('display').innerHTML +=data;
+
+})
+$.post("ean3.php", {reuro: 'TCP1010'}, function(data) {
+             
+             // document.getElementById('display').innerHTML ="";
+              document.getElementById('display').innerHTML +=data;
+ 
+ })
+ $.post("ean3.php", {reuro: 'PER2112'}, function(data) {
+             
+             // document.getElementById('display').innerHTML ="";
+              document.getElementById('display').innerHTML +=data;
+ 
+ })
+ $.post("ean3.php", {reuro: 'mpr1034'}, function(data) {
+             
+             // document.getElementById('display').innerHTML ="";
+              document.getElementById('display').innerHTML +=data;
+ 
+ })
+ $.post("ean3.php", {reuro: 'GAL1227'}, function(data) {
+             
+             // document.getElementById('display').innerHTML ="";
+              document.getElementById('display').innerHTML +=data;
+ 
+ })
+ $.post("ean3.php", {reuro: 'bmc1703'}, function(data) {
+             
+             // document.getElementById('display').innerHTML ="";
+              document.getElementById('display').innerHTML +=data;
+ 
+ })
+
+
+
+};        
 </script>
 
 </html>
