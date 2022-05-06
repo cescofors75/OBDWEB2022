@@ -24,7 +24,7 @@ $response_json = file_get_contents($req_url);
       
       //$EUR_price = round(($base_price * $response2->conversion_rates->EUR), 2);
       
-     
+      $_SESSION['timeCurrency'] = date('Y-m-d H:i:s');
       $_SESSION['AED']=$response2->conversion_rates->AED;
       $_SESSION['AFN']=$response2->conversion_rates->AFN;
       $_SESSION['ALL']=$response2->conversion_rates->ALL;
@@ -218,7 +218,7 @@ echo ('<div style="background-color:steelblue; color:white; ">');
         echo ('RUB '.ROUND(1/(FLOAT)$_SESSION['RUB'],2).'€&nbsp;&nbsp;');
         echo ('EUR '.ROUND(1/(FLOAT)$_SESSION['EUR'],2).'€&nbsp;&nbsp;');
         
-        
+        echo ($_SESSION['timeCurrency']);
        
         echo ('</marquee>');
         echo ('</div>');

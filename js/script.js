@@ -1,6 +1,5 @@
    
     
-   
 
 
 
@@ -12,6 +11,7 @@
         //Hiding "display" div in "search.php" file.
         $('#display').hide();
      }
+    
      $(document).ready(function() {
         //On pressing a key on "Search box" in "search.php" file. This function will be called.
         $("#search").keyup(function() {

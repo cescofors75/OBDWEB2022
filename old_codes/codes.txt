@@ -1087,3 +1087,10 @@ xmlhttp.onreadystatechange = function() {
        <div class='b'>
       &nbsp;&nbsp; TCP1010 - PER2112 - KPE1613 - GAL1227 - MPR1034 -BMC1703
       </div>
+
+
+
+
+
+
+      SELECT distinct articleean.eancode FROM `articlesvehicletrees` inner join articleean on articleean.legacyArticleId=articlesvehicletrees.articleId where linkingTargetId=15587 and linkingTargetType='P' and assemblyGroupNodeId=100030;

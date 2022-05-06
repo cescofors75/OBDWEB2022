@@ -1,7 +1,12 @@
+
+
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 <?php
+//error_reporting(0);
 session_start();
+
 $reuro=$_POST['reuro'];
 
 $api_key = 'l1sb4dr7rnng4ftxp41smz54soubg2';
@@ -131,6 +136,8 @@ for ($j=0; $j < $i; $j++) {
 
 
 }
+
+if ($i>1){
 for ($j=1; $j < $i; $j++) {
 
   
@@ -139,10 +146,22 @@ for ($j=1; $j < $i; $j++) {
 
 
 }
-
 $min= min($marksC);
 $max= max($marksC);
+
+
 $avg= array_sum($marksC)/count($marksC);
+}else{
+  array_push($marksC,$name[0]['eprice']);
+  $min= $name[0]['eprice'];
+  $max= $name[0]['eprice'];
+  $avg= $name[0]['eprice'];
+ 
+
+
+}
+
+
 
 
 
@@ -170,7 +189,7 @@ if($prix>$avg and $prix<$max){
   echo '<td style="width:150px;"><div class="alert alert-warning alert-dismissible fade show">WARNING!!</div></td>';
 }
 if($prix>$max){
-  echo '<td style="width:150px;"><div class="alert alert-danger alert-dismissible fade show">ERROR!!!</div></td>';
+  echo '<td style="width:150px;"><div class="alert alert-danger alert-dismissible fade show">DANGER!!!</div></td>';
 }
 
 

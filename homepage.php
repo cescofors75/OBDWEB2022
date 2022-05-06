@@ -204,8 +204,10 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
       </div>
       <div class="col-sm">
       <div class='b'>
-      &nbsp;&nbsp; TCP1010 - PER2112 - KPE1613 - GAL1227 - MPR1034 -BMC1703
-      </div>
+      &nbsp;&nbsp; TCP1010 - PER2112 - KPE1613 - GAL1227 - MPR1034 -BMC1703 - KRA1003
+      <button type="button" onclick="subrefeuroFamily();" class="btn btn-success btn-lg"><?php echo $lang['index-b-search'];?></button>&nbsp;
+  
+    </div>
       </div>
       
   
@@ -317,7 +319,10 @@ var id_grupos = <?php echo $_SESSION['carid'];?>;
 
 </body>
 <script>
-
+function ClearVin() {
+          document.getElementById("grupos").innerHTML ="";
+         
+        }
 function euro2tdeanHomepage(ean)
 {
   document.getElementById('display').innerHTML ="";
@@ -340,7 +345,7 @@ function subbarcode(){
 };
 
 
-function subrefeuro_GOOD(){
+function subrefeuro(){
 
 var reuro = $("#refeuro").val();
 document.getElementById('display').innerHTML ="";
@@ -360,68 +365,64 @@ $.post("ean2.php", {reuro: reuro}, function(data) {
 };
 
 
-function ClearVin() {
-          document.getElementById("grupos").innerHTML ="";
-          /* document.getElementById("grupos").innerHTML =""; 
-          document.getElementById("cars").innerHTML =""; */
-        }
 
-function subrefeuro(){
 
-var reuro = $("#refeuro").val();
+function subrefeuroFamily(){
+
+//var reuro = $("#refeuro").val();
 document.getElementById('display').innerHTML ="";
 $('#display').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Read info, One moment, please ...</div>').show()
 document.getElementById('display').innerHTML ="";
 //$.post("ean3.php", {reuro: reuro}, function(data) {
-$.post("ean3.php", {reuro: 'PCV1020'}, function(data) {
+$.post("ean3.php", {reuro: 'bmc1642'}, function(data) {
              
-             //
+            
             document.getElementById('display').innerHTML +=data;
 
 })
-$.post("ean3.php", {reuro: 'DRE1007'}, function(data) {
+$.post("ean3.php", {reuro: 'bmc1643'}, function(data) {
              
-             //document.getElementById('display').innerHTML ="";
+            
              document.getElementById('display').innerHTML +=data;
 
 })
 
-$.post("ean3.php", {reuro: 'KPE1613'}, function(data) {
+$.post("ean3.php", {reuro: 'bmc1644'}, function(data) {
              
-            // document.getElementById('display').innerHTML ="";
+          
              document.getElementById('display').innerHTML +=data;
 
 })
-$.post("ean3.php", {reuro: 'TCP1010'}, function(data) {
+$.post("ean3.php", {reuro: 'bmc1645'}, function(data) {
              
-             // document.getElementById('display').innerHTML ="";
+             
               document.getElementById('display').innerHTML +=data;
  
  })
- $.post("ean3.php", {reuro: 'PER2112'}, function(data) {
+ $.post("ean3.php", {reuro: 'bmc1646'}, function(data) {
              
-             // document.getElementById('display').innerHTML ="";
+             
               document.getElementById('display').innerHTML +=data;
  
  })
- $.post("ean3.php", {reuro: 'mpr1034'}, function(data) {
+ $.post("ean3.php", {reuro: 'bmc1648'}, function(data) {
              
-             // document.getElementById('display').innerHTML ="";
+             
               document.getElementById('display').innerHTML +=data;
  
  })
- $.post("ean3.php", {reuro: 'GAL1227'}, function(data) {
+ $.post("ean3.php", {reuro: 'bmc1649'}, function(data) {
              
-             // document.getElementById('display').innerHTML ="";
+            
               document.getElementById('display').innerHTML +=data;
  
  })
- $.post("ean3.php", {reuro: 'bmc1703'}, function(data) {
+ $.post("ean3.php", {reuro: 'bmc1650'}, function(data) {
              
-             // document.getElementById('display').innerHTML ="";
-              document.getElementById('display').innerHTML +=data;
- 
- })
+            
+             document.getElementById('display').innerHTML +=data;
+
+})
 
 
 
