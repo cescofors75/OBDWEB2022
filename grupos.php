@@ -147,7 +147,7 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {   
        
                       
-        $html .= "<a href='recursive.php?carid=".$carid."&grupo=". $row['shortCutId'] . "'><img src='../images/images_sections/". $row['shortCutId'] .".png' width='80' title='". $row['shortCutName'] ."'></a>" ; 
+        $html .= "<a href='./php/recursive.php?carid=".$carid."&grupo=". $row['shortCutId'] . "'><img src='../images/images_sections/". $row['shortCutId'] .".png' width='80' title='". $row['shortCutName'] ."'></a>" ; 
         
       
       }
