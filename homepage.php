@@ -204,11 +204,7 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
       </div>
       </div>
       <div class="col-sm">
-      <div class='b'>
-      &nbsp;&nbsp; TCP1010 - PER2112 - KPE1613 - GAL1227 - MPR1034 -BMC1703 - KRA1003
-      <button type="button" onclick="subrefeuroFamily();" class="btn btn-success btn-lg"><?php echo $lang['index-b-search'];?></button>&nbsp;
-  
-    </div>
+      
       </div>
       
   

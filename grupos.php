@@ -93,7 +93,7 @@ $html="";
 
   <div class='r'><?php echo $lang['grupos-option'];?>&nbsp; P0201, P0255, P0100 </div>
   <div class='b' ><?php echo $lang['grupos-code'];?>&nbsp; <input type="text" id="code" name="fname" value="P0190" >&nbsp; 
-  <button type="button" onclick="solution()" class="btn btn-success btn-lg"><?php echo $lang['grupos-solution'];?></button> &nbsp; <button type="button" onclick="ALLsolution()" class="btn btn-warning btn-lg"><?php echo $lang['grupos-allsolution'];?></button>&nbsp;&nbsp;<button type="button" onclick="Clear_solutions()" class="btn btn-danger btn-lg"><?php echo $lang['grupos-clearsolution'];?></button>
+  <button type="button" onclick="solution()" class="btn btn-success btn-lg"><?php echo $lang['grupos-solution'];?></button> &nbsp; &nbsp;&nbsp;<button type="button" onclick="Clear_solutions()" class="btn btn-danger btn-lg"><?php echo $lang['grupos-clearsolution'];?></button>
    
   </div>
 
