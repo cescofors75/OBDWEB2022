@@ -24,8 +24,7 @@ INNER JOIN articlesvehicletrees
 ON articlesvehicletrees.articleId = articles.legacyArticleId and articlesvehicletrees.linkingTargetType='P'
 INNER JOIN legacy2generic
 on legacy2generic.legacyArticleId=articles.legacyArticleId
-where articlesvehicletrees.linkingTargetId=$carid and legacy2generic.genericArticleId=$code  and articles.lang='$lang'
-order by prix");
+where articlesvehicletrees.linkingTargetId=$carid and legacy2generic.genericArticleId=$code  and articles.lang='$lang'");
 
 $statement->execute();
 if (!$statement){

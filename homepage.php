@@ -170,21 +170,22 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
 
   <div class="row">
     <div class="col-sm">
-      
-      <div  name="solution" id=""  class='b'> VIN&nbsp;&nbsp;
+    
+     <!-- <div  name="solution" id=""  class='b'> VIN&nbsp;&nbsp;
        <input type="text" id="fname" name="fname" value="JTEAZ99J900006367" > &nbsp;
-      <button type="button" onclick="sub();" class="btn btn-success btn-lg"><?php echo $lang['index-b-search'];?></button>
-      <button type="button" onclick="ClearVin();" class="btn btn-danger btn-lg"><?php echo $lang['index-b-clear'];?></button> 
-    </div>
+       <button type="button" onclick="sub();" class="btn btn-success btn-lg"><?php echo $lang['index-b-search'];?></button>
+       <button type="button" onclick="ClearVin();" class="btn btn-danger btn-lg"><?php echo $lang['index-b-clear'];?></button> 
+    </div>   -->
     </div>
     
     <div class="col-sm">
     
-    <div  name="solution3" id="" class='b' >
-       <?php echo $lang['index-search'];?>&nbsp;&nbsp;
+   <!-- <div  name="solution3" id="" class='b' >
+      // <?php echo $lang['index-search'];?>
+       &nbsp;&nbsp;
        <input type="text" id="search" placeholder="4056A026" />&nbsp;&nbsp;&nbsp;&nbsp;
        <button type="button" onclick="Clear();" class="btn btn-danger btn-lg"><?php echo $lang['index-b-clear'];?></button>&nbsp;
-      </div>
+      </div>  -->
     </div>
 
     
@@ -204,7 +205,11 @@ $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
       </div>
       </div>
       <div class="col-sm">
-      
+      <div class='b'>
+      BMC1642 - BMC1643 - BMC1645- BMC1648 - BMC1649 -BMC1650
+      <button type="button" onclick="subrefeuroFamily();" class="btn btn-success btn-lg"><?php echo $lang['index-b-search'];?></button>&nbsp;
+  
+    </div>
       </div>
       
   
@@ -369,12 +374,12 @@ function subrefeuroFamily(){
 //var reuro = $("#refeuro").val();
 document.getElementById('display').innerHTML ="";
 $('#display').html('<br/> <div class="loading"><img src="images/loader.gif" alt="loading" /><br/> <br/>Read info, One moment, please ...</div>').show()
-document.getElementById('display').innerHTML ="";
+//document.getElementById('display').innerHTML ="";
 //$.post("ean3.php", {reuro: reuro}, function(data) {
 $.post("ean3.php", {reuro: 'bmc1642'}, function(data) {
              
             
-            document.getElementById('display').innerHTML +=data;
+            document.getElementById('display').innerHTML =data;
 
 })
 $.post("ean3.php", {reuro: 'bmc1643'}, function(data) {
