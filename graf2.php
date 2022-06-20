@@ -51,11 +51,7 @@
         backgroundColor: 'rgba(199, 0, 0, 0.6)',
         borderColor: 'rgba(199, 0, 0, 0.6)',
         //data: [0, 10, 5, 2, 20, 30, 45],
-        <?php
-        
-          
-        //echo 'data: '.json_encode($marks).','; 
-        echo 'data: ['; 
+        <?php echo 'data: ['; 
       
       for ($i=1; $i<count($marks)-1; $i++){
         

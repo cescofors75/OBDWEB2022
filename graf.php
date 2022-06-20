@@ -26,10 +26,8 @@
     var densityData = {
      
       label: '(€)',
-      <?php
-        
-          
-        echo 'data: '.json_encode($marks).','; ?>
+      <?php echo 'data: '.json_encode($marks).','; 
+      ?>
       
       backgroundColor: [
         'rgba(0, 99, 132, 0.6)',
@@ -83,10 +81,7 @@
     var barChart = new Chart(densityCanvas, {
       type: 'bar',
       data: {
-        <?php
-        
-          
-        echo 'labels: '.json_encode($names).','; ?>
+        <?php echo 'labels: '.json_encode($names).','; ?>
       
         datasets: [densityData],
       },

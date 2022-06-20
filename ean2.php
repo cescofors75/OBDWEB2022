@@ -141,6 +141,7 @@ $marks2 = serialize($marks);
 $marks2 = urlencode($marks2);
 
 echo '<div>';
+//include('./graf2.php?names='.$names2.'&marks='.$marks2.'');
 echo '<iframe src="graf2.php?names='.$names2.'&marks='.$marks2.'"  width="50%" height="300px"   frameborder="0" scrolling="no"></iframe>';
 echo '<iframe src="graf.php?names='.$names2.'&marks='.$marks2.'"  width="50%" height="300px"   frameborder="0" scrolling="no"></iframe>';
 echo '</div>';

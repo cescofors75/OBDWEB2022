@@ -38,6 +38,7 @@ $lang['grupos-notreference']='Not reference OEM !!!!';
 $lang['grupos-notsuppliers']='Not reference Supplier !!!!';
 $lang['grupos-loading']='Read database, One moment, please ...';
 $lang['grupos-text-Thermostat']='Thermostat';
-
+$lang['please-select']='Please select a make';
+$lang['Oem-not-found']='Part number OEM not found';
 
 ?>
