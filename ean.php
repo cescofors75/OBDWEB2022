@@ -1,7 +1,7 @@
 <?php
 session_start();
 $ean=$_POST['ean'];
-$api_key = 'l1sb4dr7rnng4ftxp41smz54soubg2';
+$api_key = '';
 $url = 'https://api.barcodelookup.com/v3/products?barcode='.$ean.'&formatted=y&key=' . $api_key;
 
 $ch = curl_init(); // Use only one cURL connection for multiple queries
