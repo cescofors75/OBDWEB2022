@@ -42,7 +42,7 @@ function sub_MAT(){
 
     var xmlhttp = new XMLHttpRequest();
     
-    /*var url = "https://partsapi.ru/api?method=VINdecode&key=32D86CC70418225195C908FEDA291939&vin="+document.getElementById("fname").value+"&lang=en";*/
+    /*var url = "https://partsapi.ru/api?method=VINdecode&key=&vin="+document.getElementById("fname").value+"&lang=en";*/
     
     //var url ="http://localhost/2022/dgt.json";http://85.48.86.108/
     //var url ="http://192.168.1.32/soap/examples/soap-wsa-example.php?mat="+document.getElementById("fname2").value;
@@ -108,10 +108,10 @@ function sub_MAT(){
         
         var xmlhttp = new XMLHttpRequest();
         //var url = "https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/"+"1C4HJXEG2KW590992"+"?format=json";
-        //https://vindecodervehicle.com/api/v1/?id=cescofors&key=jj88d67nv9lx51na0prx2v9f34n&vin=
+        //https://vindecodervehicle.com/api/v1/?id=cescofors&key=n&vin=
         var url = "https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/ "+ document.getElementById("fname").value + "?format=json";
         
-        //var url ="https://vindecodervehicle.com/api/v1/?id=cescofors&key=jj88d67nv9lx51na0prx2v9f34n&vin="+ document.getElementById("fname").value+"&getMoreData";
+        //var url ="https://vindecodervehicle.com/api/v1/?id=cescofors&key=&vin="+ document.getElementById("fname").value+"&getMoreData";
         
         
         xmlhttp.onreadystatechange = function() {
@@ -155,7 +155,7 @@ function sub(){
 
     var xmlhttp = new XMLHttpRequest();
     
-    var url = "https://partsapi.ru/api?method=VINdecode&key=8329B70D719F9878BDEC1CF864582042&vin="+document.getElementById("fname").value+"&lang=en";
+    var url = "https://partsapi.ru/api?method=VINdecode&key=&vin="+document.getElementById("fname").value+"&lang=en";
     $('#display').html('<br/><div class="container"> <div class="loading"><img src="images/loader.gif" alt="loading"/><br/> <br/>Decoder VIN. One moment, please ...</div></div>').show();
     
     
