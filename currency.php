@@ -3,8 +3,8 @@
 //session_start();
 
 if (!isset($_SESSION['GBP'])){
-$api_key = 'l1sb4dr7rnng4ftxp41smz54soubg2';
-$req_url = 'https://v6.exchangerate-api.com/v6/b1c79e722136aa3fa32e5909/latest/EUR';
+$api_key = '';
+$req_url = 'https://v6.exchangerate-api.com/v6//latest/EUR';
 $response_json = file_get_contents($req_url);
 
   // Continuing if we got a result
