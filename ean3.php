@@ -9,7 +9,7 @@ session_start();
 
 $reuro=$_POST['reuro'];
 
-$api_key = 'l1sb4dr7rnng4ftxp41smz54soubg2';
+$api_key = '';
 $conexion = new mysqli('localhost', 'root','' , 'td2q2019');
 
 $conexion->query("SET CHARACTER SET utf8"); 
